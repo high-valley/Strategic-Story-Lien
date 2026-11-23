@@ -60,7 +60,9 @@
 <li><b>杖</b>：修道士ミアは隣の味方をタップしてHP回復（敵は攻撃できない）。</li>
 <li><b>クラスチェンジ</b>：Lv5以上で「道具」から灯火の紋章を使うと上級職に。能力が上がり、使える武器が増えます。</li>
 <li><b>支援</b>：仲良しの2人が隣り合ってターンを終えると絆が深まり、移動後に相手をタップ（💬）すると支援会話。支援レベルC/Bで、2マス以内にいると命中・回避が上がります。</li>
-<li>勝利条件は章ごとに異なります（第一章：敵の全滅／第二章：首領の撃破／第三章：カイルが祭壇に到達して待機）。</li>
+<li>勝利条件は章ごとに異なります（第一章：敵の全滅／第二章：首領の撃破／第三章：カイルが祭壇に到達して待機／第四章：6ターン耐える）。</li>
+<li><b>村・宝箱</b>：村や宝箱のマスで待機すると「訪問」「開ける」になり、道具が手に入ります（一度きり）。</li>
+<li><b>増援と説得</b>：決まったターンに敵の増援が現れます。カイルで特定の敵の隣から話しかける（💬）と仲間になることも。</li>
 </ul><button class="btn primary" id="closeHelp">戦いに戻る</button></div></div>
 <div class="modal" id="itemModal"><div class="modal-content"><h2>道具</h2><div id="itemList"></div><button class="btn sub" id="itemClose">閉じる</button></div></div>
 <div class="modal" id="resultModal"><div class="modal-content"><h2 id="resultTitle">勝利！</h2><p id="resultText"></p><button class="btn primary" id="resetBtn">もう一度プレイ</button><button class="btn sub" id="resultLoadBtn">セーブから再開</button><button class="btn sub hidden" id="altBtn">第一章から遊ぶ</button></div></div>
@@ -114,7 +116,9 @@ const TERRAIN={
  W:{name:'水辺',cost:99,def:0,avo:0},
  M:{name:'山',cost:3,def:2,avo:30},
  B:{name:'橋',cost:1,def:0,avo:0},
- T:{name:'祭壇',cost:1,def:1,avo:10}};
+ T:{name:'祭壇',cost:1,def:1,avo:10},
+ V:{name:'村',cost:1,def:0,avo:10},
+ H:{name:'宝箱',cost:1,def:0,avo:0}};
 
 // ===== 武器・道具 =====（uses:0 は壊れない）
 const ITEMS={
@@ -140,6 +144,7 @@ const PROMO={
  '弓使い':{to:'狙撃手',wt:[],bonus:{hp:3,str:2,skl:3,spd:2,def:1},mov:0},
  '槍騎士':{to:'聖槍騎士',wt:['sword'],bonus:{hp:4,str:2,skl:1,spd:2,def:2},mov:1},
  '斧戦士':{to:'戦士長',wt:['bow'],bonus:{hp:5,str:3,skl:2,spd:1,def:1},mov:0},
+ '傭兵':{to:'剣豪',wt:['axe'],bonus:{hp:4,str:2,skl:2,spd:1,def:2},mov:1},
  '修道士':{to:'司祭',wt:[],bonus:{hp:3,str:1,skl:2,spd:1,lck:2,def:2},mov:0}};
 const WNAME={sword:'剣',lance:'槍',axe:'斧',bow:'弓'};
 const STATS=['hp','str','skl','spd','lck','def'],LABEL={hp:'HP',str:'力',skl:'技',spd:'速さ',lck:'幸運',def:'守備',mov:'移動'};
@@ -156,11 +161,14 @@ const HEROES={
  8:{id:8,name:'ソラ',job:'斧戦士',joinCh:1,color:'#d9a75a',lv:3,hp:26,str:8,skl:4,spd:6,lck:4,def:4,mov:5,
    wt:['axe'],grow:{hp:90,str:55,skl:35,spd:40,lck:30,def:25},items:['iron_axe','hand_axe','salve'],death:'村のみんな……ごめん……'},
  15:{id:15,name:'ミア',job:'修道士',joinCh:2,color:'#e8a6c8',lv:3,hp:18,str:2,skl:5,spd:6,lck:7,def:2,mov:5,
-   wt:['staff'],grow:{hp:55,str:20,skl:45,spd:50,lck:60,def:20},items:['heal_staff','salve'],death:'みなさん……どうか、灯を……'}};
+   wt:['staff'],grow:{hp:55,str:20,skl:45,spd:50,lck:60,def:20},items:['heal_staff','salve'],death:'みなさん……どうか、灯を……'},
+ // 敵として登場し、カイルが話しかけると仲間になる
+ 30:{id:30,name:'ノア',job:'傭兵',joinCh:99,color:'#6fb3c9',lv:6,hp:26,str:9,skl:11,spd:12,lck:6,def:5,mov:5,
+   wt:['sword'],grow:{hp:70,str:40,skl:55,spd:60,lck:35,def:25},items:['steel_sword'],death:'……悪くない、雇い主だった……'}};
 
 // 会話シーンの顔グラフィック用
 const CAST={見張り:{team:'e',weapon:'bow',color:'#bb7e8e'},ガルド:{team:'e',weapon:'axe',color:'#c4544a',boss:true}};
-CAST.ヴェルン={team:'e',weapon:'sword',color:'#7a5ac4',boss:true};
+CAST.ヴェルン={team:'e',weapon:'sword',color:'#7a5ac4',boss:true};CAST.ザイド={team:'e',weapon:'lance',color:'#3c3f56',boss:true};
 for(const h of Object.values(HEROES))CAST[h.name]={team:'p',weapon:ITEMS[h.items[0]].type,color:h.color};
 
 // ===== 支援会話（2人が隣り合ってターンを終えるとポイント。C=2 B=5で会話できる）=====
@@ -286,12 +294,61 @@ outro:[
 {s:'ミア',t:'王都……？　騎士団の本部がある場所なのに。'},
 {s:'エド',t:'騎士団の中に、山賊や傭兵へ武器を流した者がいる……ということか。'},
 {s:'カイル',t:'確かめよう。この戦旗に誓って。'},
-{t:'祠の祭壇に灯がともる。\n一行は、王都へ続く道を見すえた――。'}]}];
+{t:'祠の祭壇に灯がともる。\n一行は、王都へ続く道を見すえた――。'}]},
+{title:'第四章　偽りの騎士',goal:'survive',turns:6,goalText:'勝利条件：6ターン耐える（敵将ザイドの撃破でも勝利）',winTitle:'勝利！ 街道の村を守り抜いた',
+rows:[
+'GGFGGGGFGG',
+'GVGGPPGGHG',
+'GGGGPPGGGG',
+'FFGGPPGGFF',
+'GGGCPPCGGG',
+'GGGGPPGGGG',
+'GVFGPPGFGG',
+'GGGGPPGGVG',
+'GGFGPPGFGG',
+'GGGGPPGGGG'],
+deploy:{1:[4,8],2:[5,9],3:[5,8],8:[4,9],15:[3,9],30:[6,9]},
+// 村は待機で「訪問」、宝箱は「開ける」。一度きり
+events:{
+ '1,1':{type:'village',item:'seal',lines:[{s:'村の長老',t:'騎士団の方か！　これは昔、騎士団から預かった紋章じゃ。きっと役に立つ。'}]},
+ '1,6':{type:'village',item:'steel_lance',lines:[{s:'鍛冶屋',t:'偽の騎士どもに渡すくらいなら、あんたらに使ってほしい。鍛えたての槍だ。'}]},
+ '8,7':{type:'village',item:'salve',lines:[{s:'村の娘',t:'助けに来てくれたの？　これ、薬草で作った傷薬です。'}]},
+ '8,1':{type:'chest',item:'long_bow'}},
+// 増援：そのターンの敵の行動のあと、指定の位置に現れる（ふさがっていれば出ない）
+reinf:[
+ {turn:2,units:[{id:50,name:'偽騎士',job:'槍兵',lv:6,hp:24,str:8,skl:5,spd:5,lck:2,def:6,mov:4,items:['iron_lance'],x:0,y:0,color:'#5a5f7a'},
+  {id:51,name:'偽騎士',job:'剣士',lv:6,hp:22,str:7,skl:7,spd:7,lck:2,def:4,mov:4,items:['iron_sword'],x:9,y:0,color:'#5a5f7a'}]},
+ {turn:4,units:[{id:52,name:'偽騎士',job:'戦斧兵',lv:5,hp:26,str:9,skl:4,spd:5,lck:1,def:5,mov:4,items:['iron_axe'],x:3,y:0,color:'#5a5f7a'},
+  {id:53,name:'偽騎士',job:'射手',lv:6,hp:22,str:8,skl:7,spd:6,lck:2,def:4,mov:4,items:['hunt_bow'],x:6,y:0,color:'#5a5f7a'}]}],
+enemies:[
+{id:41,name:'ザイド',job:'槍騎士長',boss:true,lv:9,hp:36,str:11,skl:9,spd:8,lck:4,def:9,mov:0,items:['steel_lance'],drop:'seal',x:4,y:0,color:'#3c3f56'},
+{id:42,name:'偽騎士',job:'槍兵',lv:6,hp:24,str:8,skl:5,spd:5,lck:2,def:6,mov:4,items:['iron_lance','javelin'],guard:true,x:4,y:2,color:'#5a5f7a'},
+{id:43,name:'偽騎士',job:'剣士',lv:6,hp:22,str:7,skl:7,spd:7,lck:2,def:4,mov:4,items:['iron_sword'],guard:true,x:5,y:2,color:'#5a5f7a'},
+{id:44,name:'山賊G',job:'戦斧兵',lv:5,hp:26,str:8,skl:4,spd:5,lck:0,def:4,mov:4,items:['hand_axe'],x:0,y:3,color:'#dd8763'},
+{id:45,name:'偽騎士',job:'射手',lv:6,hp:22,str:8,skl:7,spd:6,lck:2,def:4,mov:4,items:['long_bow'],x:7,y:1,color:'#5a5f7a'},
+{id:30,name:'ノア',job:'傭兵',lv:6,hp:26,str:9,skl:11,spd:12,lck:6,def:5,mov:5,items:['steel_sword'],guard:true,x:8,y:4,color:'#6fb3c9',
+ recruit:{by:1,lines:[{s:'カイル',t:'君は……傭兵か。なぜ騎士の名を騙る連中と一緒にいる？'},{s:'ノア',t:'金で雇われただけさ。……だが、村を焼けとは聞いてない。'},{s:'カイル',t:'なら、俺たちと来ないか。村を守る戦いだ。'},{s:'ノア',t:'……いいだろう。報酬は、あんたの戦旗に灯がともるところを見ること。それで十分だ。'}]}}],
+intro:[
+{t:'祠を発った一行は、王都へ続く街道へ出た。'},
+{t:'街道沿いの村々に、王都の紋章を掲げた騎士たちが押し寄せているという。'},
+{s:'エド',t:'王都の騎士団……？　いや、あの鎧は正規のものじゃない。'},
+{s:'リナ',t:'村が三つあるわ。先に訪ねれば、村の人たちに危険を知らせられる。'},
+{s:'ミア',t:'北から、もっと来ます……！　数が多すぎます。'},
+{s:'カイル',t:'全部を相手にはできない。6ターン、ここで持ちこたえるぞ。村を守りながら！'},
+{s:'ソラ',t:'おい、東にいる青い剣士……あいつだけ、ほかの連中と様子が違うぞ。'},
+{s:'ザイド',t:'騎士団の見習いどもか。ここで消えてもらう。……あのお方のためにな。'}],
+outro:[
+{t:'夜明けとともに、偽りの騎士たちは退いていった。'},
+{s:'エド',t:'「あのお方」と言っていたな。騎士団の中に、黒幕がいる。'},
+{s:'ミア',t:'村の人たちは、みんな無事です。……よかった。'},
+{s:'カイル',t:'答えは王都にある。みんな、まだ行けるか？'},
+{s:'リナ',t:'当たり前でしょ。'},
+{t:'灯火の戦旗は、王都の門へ――。'}]}];
 const KANJI=['一','二','三','四','五','六','七','八','九','十'];
 
 // ===== 状態 =====
 let ch=0,rows=CHAPTERS[0].rows,story=null,storyEnd=null;
-let campaign={ch:0,roster:null,fallen:[],supports:{}},supports={},seized=false;
+let campaign={ch:0,roster:null,fallen:[],supports:{}},supports={},seized=false,survived=false,mapDone=[];
 let units=[],selected=null,stage='none',reachable=new Map(),origin=null,target=null,fcIndex=0,tileSel=null,turn=1,locked=false,over=false,dangerOn=false,cursor=null,flashUnit=null;
 const msg=s=>{$('message').textContent=s};
 const sleep=t=>new Promise(r=>setTimeout(r,t));
@@ -308,7 +365,7 @@ const clone=o=>JSON.parse(JSON.stringify(o));
 // ===== ユニット生成 =====
 const mkItem=id=>({id,uses:ITEMS[id].uses||null});
 function makeUnit(d,team,x,y){const u={id:d.id,team,name:d.name,job:d.job,color:d.color,lv:d.lv,exp:0,maxHp:d.hp,hp:d.hp,str:d.str,skl:d.skl,spd:d.spd,lck:d.lck,def:d.def,mov:d.mov,items:d.items.map(mkItem),wt:d.wt?[...d.wt]:[...new Set(d.items.map(id=>ITEMS[id].type).filter(t=>t!=='heal'))],x,y,acted:false};
- if(d.lord)u.lord=true;if(d.boss)u.boss=true;if(d.guard)u.guard=true;if(d.drop)u.drop=d.drop;if(d.grow)u.grow={...d.grow};return u}
+ if(d.lord)u.lord=true;if(d.boss)u.boss=true;if(d.guard)u.guard=true;if(d.drop)u.drop=d.drop;if(d.recruit)u.recruit=clone(d.recruit);if(d.grow)u.grow={...d.grow};return u}
 function autoLevel(u,n){if(n<=0)return;u.lv+=n;for(const k of STATS){const g=Math.round(u.grow[k]*n/100);if(k==='hp'){u.maxHp+=g;u.hp=u.maxHp}else u[k]+=g}}
 function buildUnits(i){const C=CHAPTERS[i],list=[],roster=campaign.roster,fallen=campaign.fallen||[];
  for(const [sid,[x,y]] of Object.entries(C.deploy)){const id=+sid,h=HEROES[id];let u=null;
@@ -356,7 +413,7 @@ function loadCampaign(){const ls=storage();try{const c=JSON.parse(ls.getItem(CAM
  let n=0;try{n=parseInt(ls.getItem(OLD_PROGRESS_KEY)||'0',10)}catch(e){}return{ch:n>=0&&n<CHAPTERS.length?n:0,roster:null,fallen:[],supports:{}}}
 function saveCampaign(){try{storage().setItem(CAMP_KEY,JSON.stringify(campaign))}catch(e){}}
 function clearSelection(){selected=null;stage='none';origin=null;target=null;tileSel=null;reachable=new Map()}
-function reset(){units=buildUnits(ch);supports=clone(campaign.supports||{});seized=false;clearSelection();turn=1;locked=false;over=false;flashUnit=null;$('itemModal').classList.remove('open');
+function reset(){units=buildUnits(ch);supports=clone(campaign.supports||{});seized=false;survived=false;mapDone=[];clearSelection();turn=1;locked=false;over=false;flashUnit=null;$('itemModal').classList.remove('open');
  $('resultModal').classList.remove('open');$('battle').classList.remove('show');$('lvup').classList.remove('show');$('chapterLabel').textContent=CHAPTERS[ch].title;
  msg(`${CHAPTERS[ch].goalText}。ユニットを選んで指揮しよう。`);update();draw()}
 function startChapter(i,withStory=true){ch=i;rows=CHAPTERS[i].rows;campaign.ch=i;saveCampaign();reset();
@@ -369,7 +426,13 @@ function supBonus(u){if(u.team!=='p')return 0;let s=0;for(const v of units)if(v!
 function talkReady(a,b){const k=pairKey(a.id,b.id);if(!SUPPORTS[k])return false;const s=supports[k]||{pts:0,lv:0};return s.lv<2&&s.pts>=SUP_NEED[s.lv+1]}
 function supportTick(){const ps=alive('p'),ready=[];for(const k of Object.keys(SUPPORTS)){const [a,b]=k.split('-').map(Number),ua=ps.find(u=>u.id===a),ub=ps.find(u=>u.id===b);
  if(ua&&ub&&dist(ua,ub)<=1){const s=supports[k]||(supports[k]={pts:0,lv:0});const was=talkReady(ua,ub);s.pts++;if(!was&&talkReady(ua,ub))ready.push(`${ua.name}と${ub.name}`)}}return ready}
-const talkTargets=u=>alive('p').filter(v=>v!==u&&dist(u,v)===1&&talkReady(u,v));
+const talkTargets=u=>units.filter(v=>v!==u&&v.hp>0&&dist(u,v)===1&&(v.team==='p'?talkReady(u,v):v.recruit&&v.recruit.by===u.id));
+function tileEvent(u){const k=key(u.x,u.y),ev=CHAPTERS[ch].events?.[k];return ev&&!mapDone.includes(k)?ev:null}
+function giveItem(p,id){const it=mkItem(id),fits=u=>u.items.length<MAX_ITEMS&&(!WNAME[idef(it).type]&&idef(it).type!=='staff'||canUse(u,it)),who=fits(p)?p:alive('p').find(fits);
+ if(who){who.items.push(it);return who===p?`${p.name}は${idef(it).name}を手に入れた！`:`${idef(it).name}を手に入れ、${who.name}に渡した。`}return`${idef(it).name}を持てる仲間がいない（持ち物がいっぱい）。`}
+function runTileEvent(u){const ev=tileEvent(u);if(!ev)return;mapDone.push(key(u.x,u.y));
+ const fin=()=>{locked=false;msg((ev.type==='chest'?`${u.name}は宝箱を開けた。`:`${u.name}は村を訪れた。`)+giveItem(u,ev.item));actDone()};
+ if(ev.lines){locked=true;update();playStory(ev.lines,null,fin)}else fin()}
 const healTargets=u=>staffOf(u)?alive('p').filter(v=>v!==u&&dist(u,v)===1&&v.hp<v.maxHp):[];
 function supportText(u){if(u.team!=='p')return'';const l=alive('p').filter(v=>v!==u&&supLv(u.id,v.id)).map(v=>v.name+SUP_RANK[supLv(u.id,v.id)]);return l.length?`<div class="items">支援：${l.join('　')}</div>`:''}
 
@@ -391,13 +454,15 @@ function seed(x,y){let n=((x+23)*1103515245+(y+31)*12345)>>>0;n^=n>>>13;return n
 function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x,y,w,h)}
 function tileArt(x,y){const t=rows[y][x],X=x*TILE,Y=y*TILE,n=seed(x,y),im=artImg('tiles',...((t==='G'||t==='W')&&n%4===0?[t+'2',t]:[t]));
  if(im){ctx.drawImage(im,X-.25,Y-.25,TILE+.5,TILE+.5);return}
- const grass=['#749666','#7b9d67','#779760','#729264'];rect(X,Y,TILE,TILE,grass[n%4]);
- if(t==='P'){rect(X,Y,TILE,TILE,'#b4a17b');for(let i=0;i<5;i++){const sx=((n>>i*3)&31),sy=((n>>(i+2)*3)&31);rect(X+sx,Y+sy,7,3,i%2?'#978468':'#c1ad87')}}
+ const grass=['#749666','#7b9d67','#779760','#729264'],gim='VHT'.includes(t)&&artImg('tiles','G');if(gim)ctx.drawImage(gim,X-.25,Y-.25,TILE+.5,TILE+.5);else rect(X,Y,TILE,TILE,grass[n%4]);
+ if(gim){}else if(t==='P'){rect(X,Y,TILE,TILE,'#b4a17b');for(let i=0;i<5;i++){const sx=((n>>i*3)&31),sy=((n>>(i+2)*3)&31);rect(X+sx,Y+sy,7,3,i%2?'#978468':'#c1ad87')}}
  else if(t==='W'){rect(X,Y,TILE,TILE,'#426f9b');for(let i=0;i<4;i++){let sx=(n>>i*3)&23,sy=(n>>(i+1)*4)&30;rect(X+sx,Y+sy,15,3,i%2?'#5f9bb5':'#38618d')}}
  else{for(let i=0;i<4;i++){let sx=(n>>i*4)&31,sy=(n>>(i+2)*3)&31;rect(X+sx,Y+sy,4,3,i%2?'#8cac71':'#6a8e5f')}}
  if(t==='F'){rect(X+7,Y+9,4,23,'#463e30');rect(X+18,Y+7,4,25,'#463e30');rect(X+3,Y+14,30,11,'#315c46');rect(X+10,Y+5,21,12,'#477b52');rect(X+3,Y+10,17,12,'#5e9459');rect(X+14,Y+3,10,5,'#82af66');rect(X+25,Y+13,7,7,'#739b61')}
  if(t==='M'){rect(X+2,Y+24,36,14,'#5f6a55');rect(X+6,Y+14,28,14,'#7c7d6e');rect(X+12,Y+6,16,10,'#97968a');rect(X+16,Y+3,8,5,'#e6e4dc');rect(X+22,Y+16,8,8,'#6a6b5f');rect(X+4,Y+30,10,4,'#4d5947')}
  if(t==='B'){rect(X,Y,TILE,TILE,'#426f9b');rect(X+3,Y,34,40,'#8a6a45');for(let i=0;i<5;i++)rect(X+3,Y+i*8+6,34,2,'#5c452d');rect(X+3,Y,3,40,'#6b5236');rect(X+34,Y,3,40,'#6b5236')}
+ if(t==='V'){const done=mapDone.includes(key(x,y));rect(X+6,Y+16,28,20,done?'#8a7f6e':'#c9b48a');rect(X+3,Y+8,34,10,done?'#5e5248':'#a5463c');rect(X+8,Y+4,24,6,done?'#5e5248':'#c25a4b');rect(X+16,Y+24,8,12,'#4f3a2a');rect(X+9,Y+20,5,5,done?'#3b3a3a':'#ffe7a0');rect(X+26,Y+20,5,5,done?'#3b3a3a':'#ffe7a0')}
+ if(t==='H'){const done=mapDone.includes(key(x,y));rect(X+8,Y+18,24,15,'#7a4f24');rect(X+8,Y+18,24,3,'#c79a4a');rect(X+18,Y+22,4,5,'#f2d16b');if(done){rect(X+8,Y+10,24,6,'#5a3a1a');rect(X+11,Y+19,18,3,'#2a1a0c')}else{rect(X+7,Y+13,26,6,'#9a6430');rect(X+7,Y+13,26,2,'#c79a4a')}}
  if(t==='T'){rect(X+4,Y+22,32,15,'#7d7a8a');rect(X+8,Y+15,24,9,'#aeabbb');rect(X+4,Y+35,32,2,'#55525f');rect(X+17,Y+7,6,9,'#5a4b3a');rect(X+16,Y+2,8,6,'#ff9e3d');rect(X+18,Y+1,4,4,'#ffe28a')}
  if(t==='C'){rect(X+4,Y+18,32,21,'#635e66');rect(X+8,Y+9,24,20,'#a2a0a1');rect(X+6,Y+5,7,9,'#c6bba3');rect(X+16,Y+4,7,10,'#c6bba3');rect(X+27,Y+5,7,9,'#c6bba3');rect(X+18,Y+23,9,16,'#4f4450');rect(X+5,Y+30,8,4,'#bbb4a8')}
  rect(X,Y,40,1,'#16291c15');rect(X,Y,1,40,'#15271618')}
@@ -448,7 +513,7 @@ function unitHTML(u){const t=terrain(u.x,u.y);
 function tileHTML(x,y){const t=terrain(x,y);
  return`<h3>${t.name}<small>地形情報</small></h3><p>${t.cost>=99?'通行できません。':`移動コスト ${t.cost}　回避 +${t.avo}　守備 +${t.def}`}${t.heal?`<br>ターン開始時に最大HPの${t.heal}%回復。`:''}</p>`}
 function overviewHTML(){const p=alive('p'),total=units.filter(u=>u.team==='p').length,fallen=campaign.fallen.map(id=>HEROES[id]?.name).filter(Boolean);
- return`<h3>${CHAPTERS[ch].goalText}</h3><p>味方 ${p.length}/${total}　ターン ${turn}${fallen.length?`<br><span class="sub">戦死：${fallen.join('・')}</span>`:''}<br><span class="sub">ユニットをタップで能力表示、何もないマスで地形情報。敵をタップするとその敵の攻撃範囲が出ます。</span></p>`}
+ return`<h3>${CHAPTERS[ch].goalText}</h3><p>味方 ${p.length}/${total}　ターン ${turn}${CHAPTERS[ch].goal==='survive'?`（あと ${CHAPTERS[ch].turns-turn+1}）`:''}${fallen.length?`<br><span class="sub">戦死：${fallen.join('・')}</span>`:''}<br><span class="sub">ユニットをタップで能力表示、何もないマスで地形情報。敵をタップするとその敵の攻撃範囲が出ます。</span></p>`}
 const fcWeapons=()=>selected&&target?weaponsFor(selected,dist(selected,target)):[];
 const triMark=t=>t>0?'<span class="up">▲</span>':t<0?'<span class="dn">▼</span>':'';
 function forecastHTML(){const ws=fcWeapons(),it=ws[fcIndex%ws.length],f=forecast(selected,it,target),A=f.A,B=f.B;
@@ -470,7 +535,7 @@ function update(){$('turnLabel').textContent=String(turn).padStart(2,'0');$('ene
  const cb=$('cancelBtn'),ib=$('itemBtn'),wb=$('waitBtn');
  cb.disabled=locked||!(selected||tileSel);cb.textContent=stage==='action'?'移動を戻す':stage==='forecast'?'戻る':'選択解除';
  if(stage==='forecast'){ib.textContent='武器切替';ib.disabled=locked||fcWeapons().length<2;wb.textContent='攻撃する'}
- else{ib.textContent='道具';ib.disabled=locked||!selected||stage!=='action'||!usableItems(selected).length;wb.textContent=CHAPTERS[ch].goal==='seize'&&selected?.lord&&stage==='action'&&rows[selected.y][selected.x]==='T'?'制圧':'待機'}
+ else{ib.textContent='道具';ib.disabled=locked||!selected||stage!=='action'||!usableItems(selected).length;const ev=selected&&stage==='action'&&tileEvent(selected);wb.textContent=CHAPTERS[ch].goal==='seize'&&selected?.lord&&stage==='action'&&rows[selected.y][selected.x]==='T'?'制圧':ev?(ev.type==='chest'?'開ける':'訪問'):'待機'}
  wb.disabled=locked||!selected||(stage!=='action'&&stage!=='forecast');
  $('endBtn').disabled=locked||over;$('saveBtn').disabled=locked||over;$('loadBtn').disabled=(locked&&!over)||!readSave();
  $('dangerBtn').classList.toggle('on',dangerOn)}
@@ -478,7 +543,7 @@ function update(){$('turnLabel').textContent=String(turn).padStart(2,'0');$('ene
 // ===== 操作 =====
 function selectUnit(u){selected=u;stage='move';tileSel=null;reachable=getReach(u);msg(`${u.name} を選択。青いマスへ移動（その場をタップで移動しない）。`)}
 function enterAction(){stage='action';const t=targets(selected),h=healTargets(selected),k=talkTargets(selected),parts=[];
- if(t.length)parts.push('赤い敵をタップで戦闘予測');if(h.length)parts.push('緑の味方をタップで杖による回復');if(k.length)parts.push('💬の味方をタップで支援会話');
+ if(tileEvent(selected))parts.push(tileEvent(selected).type==='chest'?'「開ける」で宝箱を開ける':'「訪問」で村を訪れる');if(t.length)parts.push('赤い敵をタップで戦闘予測');if(h.length)parts.push('緑の味方をタップで杖による回復');if(k.length)parts.push('💬の味方をタップで支援会話');
  msg(parts.length?parts.join('、')+'。':CHAPTERS[ch].goal==='seize'&&selected.lord&&rows[selected.y][selected.x]==='T'?'「制圧」で祭壇を取り戻す！':'攻撃できる敵がいません。「待機」で行動終了。')}
 function openForecast(e){target=e;fcIndex=0;stage='forecast';msg('予測を確認。もう一度タップか「攻撃する」で攻撃。')}
 function pick(x,y){if(locked||over)return;const u=at(x,y);
@@ -487,11 +552,11 @@ function pick(x,y){if(locked||over)return;const u=at(x,y);
   else if(u&&u.team==='p'&&!u.acted)selectUnit(u);
   else if(!u&&reachable.has(key(x,y))){origin={x:selected.x,y:selected.y};selected.x=x;selected.y=y;enterAction()}
   else{clearSelection();msg('選択を解除しました。')}}
- else if(stage==='action'){if(u&&u.team==='e'&&targets(selected).includes(u))openForecast(u);else if(u&&talkTargets(selected).includes(u)){talk(selected,u);return}else if(u&&healTargets(selected).includes(u)){staffHeal(selected,u);return}else msg('行動を選ぶか、「待機」を押してください。')}
+ else if(stage==='action'){if(u&&talkTargets(selected).includes(u)){talk(selected,u);return}else if(u&&u.team==='e'&&targets(selected).includes(u))openForecast(u);else if(u&&healTargets(selected).includes(u)){staffHeal(selected,u);return}else msg('行動を選ぶか、「待機」を押してください。')}
  else if(stage==='forecast'){if(u===target){attack();return}else if(u&&u.team==='e'&&targets(selected).includes(u))openForecast(u);else{stage='action';target=null;msg('攻撃対象を選び直してください。')}}
  else{clearSelection();
   if(u&&u.team==='p'&&!u.acted)selectUnit(u);
-  else if(u){selected=u;stage='inspect';msg(u.team==='e'?`${u.name} の攻撃範囲を表示中。${u.guard&&!u.aggro?'近づくまで動かない敵です。':''}`:`${u.name} は行動済み。`)}
+  else if(u){selected=u;stage='inspect';msg(u.team==='e'?`${u.name} の攻撃範囲を表示中。${u.guard&&!u.aggro?'近づくまで動かない敵です。':''}${u.recruit?`${HEROES[u.recruit.by].name}で隣から話しかけると……？`:''}`:`${u.name} は行動済み。`)}
   else{tileSel={x,y};stage='tile';msg(`${terrain(x,y).name}の地形情報。`)}}
  update();draw()}
 cv.addEventListener('pointerup',ev=>{ev.preventDefault();cursor=null;const r=cv.getBoundingClientRect();const x=Math.floor((ev.clientX-r.left)/r.width*10),y=Math.floor((ev.clientY-r.top)/r.height*10);if(inBounds(x,y))pick(x,y)});
@@ -518,9 +583,11 @@ function promote(u){const P=PROMO[u.job],g={};u.job=P.to;u.promoted=true;
  if(P.mov){u.mov+=P.mov;g.mov=P.mov}u.wt=[...new Set([...(u.wt||[]),...P.wt])];return g}
 async function staffHeal(u,v){const st=staffOf(u);if(!st)return;locked=true;const before=v.hp;v.hp=Math.min(v.maxHp,v.hp+idef(st).heal+Math.floor(u.lv/2));consume(u,st);
  flashUnit=v;draw();await sleep(260);flashUnit=null;msg(`${u.name} は ${v.name} を癒やした。HP ${before} → ${v.hp}`);draw();await gainExp(u,15);locked=false;actDone()}
-function talk(a,b){const k=pairKey(a.id,b.id),s=supports[k]||(supports[k]={pts:0,lv:0}),lines=SUPPORTS[k][s.lv===0?'C':'B'];locked=true;update();
+function talk(a,b){if(b.team==='e'){locked=true;update();playStory(b.recruit.lines,null,()=>{const h=HEROES[b.id];b.team='p';b.acted=true;b.grow={...h.grow};b.wt=[...h.wt];b.exp=0;delete b.recruit;delete b.guard;b.color=h.color;
+  locked=false;msg(`${b.name}が仲間になった！`);update();draw()});return}
+ const k=pairKey(a.id,b.id),s=supports[k]||(supports[k]={pts:0,lv:0}),lines=SUPPORTS[k][s.lv===0?'C':'B'];locked=true;update();
  playStory(lines,null,()=>{s.lv++;locked=false;msg(`${a.name}と${b.name}の支援レベルが${SUP_RANK[s.lv]}になった！ 2マス以内で命中・回避アップ。`);update();draw()})}
-$('waitBtn').onclick=()=>{if(locked||!selected)return;if(stage==='forecast'){attack();return}if(stage!=='action')return;msg(`${selected.name} は待機した。`);actDone()};
+$('waitBtn').onclick=()=>{if(locked||!selected)return;if(stage==='forecast'){attack();return}if(stage!=='action')return;if(tileEvent(selected)){runTileEvent(selected);return}msg(`${selected.name} は待機した。`);actDone()};
 function actDone(){if(selected){selected.acted=true;if(CHAPTERS[ch].goal==='seize'&&selected.lord&&selected.hp>0&&rows[selected.y][selected.x]==='T'){seized=true;clearSelection();checkEnd();return}}clearSelection();update();draw();if(!over&&alive('p').every(u=>u.acted))msg('味方は全員行動済み。「ターン終了」で敵が動きます。')}
 async function attack(){if(locked||over||!selected||!target)return;const ws=fcWeapons(),it=ws[fcIndex%ws.length];if(!it)return;
  const u=selected,e=target;u.items.splice(u.items.indexOf(it),1);u.items.unshift(it);// 使った武器を装備
@@ -643,8 +710,8 @@ function showLevelUp(u,g,title='LEVEL UP!',sub=null){$('lvupTitle').textContent=
 
 // ===== 勝敗 =====
 function checkEnd(){if(over)return true;const p=alive('p'),e=alive('e'),C=CHAPTERS[ch];
- const lordDown=units.some(u=>u.lord&&u.hp<=0),bossDown=C.goal==='boss'&&units.some(u=>u.boss&&u.hp<=0);
- const win=!lordDown&&p.length>0&&(e.length===0||bossDown||seized),lose=lordDown||p.length===0;if(!win&&!lose)return false;
+ const lordDown=units.some(u=>u.lord&&u.hp<=0),bossDown=(C.goal==='boss'||C.goal==='survive')&&units.some(u=>u.boss&&u.hp<=0);
+ const win=!lordDown&&p.length>0&&(e.length===0||bossDown||seized||survived),lose=lordDown||p.length===0;if(!win&&!lose)return false;
  over=true;locked=true;const last=ch===CHAPTERS.length-1,lostNow=units.filter(u=>u.team==='p'&&u.hp<=0);
  if(win&&!last){campaign={ch:ch+1,roster:p.map(u=>{const r=clone(u);r.hp=r.maxHp;r.acted=false;return r}),fallen:[...campaign.fallen,...lostNow.map(u=>u.id)],supports:clone(supports)};saveCampaign()}
  const showResult=()=>{$('resultTitle').textContent=win?C.winTitle:'敗北… 戦旗は地に落ちた';
@@ -674,6 +741,9 @@ async function enemyTurn(){if(locked||over)return;clearSelection();locked=true;c
   const plan=enemyPlan(e);if(!plan){continue}
   if(plan.x!==e.x||plan.y!==e.y){e.x=plan.x;e.y=plan.y;msg(`${e.name} が動いた。`);draw();await sleep(430)}
   if(plan.p){const done=await combat(e,plan.it,plan.p);if(done)break}}
+ if(!over){const C=CHAPTERS[ch],rf=(C.reinf||[]).find(r=>r.turn===turn);
+  if(rf){let n=0;for(const d of rf.units)if(!at(d.x,d.y)){units.push(makeUnit(d,'e',d.x,d.y));n++}if(n){msg('敵の増援が現れた！');draw();update();await sleep(900)}}
+  if(C.goal==='survive'&&turn>=C.turns){survived=true;checkEnd();return}}
  if(!over){turn++;units.filter(u=>u.team==='p').forEach(u=>u.acted=false);locked=false;toast('PLAYER PHASE');
   const hp=fortHeal('p');msg(`第 ${turn} ターン。味方の行動を選択してください。${hp.length?` 砦で回復：${hp.join(' ')}`:''}`);update();draw()}}
 function toast(text){const el=$('toast');el.textContent=text;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),700)}
@@ -696,12 +766,12 @@ function fmtTime(t){const d=new Date(t);return isNaN(d)?'':`${d.getMonth()+1}/${
 function showSaveInfo(){const d=readSave();$('saveInfo').textContent=d?`セーブデータ：第${d.ch+1}章 第 ${d.turn} ターン（${fmtTime(d.savedAt)}）`:storage()?'セーブデータなし':'この環境ではセーブできません'}
 function saveGame(){if(locked||over)return;const ls=storage();if(!ls){msg('この環境ではセーブできません。');return}
  const pending=(stage==='action'||stage==='forecast')&&origin?selected:null;// 行動を確定していないユニットは移動前の位置で保存
- const data={v:3,ch,savedAt:Date.now(),turn,campaign,supports,seized:false,units:units.map(u=>{const s=clone(u);if(u===pending){s.x=origin.x;s.y=origin.y}return s})};
+ const data={v:3,ch,savedAt:Date.now(),turn,campaign,supports,seized:false,mapDone,units:units.map(u=>{const s=clone(u);if(u===pending){s.x=origin.x;s.y=origin.y}return s})};
  try{ls.setItem(SAVE_KEY,JSON.stringify(data))}catch(e){msg('セーブに失敗しました（容量不足など）。');return}
  msg(`第${ch+1}章 第 ${turn} ターンの戦況をセーブしました。`);showSaveInfo();update()}
 function loadGame(){if(locked&&!over)return;const d=readSave();if(!d){msg('セーブデータがありません。');showSaveInfo();update();return}
  ch=d.ch;rows=CHAPTERS[ch].rows;campaign=clone(d.campaign);saveCampaign();$('chapterLabel').textContent=CHAPTERS[ch].title;if(story){story=null;storyEnd=null;$('story').classList.remove('open')}
- units=clone(d.units);supports=clone(d.supports||campaign.supports||{});seized=false;turn=d.turn;$('itemModal').classList.remove('open');clearSelection();over=false;locked=false;flashUnit=null;
+ units=clone(d.units);supports=clone(d.supports||campaign.supports||{});seized=false;survived=false;mapDone=Array.isArray(d.mapDone)?d.mapDone.slice():[];turn=d.turn;$('itemModal').classList.remove('open');clearSelection();over=false;locked=false;flashUnit=null;
  $('resultModal').classList.remove('open');$('battle').classList.remove('show');$('lvup').classList.remove('show');
  msg(`第${ch+1}章 第 ${turn} ターンの戦況をロードしました。`);update();draw();checkEnd()}
 $('saveBtn').onclick=saveGame;$('loadBtn').onclick=loadGame;$('resultLoadBtn').onclick=loadGame;

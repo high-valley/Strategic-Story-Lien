@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#161e2a">
+<title>灯火の戦旗 — ピクセルSRPG試作</title>
+<style>
+:root{--ink:#121b27;--blue:#394f7c;--gold:#f5d18c;--line:#8d9ab7;--paper:#e7e4d9;--sea:#24364b}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#101722;color:#e6ebf1;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;-webkit-tap-highlight-color:transparent}body{background:radial-gradient(ellipse at 45% -10%,#354a60 0,#141e2a 50%,#0c131d 100%)}button{font:inherit;cursor:pointer;touch-action:manipulation}button:disabled{opacity:.45;cursor:default}
+.app{max-width:470px;min-height:100vh;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 11px calc(26px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#1d2a38,#101824);box-shadow:0 0 60px #0008}
+.top{display:flex;align-items:center;justify-content:space-between;padding:0 4px 11px;gap:8px}.eyebrow{color:#adbbce;font-size:10px;letter-spacing:.22em}.title{font-family:serif;font-size:26px;line-height:1.15;letter-spacing:.13em;color:var(--gold);font-weight:800;text-shadow:1px 2px #070f19}.help-btn{background:#28364a;border:1px solid #5d718c;color:#f4ead7;padding:9px 11px;font-size:12px;border-radius:4px}
+.chapter{border:2px solid #607997;background:linear-gradient(95deg,#243b54,#1b2b40);display:flex;justify-content:space-between;padding:8px 12px;margin-bottom:8px;box-shadow:inset 0 0 0 2px #142033}.chapter strong{font-size:13px;color:#f2e0ae}.chapter span{font-size:12px;color:#b8c9d8}.chapter b{color:#ffd4ac}
+.board-wrap{padding:5px;background:linear-gradient(140deg,#bbc7c4,#506783 30%,#31445b 70%,#829ba3);border:2px solid #c5be91;box-shadow:0 7px 0 #0a111b,0 14px 24px #0008;position:relative;user-select:none}.board-inner{position:relative;background:#527550;overflow:hidden;aspect-ratio:1/1;touch-action:manipulation}.board-inner canvas{display:block;width:100%;height:100%;image-rendering:pixelated;touch-action:manipulation;cursor:pointer}.turn-toast{position:absolute;left:8%;right:8%;top:39%;pointer-events:none;transform:translateY(-20%);background:#17233fe9;border:2px solid #e4c580;box-shadow:0 4px 20px #0009;color:#fff1d0;padding:16px 0;text-align:center;font-weight:800;letter-spacing:.22em;font-size:23px;opacity:0;transition:opacity .2s}.turn-toast.show{opacity:1}.legend{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#d2dbe6;padding:14px 2px 8px}.dot{display:inline-block;width:9px;height:9px;margin-right:5px}.dot.blue{background:#55a5fb}.dot.red{background:#ef7570}.dot.green{background:#a6df91}
+.card{min-height:85px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px;background:linear-gradient(165deg,#23334c,#182438);border:1px solid #677b9d;box-shadow:inset 0 0 0 2px #152236;margin-top:2px}.card h3{margin:0;color:#fff1d2;font-size:17px}.card small{font-size:11px;color:#a8bad2}.card p{margin:4px 0 0;color:#d5deea;font-size:12px}.health{height:8px;width:115px;background:#0f1723;border:1px solid #ac9a7a;margin-top:6px}.health>i{display:block;background:linear-gradient(90deg,#32a867,#9de69c);height:100%;width:100%;transition:width .2s}.stats{text-align:right;white-space:nowrap}.stats strong{font-size:18px;color:#e5f6cb}.stats span{font-size:11px;color:#aabbcd}
+.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:8px}.btn{border:1px solid #a6adc2;background:linear-gradient(#334968,#223652);box-shadow:inset 0 0 0 1px #152339,0 3px 0 #0b111c;color:white;min-height:48px;border-radius:2px;font-weight:750;font-size:13px;line-height:1.25}.btn.primary{background:linear-gradient(#b6975d,#80623a);border-color:#e1c38f;color:#fff9eb}.btn.danger{border-color:#d39482;background:linear-gradient(#8b4c49,#572d35)}.btn:active:not(:disabled){transform:translateY(2px);box-shadow:none}
+.log{font-size:12px;min-height:34px;padding:13px 5px 0;color:#c1cfde;line-height:1.5;text-align:center}.footer{margin-top:15px;border-top:1px solid #405165;padding-top:11px;font-size:10px;color:#8191a8;text-align:center}
+.modal{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:20px;background:#09121edb}.modal.open{display:flex}.modal-content{max-width:425px;width:100%;border:3px double #d6bc7d;background:linear-gradient(#26374d,#111e2d);padding:20px;box-shadow:0 12px 50px #000d;color:#e5eaf3}.modal h2{margin:0 0 12px;color:#f8e1a7;font-size:22px}.modal p,.modal li{line-height:1.75;font-size:13px}.modal ul{padding-left:18px}.modal .btn{width:100%;margin-top:10px}
+.battle{position:absolute;inset:0;z-index:3;display:none;flex-direction:column;justify-content:center;padding:16px;background:linear-gradient(165deg,#10243aea,#23293eeb);pointer-events:none}.battle.show{display:flex}.battle-title{color:#f8dca5;font:800 15px serif;text-align:center;margin-bottom:12px}.fighters{display:flex;align-items:center;justify-content:space-around;gap:15px}.fighter{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;font-weight:bold}.fig-canvas{width:80px;height:80px;image-rendering:pixelated}.big-dmg{height:28px;text-align:center;font-size:24px;font-weight:900;color:#ffe3aa;text-shadow:2px 2px #4c1e28}.fig-hp{color:#f4e8d8}.attack-flash{animation:flash .25s ease-in-out}@keyframes flash{50%{filter:brightness(3) sepia(.4);transform:translateX(6px)}}
+@media(max-height:740px){.app{padding-top:8px}.top{padding-bottom:7px}.title{font-size:23px}.chapter{padding:5px 10px;margin-bottom:5px}.legend{padding:10px 2px 5px}.card{padding:8px;min-height:70px}.btn{min-height:42px}.footer{margin-top:8px;padding-top:7px}}
+</style>
+</head>
+<body><main class="app">
+<header class="top"><div><div class="eyebrow">TACTICAL FANTASY RPG</div><div class="title">灯火の戦旗</div></div><button class="help-btn" id="howBtn">？ 遊び方</button></header>
+<div class="chapter"><div><strong>第一章　霧の谷の遭遇</strong></div><div><span>TURN <b id="turnLabel">01</b></span> <span>敵 <b id="enemyLabel">4</b></span></div></div>
+<section class="board-wrap"><div class="board-inner" id="board"><canvas id="game" width="400" height="400" aria-label="戦略マップ。青い味方を選んで移動、敵を攻撃"></canvas><div class="turn-toast" id="toast"></div>
+<div class="battle" id="battle"><div class="battle-title" id="battleTitle">交戦！</div><div class="fighters"><div class="fighter"><canvas class="fig-canvas" id="allyFig" width="80" height="80"></canvas><div id="allyName">味方</div><div class="fig-hp" id="allyHp"></div></div><div class="big-dmg" id="battleDmg">⚔</div><div class="fighter"><canvas class="fig-canvas" id="foeFig" width="80" height="80"></canvas><div id="foeName">敵</div><div class="fig-hp" id="foeHp"></div></div></div></div>
+</div></section>
+<div class="legend"><span><i class="dot blue"></i>青：移動範囲</span><span><i class="dot red"></i>赤：攻撃可能</span><span><i class="dot green"></i>緑：森林・砦の恩恵</span></div>
+<section class="card" id="info"><div><h3 id="infoTitle">味方ユニットを選択</h3><small id="infoRole">青い駒をタップして指揮を開始</small><p id="infoDetail">マスをタップして移動できます。</p></div><div class="stats"><span id="hpLabel">戦況</span><div><strong id="hpVal">3</strong> <span id="hpMax">人の味方</span></div><div class="health"><i id="hpBar" style="width:100%"></i></div></div></section>
+<div class="actions"><button class="btn" id="cancelBtn">選択解除</button><button class="btn primary" id="waitBtn">待機</button><button class="btn danger" id="endBtn">ターン終了</button></div>
+<div class="log" id="message" aria-live="polite">ユニットを選び、敵を全滅させよう。</div><div class="footer">オリジナル試作版 • タップ操作対応 • 戦闘は剣 ＞ 斧 ＞ 槍 ＞ 剣</div>
+</main>
+<div class="modal" id="helpModal"><div class="modal-content"><h2>遊び方</h2><p>味方をタップすると、青いマスに移動できます。移動先を決め、赤い印の敵をタップすると戦闘開始です。</p><ul><li>剣は斧に、斧は槍に、槍は剣に有利。</li><li>森と砦にいるユニットは被ダメージが減少。</li><li>弓は2マス離れた敵を狙えますが、隣接攻撃はできません。</li><li>行動後は灰色になります。全員が動いたら「ターン終了」。</li><li>敵を全滅させれば勝利。味方が全滅すると敗北です。</li></ul><button class="btn primary" id="closeHelp">戦いに戻る</button></div></div>
+<div class="modal" id="resultModal"><div class="modal-content"><h2 id="resultTitle">勝利！</h2><p id="resultText"></p><button class="btn primary" id="resetBtn">もう一度プレイ</button></div></div>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),cv=$('game'),ctx=cv.getContext('2d');ctx.imageSmoothingEnabled=false;
+const TILE=40,W=10,H=10;
+const rows=[
+'GGGGFFGGGG',
+'GGGFFGGGCG',
+'GGFGGGFGGG',
+'GGGGPPGGGG',
+'GGPPPPPPGG',
+'GGPGGGGPGG',
+'GGPGWWGPGG',
+'GGPGWWGPGG',
+'GGPPPPPPGG',
+'GGGGGGGGGG'];
+const TERRAIN={G:{name:'草原',cost:1,def:0},F:{name:'森林',cost:2,def:1},P:{name:'街道',cost:1,def:0},C:{name:'砦',cost:1,def:2},W:{name:'水辺',cost:999,def:0}};
+const original=[
+{id:1,team:'p',name:'カイル',job:'剣士',weapon:'sword',x:1,y:8,maxHp:27,hp:27,atk:10,def:3,move:4,range:1,color:'#5a86c6'},
+{id:2,team:'p',name:'リナ',job:'弓使い',weapon:'bow',x:0,y:9,maxHp:22,hp:22,atk:9,def:2,move:3,range:2,color:'#5bc4a4'},
+{id:3,team:'p',name:'エド',job:'槍騎士',weapon:'lance',x:2,y:9,maxHp:30,hp:30,atk:9,def:4,move:4,range:1,color:'#a8a2e5'},
+{id:4,team:'e',name:'山賊A',job:'戦斧兵',weapon:'axe',x:6,y:2,maxHp:22,hp:22,atk:9,def:1,move:3,range:1,color:'#dd8763'},
+{id:5,team:'e',name:'山賊B',job:'剣士',weapon:'sword',x:8,y:4,maxHp:24,hp:24,atk:9,def:2,move:3,range:1,color:'#bc627b'},
+{id:6,team:'e',name:'傭兵',job:'槍兵',weapon:'lance',x:8,y:2,maxHp:23,hp:23,atk:9,def:3,move:3,range:1,color:'#d38f63'},
+{id:7,team:'e',name:'見張り',job:'射手',weapon:'bow',x:9,y:3,maxHp:19,hp:19,atk:9,def:1,move:2,range:2,color:'#bb7e8e'}];
+let units=[],selected=null,stage='none',reachable=new Map(),attackables=[],origin=null,turn=1,locked=false,over=false,flashUnit=null;
+const msg=(s)=>{$('message').textContent=s};
+const sleep=t=>new Promise(r=>setTimeout(r,t));
+const key=(x,y)=>`${x},${y}`;
+const inBounds=(x,y)=>x>=0&&y>=0&&x<W&&y<H;
+const at=(x,y)=>units.find(u=>u.hp>0&&u.x===x&&u.y===y);
+const terrain=(x,y)=>TERRAIN[rows[y][x]];
+const dist=(a,b)=>Math.abs(a.x-b.x)+Math.abs(a.y-b.y);
+const weapons={sword:'剣',axe:'斧',lance:'槍',bow:'弓'};
+function tri(a,b){return(a.weapon==='sword'&&b.weapon==='axe')||(a.weapon==='axe'&&b.weapon==='lance')||(a.weapon==='lance'&&b.weapon==='sword')?1:(b.weapon==='sword'&&a.weapon==='axe')||(b.weapon==='axe'&&a.weapon==='lance')||(b.weapon==='lance'&&a.weapon==='sword')?-1:0}
+function forecast(a,b){const adv=tri(a,b);return{damage:Math.max(1,a.atk+adv*2-b.def-terrain(b.x,b.y).def),hit:Math.min(99,Math.max(60,94+adv*8-(rows[b.y][b.x]==='F'?10:0)-(rows[b.y][b.x]==='C'?15:0)))}};
+function getReach(u){const out=new Map([[key(u.x,u.y),0]]),q=[{x:u.x,y:u.y,c:0}];while(q.length){q.sort((a,b)=>a.c-b.c);const p=q.shift();if(p.c>out.get(key(p.x,p.y)))continue;for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){let x=p.x+dx,y=p.y+dy;if(!inBounds(x,y))continue;const occ=at(x,y);if(occ&&occ!==u)continue;const c=p.c+terrain(x,y).cost;if(c>u.move)continue;const k=key(x,y);if(c<(out.get(k)??999)){out.set(k,c);q.push({x,y,c})}}}return out}
+function targets(u){return units.filter(v=>v.hp>0&&v.team!==u.team&&dist(u,v)===u.range)}
+function reset(){units=original.map(u=>({...u,acted:false}));selected=null;stage='none';turn=1;locked=false;over=false;origin=null;reachable=new Map();attackables=[];$('resultModal').classList.remove('open');$('battle').classList.remove('show');msg('カイルたちを指揮して、敵を全滅させよう。');update();draw()}
+function seed(x,y){let n=((x+23)*1103515245+(y+31)*12345)>>>0;n^=n>>>13;return n>>>0}
+function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x,y,w,h)}
+function tileArt(x,y){let t=rows[y][x],X=x*TILE,Y=y*TILE,n=seed(x,y);
+const grass=['#749666','#7b9d67','#779760','#729264'];rect(X,Y,TILE,TILE,grass[n%4]);
+if(t==='P'){rect(X,Y,TILE,TILE,'#b4a17b');for(let i=0;i<5;i++){const sx=((n>>i*3)&31),sy=((n>>(i+2)*3)&31);rect(X+sx,Y+sy,7,3,i%2?'#978468':'#c1ad87')}}
+else if(t==='W'){rect(X,Y,TILE,TILE,'#426f9b');for(let i=0;i<4;i++){let sx=(n>>i*3)&23,sy=(n>>(i+1)*4)&30;rect(X+sx,Y+sy,15,3,i%2?'#5f9bb5':'#38618d')}}
+else{for(let i=0;i<4;i++){let sx=(n>>i*4)&31,sy=(n>>(i+2)*3)&31;rect(X+sx,Y+sy,4,3,i%2?'#8cac71':'#6a8e5f')}}
+if(t==='F'){rect(X+7,Y+9,4,23,'#463e30');rect(X+18,Y+7,4,25,'#463e30');rect(X+3,Y+14,30,11,'#315c46');rect(X+10,Y+5,21,12,'#477b52');rect(X+3,Y+10,17,12,'#5e9459');rect(X+14,Y+3,10,5,'#82af66');rect(X+25,Y+13,7,7,'#739b61')}
+if(t==='C'){rect(X+4,Y+18,32,21,'#635e66');rect(X+8,Y+9,24,20,'#a2a0a1');rect(X+6,Y+5,7,9,'#c6bba3');rect(X+16,Y+4,7,10,'#c6bba3');rect(X+27,Y+5,7,9,'#c6bba3');rect(X+18,Y+23,9,16,'#4f4450');rect(X+5,Y+30,8,4,'#bbb4a8')}
+rect(X,Y,40,1,'#16291c15');rect(X,Y,1,40,'#15271618')
+}
+function unitArt(c,u,tx,ty,scale=1){const d=(x,y,w,h,color)=>{c.fillStyle=color;c.fillRect(tx+x*scale,ty+y*scale,w*scale,h*scale)},hasActed=u.acted,skin='#edc49f',dark='#293c50',shirt=u.team==='p'?'#e8f0f9':'#f5e3d0';
+let main=u.color,cloak=u.team==='p'?'#294d95':'#833446';
+// shadow and cape
+ d(5,25,24,4,'#1b2b3166');d(8,15,21,14,cloak);d(10,18,17,9,main);
+// boots
+ d(11,26,6,4,dark);d(22,26,6,4,dark);
+// arms + torso
+ d(8,15,23,9,dark);d(10,16,19,11,main);d(15,19,8,6,shirt);d(6,19,5,7,skin);d(28,19,5,7,skin);
+// face, hair, crest
+ d(13,7,15,12,skin);d(12,7,17,5,u.team==='p'?'#e1c477':'#52373d');d(14,5,12,4,u.team==='p'?'#6c4e3b':'#553c39');d(23,13,2,2,dark);
+// weapons
+ if(u.weapon==='sword'){d(32,11,2,17,'#d4ebee');d(30,23,7,3,'#d5b46f');d(33,7,2,4,'#eef8fc')}
+ else if(u.weapon==='lance'){d(31,2,2,29,'#d0b781');d(29,2,6,7,'#d1e3e9');d(30,0,4,3,'#e6f4fc')}
+ else if(u.weapon==='bow'){d(32,7,3,22,'#bb8b4e');d(28,8,4,3,'#bb8b4e');d(28,26,4,3,'#bb8b4e');d(34,10,1,17,'#f9ecd4')}
+ else{d(32,6,3,27,'#d6bd73')}
+ if(hasActed){d(3,3,34,29,'#15233170')}
+}
+function draw(){ctx.clearRect(0,0,400,400);for(let y=0;y<H;y++)for(let x=0;x<W;x++)tileArt(x,y);
+ if(selected&&stage==='move'){for(const k of reachable.keys()){let [x,y]=k.split(',').map(Number);rect(x*40+1,y*40+1,38,38,'#4384d379');rect(x*40+4,y*40+4,32,2,'#9fd1fc55')}}
+ if(selected&&stage==='action'){const possibilities=targets(selected);for(let v of possibilities){rect(v.x*40+1,v.y*40+1,38,38,'#ff655a96');rect(v.x*40+3,v.y*40+3,34,3,'#ffd3ab')}}
+ for(const u of units){if(u.hp<=0)continue;const X=u.x*40,Y=u.y*40;
+ if(selected===u){rect(X+1,Y+1,38,38,'#ffffb142');rect(X+1,Y+1,38,2,'#f5e18d');rect(X+1,Y+37,38,2,'#f5e18d');rect(X+1,Y+1,2,38,'#f5e18d');rect(X+37,Y+1,2,38,'#f5e18d')}
+ unitArt(ctx,u,X,Y);rect(X+5,Y+34,30,4,'#1b2334');rect(X+5,Y+34,Math.max(0,Math.round(30*u.hp/u.maxHp)),4,u.team==='p'?'#73d9a3':'#ff9982')}
+ if(flashUnit){const u=flashUnit;rect(u.x*40,u.y*40,40,40,'#ffffff88')}
+}
+function update(){const enemies=units.filter(u=>u.team==='e'&&u.hp>0),allies=units.filter(u=>u.team==='p'&&u.hp>0);$('turnLabel').textContent=String(turn).padStart(2,'0');$('enemyLabel').textContent=enemies.length;
+ let u=selected;
+ if(!u){$('infoTitle').textContent='味方ユニットを選択';$('infoRole').textContent='マップ上の青い駒をタップ';$('infoDetail').textContent='敵を全滅させると勝利。';$('hpLabel').textContent='味方';$('hpVal').textContent=allies.length;$('hpMax').textContent='/ 3';$('hpBar').style.width=(allies.length/3*100)+'%'}
+ else{$('infoTitle').textContent=u.name;$('infoRole').textContent=`${u.job} ・ ${weapons[u.weapon]} ・ 移動 ${u.move}`;$('infoDetail').textContent=stage==='move'?'青いマスを選んで移動':stage==='action'?(targets(u).length?'赤い敵をタップで攻撃':'敵に届かない場合は待機'):'行動済み';$('hpLabel').textContent='HP';$('hpVal').textContent=u.hp;$('hpMax').textContent='/ '+u.maxHp;$('hpBar').style.width=(u.hp/u.maxHp*100)+'%'}
+ $('cancelBtn').disabled=locked||!selected;$('cancelBtn').textContent=stage==='action'?'移動を戻す':'選択解除';$('waitBtn').disabled=locked||!selected||stage!=='action';$('endBtn').disabled=locked||over;
+}
+function pick(x,y){if(locked||over)return;let u=at(x,y);
+ if(!selected){if(u?.team==='p'&&!u.acted){selected=u;stage='move';reachable=getReach(u);msg(`${u.name} を選択。移動先の青いマスをタップ。`)}else if(u){selected=u;stage='inspect';msg(`${u.name}：${weapons[u.weapon]} / HP ${u.hp} / ${terrain(u.x,u.y).name}`)}else{msg(`${terrain(x,y).name}：地形防御 +${terrain(x,y).def}`)}}
+ else if(stage==='inspect'){selected=null;stage='none';pick(x,y);return}
+ else if(stage==='move'){if(u?.team==='p'&&!u.acted){selected=u;reachable=getReach(u);msg(`${u.name} に指揮を変更。`)}else if(reachable.has(key(x,y))&&(!u||u===selected)){origin={x:selected.x,y:selected.y};selected.x=x;selected.y=y;stage='action';const t=targets(selected);msg(t.length?`${selected.name} は移動した。赤い敵をタップして攻撃！`:'攻撃できる敵がいません。「待機」で行動確定。')}else{msg('青いマスを選択してください。')}}
+ else if(stage==='action'){if(u&&u.team==='e'&&dist(selected,u)===selected.range){fight(selected,u)}else{msg('攻撃できる敵を選ぶか、「待機」を押してください。')}}
+ update();draw()}
+cv.addEventListener('pointerup',ev=>{ev.preventDefault();const r=cv.getBoundingClientRect();let x=Math.floor((ev.clientX-r.left)/r.width*10),y=Math.floor((ev.clientY-r.top)/r.height*10);if(inBounds(x,y))pick(x,y)});
+$('cancelBtn').onclick=()=>{if(locked||!selected)return;if(stage==='action'&&origin){selected.x=origin.x;selected.y=origin.y;stage='move';reachable=getReach(selected);msg('移動を取り消しました。')}else{selected=null;stage='none';msg('選択を解除しました。')}origin=null;update();draw()};
+function actDone(){if(selected){selected.acted=true;}selected=null;stage='none';origin=null;reachable=new Map();update();draw();if(units.filter(u=>u.team==='p'&&u.hp>0).every(u=>u.acted)){msg('味方は全員行動済み。ターン終了で敵が動きます。')}}
+$('waitBtn').onclick=()=>{if(locked||!selected||stage!=='action')return;msg(`${selected.name} は待機した。`);actDone()};
+function activeUnit(u){return u&&u.hp>0}
+function checkEnd(){const p=units.filter(u=>u.team==='p'&&activeUnit(u)),e=units.filter(u=>u.team==='e'&&activeUnit(u));if(e.length&&p.length)return false;over=true;locked=true;const win=e.length===0;$('resultTitle').textContent=win?'勝利！ 霧の谷を突破':'敗北… 戦旗は地に落ちた';$('resultText').textContent=win?`第1章クリア！ ${turn}ターンで勝利。生存した仲間は${p.length}人。次は育成・会話・新マップを追加できます。`:'味方は全滅しました。武器の相性や森の防御を利用し、もう一度挑戦しましょう。';$('resultModal').classList.add('open');update();return true}
+async function showFight(a,b,first){$('battle').classList.add('show');let player=a.team==='p'?a:b,enemy=a.team==='e'?a:b;
+ $('battleTitle').textContent=first?'交戦！':'反撃！';$('allyName').textContent=player.name;$('foeName').textContent=enemy.name;$('allyHp').textContent=`HP ${player.hp} / ${player.maxHp}`;$('foeHp').textContent=`HP ${enemy.hp} / ${enemy.maxHp}`;$('battleDmg').textContent='⚔';
+ for(const [id,unit] of [['allyFig',player],['foeFig',enemy]]){const c=$(id),cx=c.getContext('2d');cx.clearRect(0,0,80,80);cx.imageSmoothingEnabled=false;cx.save();cx.scale(2,2);unitArt(cx,unit,0,1);cx.restore()}
+ await sleep(260);const f=forecast(a,b),hit=Math.random()*100<f.hit;let dmg=hit?f.damage:0;if(hit)b.hp=Math.max(0,b.hp-dmg);$('battleDmg').textContent=hit?`${dmg} HIT`:'MISS';$(a.team==='p'?'foeFig':'allyFig').classList.add('attack-flash');$('allyHp').textContent=`HP ${player.hp} / ${player.maxHp}`;$('foeHp').textContent=`HP ${enemy.hp} / ${enemy.maxHp}`;await sleep(520);$('allyFig').classList.remove('attack-flash');$('foeFig').classList.remove('attack-flash');return {hit,dmg}}
+async function combat(a,b,stayLocked=false){locked=true;update();let r=await showFight(a,b,true);msg(`${a.name} → ${b.name}：${r.hit?`${r.dmg}ダメージ`:'攻撃失敗'}。`);
+ if(b.hp>0&&dist(a,b)===b.range){await sleep(160);const rr=await showFight(b,a,false);msg(`${b.name} が反撃！ ${rr.hit?rr.dmg+'ダメージ':'回避'}。`)}
+ await sleep(220);$('battle').classList.remove('show');locked=stayLocked;draw();update();return checkEnd()}
+async function fight(a,b){if(locked||over)return;const done=await combat(a,b);if(a.team==='p'&&!done){actDone()}else if(!done){update();draw()}}
+function pointScore(e,x,y,allies){let nearest=Math.min(...allies.map(a=>Math.abs(x-a.x)+Math.abs(y-a.y)));let inRange=allies.filter(a=>Math.abs(x-a.x)+Math.abs(y-a.y)===e.range);let attack=inRange.length>0?80+Math.max(...inRange.map(a=>forecast(e,a).damage*2-a.hp*.4)):0;let bonus=terrain(x,y).def*1.8;return attack-nearest*6+bonus}
+async function enemyTurn(){if(locked||over)return;selected=null;stage='none';locked=true;update();toast('ENEMY PHASE');await sleep(770);
+ for(const e of units.filter(u=>u.team==='e'&&u.hp>0)){if(over)break;const allies=units.filter(u=>u.team==='p'&&u.hp>0);if(!allies.length)break;
+ let reach=getReach(e),spots=[...reach.keys()].map(k=>{let [x,y]=k.split(',').map(Number);return{x,y}});spots.sort((a,b)=>pointScore(e,b.x,b.y,allies)-pointScore(e,a.x,a.y,allies));const chosen=spots[0];if(chosen&&(e.x!==chosen.x||e.y!==chosen.y)){e.x=chosen.x;e.y=chosen.y;msg(`${e.name} が前進した。`);draw();await sleep(430)}
+ const opts=targets(e).sort((a,b)=>{let da=forecast(e,a).damage,db=forecast(e,b).damage;return (a.hp-da)-(b.hp-db)});
+ if(opts.length){const defeat=await combat(e,opts[0],true);if(defeat)break}else{msg(`${e.name} は周囲を警戒している。`);await sleep(190)}
+ }
+ if(!over){turn++;units.filter(u=>u.team==='p').forEach(u=>u.acted=false);locked=false;toast('PLAYER PHASE');msg(`第 ${turn} ターン。味方の行動を選択してください。`);update();draw()}}
+function toast(text){const el=$('toast');el.textContent=text;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),700)}
+$('endBtn').onclick=enemyTurn;
+$('howBtn').onclick=()=>$('helpModal').classList.add('open');$('closeHelp').onclick=()=>$('helpModal').classList.remove('open');$('resetBtn').onclick=reset;
+// Keyboard accessibility for desktop testing
+let cx=1,cy=8;window.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter',' '].includes(e.key)){if(e.key==='ArrowUp')cy=Math.max(0,cy-1);if(e.key==='ArrowDown')cy=Math.min(9,cy+1);if(e.key==='ArrowLeft')cx=Math.max(0,cx-1);if(e.key==='ArrowRight')cx=Math.min(9,cx+1);if(e.key==='Enter'||e.key===' '){pick(cx,cy)}if(document.activeElement===document.body)e.preventDefault()}});
+reset();
+})();
+</script></body></html>

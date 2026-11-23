@@ -22,7 +22,7 @@
 .save-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:7px}.save-row .btn{min-height:40px;font-size:12px}.save-info{font-size:10px;color:#8fa1b8;text-align:center;padding-top:5px;min-height:15px}
 .log{font-size:12px;min-height:34px;padding:11px 5px 0;color:#c1cfde;line-height:1.5;text-align:center}.footer{margin-top:15px;border-top:1px solid #405165;padding-top:11px;font-size:10px;color:#8191a8;text-align:center}
 .modal{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:20px;background:#09121edb}.modal.open{display:flex}.modal-content{max-width:425px;width:100%;max-height:92vh;overflow:auto;border:3px double #d6bc7d;background:linear-gradient(#26374d,#111e2d);padding:20px;box-shadow:0 12px 50px #000d;color:#e5eaf3}.modal h2{margin:0 0 12px;color:#f8e1a7;font-size:22px}.modal p,.modal li{line-height:1.7;font-size:13px}.modal ul{padding-left:18px}.modal .btn{width:100%;margin-top:10px}
-.battle{position:absolute;inset:0;z-index:3;display:none;flex-direction:column;justify-content:center;padding:14px;background:linear-gradient(165deg,#10243aee,#23293eef);pointer-events:none;background-size:cover;background-position:center}.battle.show{display:flex}.battle-title{color:#f8dca5;font:800 15px serif;text-align:center;margin-bottom:12px;letter-spacing:.1em}.fighters{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.fighter{width:40%;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-weight:bold}.fig-canvas{width:96px;height:96px;image-rendering:pixelated}.fig-hp{color:#f4e8d8}.fighter .bar{width:100%;flex:none}.fig-st{font-size:10px;color:#b9c7d8;font-weight:600}.big-dmg{flex:1;align-self:center;min-height:56px;text-align:center;font-size:22px;font-weight:900;color:#ffe3aa;text-shadow:2px 2px #4c1e28;line-height:1.2}.big-dmg.crit{color:#ff8a5c;font-size:26px}.battle-note{text-align:center;margin-top:12px;min-height:20px;font-size:13px;color:#ffe9be;font-weight:700}.attack-flash{animation:flash .25s ease-in-out}@keyframes flash{50%{filter:brightness(3) sepia(.4);transform:translateX(6px)}}.crit-flash{animation:cflash .4s ease-in-out}@keyframes cflash{30%{filter:brightness(4) hue-rotate(-30deg);transform:translateX(-8px) scale(1.08)}70%{transform:translateX(8px)}}
+.battle{position:absolute;inset:0;z-index:3;display:none;flex-direction:column;justify-content:center;padding:10px 14px;background:linear-gradient(165deg,#10243aee,#23293eef);pointer-events:none;background-size:cover;background-position:center 18%}.battle.show{display:flex}.battle-title{color:#f8dca5;font:800 15px serif;text-align:center;margin-bottom:12px;letter-spacing:.1em}.fighters{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.fighter{width:40%;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-weight:bold}.stage{width:100%;aspect-ratio:9/5;display:block;margin:-4px 0 6px}.fig-hp{color:#f4e8d8}.fighter .bar{width:100%;flex:none}.fig-st{font-size:10px;color:#b9c7d8;font-weight:600}.big-dmg{flex:1;align-self:center;min-height:44px;text-align:center;font-size:22px;font-weight:900;color:#ffe3aa;text-shadow:2px 2px #4c1e28;line-height:1.2}.big-dmg.crit{color:#ff8a5c;font-size:26px}.battle-note{text-align:center;margin-top:12px;min-height:20px;font-size:13px;color:#ffe9be;font-weight:700}.attack-flash{animation:flash .25s ease-in-out}@keyframes flash{50%{filter:brightness(3) sepia(.4);transform:translateX(6px)}}.crit-flash{animation:cflash .4s ease-in-out}@keyframes cflash{30%{filter:brightness(4) hue-rotate(-30deg);transform:translateX(-8px) scale(1.08)}70%{transform:translateX(8px)}}
 .lvup{position:absolute;inset:0;z-index:4;display:none;align-items:center;justify-content:center;background:#0a1220c8;cursor:pointer}.lvup.show{display:flex}.lvup-box{width:82%;border:3px double #e4c580;background:linear-gradient(#2b3f5b,#16243a);padding:14px;text-align:center;box-shadow:0 8px 30px #000b}.lvup-title{font:900 22px serif;color:#ffe08a;letter-spacing:.2em}.lvup-name{margin:4px 0 10px;color:#e8eef6;font-size:14px;font-weight:700}.lvup-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 14px;text-align:left;font-size:14px}.lvup-grid span{display:flex;justify-content:space-between;border-bottom:1px solid #3c5170;padding:2px 0}.lvup-grid em{font-style:normal;color:#8de08a;font-weight:800;margin-left:6px}.lvup-foot{margin-top:10px;font-size:11px;color:#9fb0c6}
 .story{position:fixed;inset:0;z-index:30;display:none;flex-direction:column;justify-content:flex-end;align-items:center;padding:20px 12px calc(24px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#09121e55,#09121ef2 70%);background-size:cover;background-position:center;cursor:pointer}.story.open{display:flex}.story-chapter{position:absolute;top:calc(22% + env(safe-area-inset-top));left:0;right:0;text-align:center;color:#f5d18c;font:800 22px serif;letter-spacing:.2em;text-shadow:2px 2px #070f19}.story-chapter small{display:block;font:600 11px system-ui;letter-spacing:.3em;color:#adbbce;margin-bottom:6px}.story-box{max-width:446px;width:100%;display:flex;gap:12px;align-items:flex-start;border:3px double #d6bc7d;background:linear-gradient(#26374df2,#111e2df2);padding:14px;box-shadow:0 12px 40px #000c;min-height:128px}.story-portrait{width:72px;height:72px;flex:none;image-rendering:pixelated;background:#16233a;border:1px solid #5d718c}.story-portrait.hide{display:none}.story-name{color:#f8e1a7;font-weight:800;font-size:14px;margin-bottom:6px}.story-text{font-size:14px;line-height:1.75;color:#eef2f8;white-space:pre-line}.story-text.narration{font-family:serif;color:#dfe6ee}.story-foot{max-width:446px;width:100%;display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:11px;color:#9fb0c6}.story-skip{background:#28364a;border:1px solid #5d718c;color:#f4ead7;padding:7px 12px;font-size:12px;border-radius:4px}.modal .btn.sub{background:linear-gradient(#334968,#223652);border-color:#a6adc2}.modal .btn.hidden{display:none}
 @media(max-height:740px){.app{padding-top:8px}.top{padding-bottom:7px}.title{font-size:23px}.chapter{padding:5px 10px;margin-bottom:5px}.legend{padding:9px 2px 5px}.card{padding:7px 9px}.btn{min-height:42px}.footer{margin-top:8px;padding-top:7px}}
@@ -32,10 +32,10 @@
 <header class="top"><div><div class="eyebrow">TACTICAL FANTASY RPG</div><div class="title">灯火の戦旗</div></div><button class="help-btn" id="howBtn">？ 遊び方</button></header>
 <div class="chapter"><div><strong id="chapterLabel">第一章　霧の谷の遭遇</strong></div><div><span>TURN <b id="turnLabel">01</b></span> <span>敵 <b id="enemyLabel">4</b></span></div></div>
 <section class="board-wrap"><div class="board-inner" id="board"><canvas id="game" width="400" height="400" aria-label="戦略マップ。青い味方を選んで移動、敵を攻撃"></canvas><div class="turn-toast" id="toast"></div>
-<div class="battle" id="battle"><div class="battle-title" id="battleTitle">交戦！</div><div class="fighters">
-<div class="fighter"><canvas class="fig-canvas" id="allyFig" width="96" height="96"></canvas><div id="allyName">味方</div><div class="fig-hp" id="allyHp"></div><div class="bar"><i id="allyBar"></i></div><div class="fig-st" id="allySt"></div></div>
+<div class="battle" id="battle"><div class="battle-title" id="battleTitle">交戦！</div><canvas class="stage" id="stage" width="720" height="400"></canvas><div class="fighters">
+<div class="fighter"><div id="allyName">味方</div><div class="fig-hp" id="allyHp"></div><div class="bar"><i id="allyBar"></i></div><div class="fig-st" id="allySt"></div></div>
 <div class="big-dmg" id="battleDmg">⚔</div>
-<div class="fighter"><canvas class="fig-canvas" id="foeFig" width="96" height="96"></canvas><div id="foeName">敵</div><div class="fig-hp" id="foeHp"></div><div class="bar enemy"><i id="foeBar"></i></div><div class="fig-st" id="foeSt"></div></div>
+<div class="fighter"><div id="foeName">敵</div><div class="fig-hp" id="foeHp"></div><div class="bar enemy"><i id="foeBar"></i></div><div class="fig-st" id="foeSt"></div></div>
 </div><div class="battle-note" id="battleNote"></div></div>
 <div class="lvup" id="lvup"><div class="lvup-box"><div class="lvup-title">LEVEL UP!</div><div class="lvup-name" id="lvupName"></div><div class="lvup-grid" id="lvupGrid"></div><div class="lvup-foot">タップで続ける</div></div></div>
 </div></section>
@@ -63,7 +63,9 @@
 <div class="story" id="story"><div class="story-chapter" id="storyChapter"></div><div class="story-box"><canvas class="story-portrait" id="storyPortrait" width="72" height="72"></canvas><div><div class="story-name" id="storyName"></div><div class="story-text" id="storyText"></div></div></div><div class="story-foot"><span>タップで次へ ▼</span><button class="story-skip" id="storySkip">スキップ</button></div></div>
 <script>
 (()=>{'use strict';
-const $=id=>document.getElementById(id),cv=$('game'),ctx=cv.getContext('2d');ctx.imageSmoothingEnabled=false;
+const $=id=>document.getElementById(id),cv=$('game'),ctx=cv.getContext('2d');
+// 画面は400×400の座標で描くが、実際は3倍の解像度で描画してイラストをくっきり見せる
+const RES=3;cv.width=cv.height=400*RES;ctx.setTransform(RES,0,0,RES,0,0);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
 const TILE=40,W=10,H=10;
 
 // =====================================================================
@@ -74,12 +76,22 @@ const TILE=40,W=10,H=10;
 //  例: units:{'カイル':'img/units/kyle.png','戦斧兵':'img/units/bandit_axe.png'}
 // =====================================================================
 const ART={
- units:{},      // マップ上の駒（正方形の画像。透過PNG推奨）
- portraits:{},  // 会話シーンの顔（正方形）
- battle:{},     // 戦闘画面の立ち絵（正方形）
- tiles:{},      // 地形1マス（正方形）
- icons:{},      // 武器・道具のアイコン。キーは ITEMS のID（例: iron_sword:'assets/icons/iron_sword.png'）
- backgrounds:{} // 'story1'（第一章の会話背景）'story2' ... / 'battle'（戦闘画面の背景）
+ units:{      // マップ上の駒（正方形の画像。透過PNG推奨。右向きで描き、敵は自動で左右反転）
+  'カイル':'assets/unit_kyle.png','リナ':'assets/unit_rina.png','エド':'assets/unit_ed.png','ソラ':'assets/unit_sora.png',
+  '戦斧兵':'assets/unit_bandit_axe.png','剣士':'assets/unit_bandit_sword.png','槍兵':'assets/unit_soldier_lance.png','射手':'assets/unit_bandit_bow.png',
+  '山賊頭':'assets/unit_gard.png','ガルド':'assets/unit_gard.png'},
+ portraits:{  // 会話シーンの顔（正方形）
+  'カイル':'assets/face_kyle.png','リナ':'assets/face_rina.png','エド':'assets/face_ed.png','ソラ':'assets/face_sora.png',
+  '見張り':'assets/face_lookout.png','ガルド':'assets/face_gard.png'},
+ battle:{},     // 戦闘画面の立ち絵（正方形）。なければ units の絵を使う
+ tiles:{        // 地形1マス（正方形）。G2/W2 は草原・水辺の別パターン（ランダムに混ぜる）
+  G:'assets/tile_grass.png',G2:'assets/tile_grass2.png',F:'assets/tile_forest.png',P:'assets/tile_road.png',C:'assets/tile_fort.png',
+  W:'assets/tile_water.png',W2:'assets/tile_water2.png',M:'assets/tile_mountain.png',B:'assets/tile_bridge.png'},
+ icons:{        // 武器・道具のアイコン。キーは ITEMS のID
+  iron_sword:'assets/icon_iron_sword.png',keen_sword:'assets/icon_steel_sword.png',iron_lance:'assets/icon_iron_lance.png',javelin:'assets/icon_steel_lance.png',
+  iron_axe:'assets/icon_iron_axe.png',hand_axe:'assets/icon_iron_axe.png',chief_axe:'assets/icon_steel_axe.png',hunt_bow:'assets/icon_short_bow.png'},
+ backgrounds:{  // 'story1'（第一章の会話背景）'story2' ... / 'battle1' 'battle2'（章ごとの戦闘背景）'battle'（共通）
+  story1:'assets/bg_ch1.jpg',story2:'assets/bg_ch2.jpg',battle1:'assets/bg_ch1.jpg',battle2:'assets/bg_ch2.jpg'}
 };
 const IMG={};
 function loadArt(){for(const g of Object.keys(ART))for(const [k,src] of Object.entries(ART[g])){if(!src)continue;const im=new Image();im.onload=()=>draw();im.src=src;IMG[g+':'+k]=im}}
@@ -272,13 +284,13 @@ function startChapter(i,withStory=true){ch=i;rows=CHAPTERS[i].rows;campaign.ch=i
 function newCampaign(){campaign={ch:0,roster:null,fallen:[]};startChapter(0)}
 
 // ===== 会話シーン =====
-function playStory(lines,heading,done,bg){story={lines,i:0,heading};storyEnd=done;const url=bg&&artUrl('backgrounds',bg);
+function playStory(lines,heading,done,bg){story={lines,i:0,heading};storyEnd=done;const url=bg&&(artUrl('backgrounds',bg)||ART.backgrounds[bg]);// 読み込み前でもCSSが読みに行く
  $('story').style.backgroundImage=url?`linear-gradient(180deg,#09121e33,#09121ee6 75%),url("${url}")`:'';$('story').classList.add('open');showLine()}
 function showLine(){const l=story.lines[story.i],pc=$('storyPortrait'),c=CAST[l.s];
  $('storyChapter').innerHTML=story.i===0&&story.heading?`<small>CHAPTER ${ch+1}</small>${story.heading.replace(/^第.章　/,'')}`:'';
  $('storyName').textContent=l.s||'';$('storyText').textContent=l.t;$('storyText').classList.toggle('narration',!l.s);
  const im=l.s&&artImg('portraits',l.s);
- if(im||c){pc.classList.remove('hide');const cx=pc.getContext('2d');cx.clearRect(0,0,72,72);cx.imageSmoothingEnabled=false;if(im)cx.drawImage(im,0,0,72,72);else{cx.save();cx.scale(2,2);unitArt(cx,c,-2,-4);cx.restore()}}else pc.classList.add('hide')}
+ if(im||c){pc.classList.remove('hide');const cx=pc.getContext('2d');pc.width=pc.height=216;cx.clearRect(0,0,216,216);if(im){cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality='high';cx.drawImage(im,0,0,216,216)}else{cx.imageSmoothingEnabled=false;cx.save();cx.scale(6,6);unitArt(cx,c,-2,-4);cx.restore()}}else pc.classList.add('hide')}
 function nextLine(){if(!story)return;story.i++;if(story.i<story.lines.length){showLine();return}endStory()}
 function endStory(){if(!story)return;story=null;$('story').classList.remove('open');const f=storyEnd;storyEnd=null;if(f)f()}
 $('story').addEventListener('click',e=>{if(e.target.id==='storySkip')return;nextLine()});
@@ -287,8 +299,8 @@ $('storySkip').addEventListener('click',e=>{e.stopPropagation();endStory()});
 // ===== 描画（ドット絵）=====
 function seed(x,y){let n=((x+23)*1103515245+(y+31)*12345)>>>0;n^=n>>>13;return n>>>0}
 function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x,y,w,h)}
-function tileArt(x,y){const t=rows[y][x],X=x*TILE,Y=y*TILE,n=seed(x,y),im=artImg('tiles',t);
- if(im){ctx.drawImage(im,X,Y,TILE,TILE);return}
+function tileArt(x,y){const t=rows[y][x],X=x*TILE,Y=y*TILE,n=seed(x,y),im=artImg('tiles',...((t==='G'||t==='W')&&n%4===0?[t+'2',t]:[t]));
+ if(im){ctx.drawImage(im,X-.25,Y-.25,TILE+.5,TILE+.5);return}
  const grass=['#749666','#7b9d67','#779760','#729264'];rect(X,Y,TILE,TILE,grass[n%4]);
  if(t==='P'){rect(X,Y,TILE,TILE,'#b4a17b');for(let i=0;i<5;i++){const sx=((n>>i*3)&31),sy=((n>>(i+2)*3)&31);rect(X+sx,Y+sy,7,3,i%2?'#978468':'#c1ad87')}}
  else if(t==='W'){rect(X,Y,TILE,TILE,'#426f9b');for(let i=0;i<4;i++){let sx=(n>>i*3)&23,sy=(n>>(i+1)*4)&30;rect(X+sx,Y+sy,15,3,i%2?'#5f9bb5':'#38618d')}}
@@ -310,7 +322,13 @@ function unitArt(c,u,tx,ty,scale=1){const d=(x,y,w,h,color)=>{c.fillStyle=color;
  else if(wt==='lance'){d(31,2,2,29,'#d0b781');d(29,2,6,7,'#d1e3e9');d(30,0,4,3,'#e6f4fc')}
  else if(wt==='bow'){d(32,7,3,22,'#bb8b4e');d(28,8,4,3,'#bb8b4e');d(28,26,4,3,'#bb8b4e');d(34,10,1,17,'#f9ecd4')}
  else if(wt==='axe'){d(32,6,3,27,'#8a6a45');d(28,6,9,7,'#d6bd73');d(27,8,2,3,'#eef0e6')}}
-function drawUnit(u,X,Y){const im=artImg('units',u.name,u.job);if(im)ctx.drawImage(im,X,Y,TILE,TILE);else unitArt(ctx,u,X,Y);if(u.acted)rect(X+3,Y+3,34,29,'#15233170')}
+const CAN_FILTER='filter' in ctx;
+function drawUnit(u,X,Y){const im=artImg('units',u.name,u.job);
+ if(!im){unitArt(ctx,u,X,Y);if(u.acted)rect(X+3,Y+3,34,29,'#15233170');return}
+ ctx.save();if(u.acted&&CAN_FILTER)ctx.filter='grayscale(1) brightness(.75)';
+ const bob=!u.acted&&!locked&&(Math.floor(performance.now()/480)+u.id)%2?-1:0;// 待機中の小さな足踏み
+ if(u.team==='e'){ctx.translate(X+TILE,Y);ctx.scale(-1,1);ctx.drawImage(im,-1,-2+bob,TILE+2,TILE+2)}else ctx.drawImage(im,-1+X,Y-2+bob,TILE+2,TILE+2);
+ ctx.restore();if(u.acted&&!CAN_FILTER)rect(X+3,Y+3,34,29,'#15233170')}
 function shade(set,fill,edge){for(const k of set){const [x,y]=unkey(k);rect(x*40+1,y*40+1,38,38,fill);if(edge)rect(x*40+4,y*40+4,32,2,edge)}}
 function frame(x,y,c){rect(x*40+1,y*40+1,38,2,c);rect(x*40+1,y*40+37,38,2,c);rect(x*40+1,y*40+1,2,38,c);rect(x*40+37,y*40+1,2,38,c)}
 function draw(){ctx.clearRect(0,0,400,400);for(let y=0;y<H;y++)for(let x=0;x<W;x++)tileArt(x,y);
@@ -399,24 +417,95 @@ async function attack(){if(locked||over||!selected||!target)return;const ws=fcWe
  stage='action';target=null;const done=await combat(u,it,e);locked=false;if(!done)actDone();else update()}
 
 // ===== 戦闘 =====
-function fighterArt(id,u){const c=$(id),cx=c.getContext('2d');cx.clearRect(0,0,96,96);cx.imageSmoothingEnabled=false;const im=artImg('battle',u.name,u.job)||artImg('units',u.name,u.job);
- if(im)cx.drawImage(im,0,0,96,96);else{cx.save();cx.scale(2.4,2.4);unitArt(cx,u,0,0);cx.restore()}}
+// ===== 戦闘アニメーション =====
+// 武器ごとに動きと効果が変わる（剣：踏み込み斬り／槍：突進突き／斧：跳び振り下ろし／弓・投擲：飛び道具）。
+// JOB_ANIM で兵種ごとに速さ・助走・重さ・荒さを調整できる。
+const JOB_ANIM={剣士:{spd:1.25},弓使い:{spd:1.05},槍騎士:{dash:1.35},斧戦士:{spd:.95},戦斧兵:{spd:.9,rough:1},槍兵:{dash:.85},射手:{rough:.5},山賊頭:{spd:.72,heavy:1}};
+const STG={c:null,cx:null,L:null,R:null,fx:[],shake:0,flash:0,range:1},GROUND=356,SZ=240;
+const easeOut=k=>1-(1-k)**3,easeIn=k=>k*k;
+function spriteOf(u){const S=240,c=document.createElement('canvas');c.width=c.height=S;const cx=c.getContext('2d'),im=artImg('battle',u.name,u.job)||artImg('units',u.name,u.job);
+ if(im){cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality='high';cx.drawImage(im,0,0,S,S)}else{cx.imageSmoothingEnabled=false;cx.save();cx.scale(6,6);unitArt(cx,{...u,acted:false},0,6);cx.restore()}return c}
+function mkFighter(u,x,flip){const img=spriteOf(u),w=document.createElement('canvas');w.width=w.height=img.width;const wx=w.getContext('2d');wx.drawImage(img,0,0);wx.globalCompositeOperation='source-atop';wx.fillStyle='#fff';wx.fillRect(0,0,w.width,w.height);
+ return{u,img,white:w,x0:x,x,y:0,flip,dir:flip?-1:1,alpha:1,flash:0,rot:0,job:JOB_ANIM[u.job]||{}}}
+function stageStart(p,e,d){const c=$('stage');STG.c=c;STG.cx=c.getContext('2d');STG.fx=[];STG.shake=0;STG.flash=0;STG.range=d;
+ const gap=d>=2?190:130;STG.L=mkFighter(p,360-gap,false);STG.R=mkFighter(e,360+gap,true);stageDraw()}
+function stageStop(){STG.L=STG.R=null;STG.fx=[]}
+function addFx(dur,draw){const f={t0:performance.now(),dur,draw,dead:false};STG.fx.push(f);return f}
+function stageDraw(){const {cx,c}=STG;if(!cx||!STG.L)return;cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,c.width,c.height);
+ if(STG.shake>0.5)cx.translate((Math.random()-.5)*STG.shake,(Math.random()-.5)*STG.shake*.6);
+ for(const f of [STG.L,STG.R]){if(f.alpha<=0)continue;cx.fillStyle=`rgba(0,0,0,${.38*f.alpha})`;cx.beginPath();cx.ellipse(f.x,GROUND,58*(1+f.y/300),11,0,0,Math.PI*2);cx.fill()}
+ for(const f of [STG.L,STG.R])drawFighter(cx,f);
+ const now=performance.now();STG.fx=STG.fx.filter(f=>{const k=(now-f.t0)/f.dur;if(f.dead||k>=1)return false;cx.save();f.draw(cx,Math.max(0,k));cx.restore();return true});
+ if(STG.flash>0){cx.setTransform(1,0,0,1,0,0);cx.fillStyle=`rgba(255,236,200,${STG.flash})`;cx.fillRect(0,0,c.width,c.height)}}
+function drawFighter(cx,f){if(f.alpha<=0)return;cx.save();cx.globalAlpha=f.alpha;cx.translate(f.x,GROUND+f.y);if(f.flip)cx.scale(-1,1);cx.rotate(f.rot);
+ cx.drawImage(f.img,-SZ/2,-SZ+4,SZ,SZ);if(f.flash>0){cx.globalAlpha=f.alpha*Math.min(1,f.flash);cx.drawImage(f.white,-SZ/2,-SZ+4,SZ,SZ)}cx.restore()}
+// 時間 ms をかけて fn(進み具合0〜1) を呼びながら描く。裏のタブでも止まらないように setTimeout でも進める
+function tw(ms,fn,ease=k=>k){return new Promise(res=>{const s=performance.now();
+ const step=()=>{const k=Math.min(1,(performance.now()-s)/Math.max(1,ms));fn(ease(k),k);stageDraw();if(k<1)tick();else res()};
+ const tick=()=>document.hidden?setTimeout(step,16):requestAnimationFrame(step);tick()})}
+function sparks(x,y,n,col){const ps=[...Array(n)].map(()=>({a:Math.random()*Math.PI*2,v:60+Math.random()*90,s:3+Math.random()*4}));
+ addFx(320,(cx,k)=>{cx.fillStyle=col;cx.globalAlpha=1-k;for(const p of ps){const d=p.v*easeOut(k);cx.fillRect(x+Math.cos(p.a)*d-p.s/2,y+Math.sin(p.a)*d-p.s/2,p.s,p.s)}})}
+function slashFx(D,crit,dir){addFx(230,(cx,k)=>{cx.translate(D.x0,GROUND-110);cx.scale(dir,1);const a0=-2.5,sw=3.0*Math.min(1,k*2.2);
+ cx.strokeStyle=crit?`rgba(255,184,107,${1-k})`:`rgba(255,255,255,${1-k})`;cx.lineCap='round';cx.lineWidth=(crit?16:11)*(1-k)+2;cx.beginPath();cx.arc(-10,0,78,a0,a0+sw);cx.stroke();
+ cx.lineWidth=3*(1-k);cx.strokeStyle=`rgba(200,230,255,${1-k})`;cx.beginPath();cx.arc(-10,0,64,a0+.2,a0+sw*.95);cx.stroke()})}
+function thrustFx(D,crit,dir){addFx(240,(cx,k)=>{cx.translate(D.x0,GROUND-105);cx.scale(dir,1);cx.fillStyle=crit?`rgba(255,184,107,${1-k})`:`rgba(255,255,255,${1-k})`;
+ const h=(crit?9:6)*(1-k)+1;cx.fillRect(-140,-h,140+90*easeOut(k),h*2);cx.strokeStyle=`rgba(255,255,255,${.9*(1-k)})`;cx.lineWidth=4;cx.beginPath();cx.ellipse(0,0,14+40*k,26+60*k,0,0,Math.PI*2);cx.stroke()})}
+function smashFx(D,heavy){addFx(380,(cx,k)=>{for(const s of [-1,1]){cx.fillStyle=`rgba(196,172,128,${.65*(1-k)})`;cx.beginPath();cx.arc(D.x0+s*(26+(70+heavy*30)*easeOut(k)),GROUND-8-10*k,14+22*k,0,Math.PI*2);cx.fill()}
+ cx.strokeStyle=`rgba(255,240,200,${1-k})`;cx.lineWidth=5*(1-k)+1;cx.beginPath();cx.moveTo(D.x0-60,GROUND);cx.lineTo(D.x0+60,GROUND);cx.stroke()})}
+function speedLines(A,dir){addFx(200,(cx,k)=>{cx.strokeStyle=`rgba(255,255,255,${.7*(1-k)})`;cx.lineWidth=3;for(let i=0;i<5;i++){const y=GROUND-40-i*32,x=A.x-dir*(70+i%2*30);cx.beginPath();cx.moveTo(x,y);cx.lineTo(x-dir*(60+i*12),y);cx.stroke()}})}
+function drawProj(cx,kind,p,icon){cx.translate(p.x,p.y);cx.rotate(p.a);
+ if(kind==='arrow'){cx.fillStyle='#8a6a45';cx.fillRect(-34,-1.5,46,3);cx.fillStyle='#e8eef2';cx.beginPath();cx.moveTo(18,0);cx.lineTo(8,-6);cx.lineTo(8,6);cx.fill();cx.fillStyle='#f3ead6';cx.fillRect(-36,-6,8,4);cx.fillRect(-36,2,8,4);return}
+ if(icon){cx.rotate(Math.PI/4);cx.drawImage(icon,-55,-55,110,110);return}
+ cx.fillStyle='#d6bd73';cx.fillRect(-30,-3,60,6)}
+async function impact(A,D,r,type,onImpact,ix,iy){onImpact();
+ if(r.hit){STG.shake=r.crit?20:A.job.heavy?15:type==='axe'?10:r.dmg>0?6:2;if(r.dmg>0)sparks(ix,iy,r.crit?18:10,r.crit?'#ffb86b':'#fff4d0');
+  await tw(r.crit?280:190,k=>{D.flash=1-k;D.x=D.x0-D.dir*16*Math.sin(k*Math.PI);STG.shake*=.85;STG.flash=r.crit?.4*(1-k):0});STG.shake=0;STG.flash=0;D.flash=0;D.x=D.x0;
+  if(r.kill)await tw(480,k=>{D.flash=Math.min(1,k*2);D.alpha=1-k;D.y=6*k})}
+ else await tw(240,k=>{D.x=D.x0-D.dir*50*Math.sin(k*Math.PI);D.y=-12*Math.sin(k*Math.PI)},easeOut).then(()=>{D.x=D.x0;D.y=0})}
+async function strikeAnim(side,it,r,onImpact){const A=side==='L'?STG.L:STG.R,D=side==='L'?STG.R:STG.L;
+ if(!A||!D){onImpact();await sleep(r.crit?820:560);return}
+ const type=idef(it).type,j=A.job,T=ms=>ms/(j.spd||1),dir=A.dir,rough=j.rough||0,heavy=j.heavy||0,ranged=type==='bow'||STG.range>=2;
+ A.x=A.x0;A.y=0;A.rot=0;
+ if(r.crit){addFx(T(340),(cx,k)=>{cx.strokeStyle=`rgba(255,200,120,${1-k})`;cx.lineWidth=6;cx.beginPath();cx.ellipse(A.x,GROUND-90,40+90*k,60+120*k,0,0,Math.PI*2);cx.stroke()});
+  await tw(T(340),k=>{A.flash=.85*Math.sin(k*Math.PI);STG.flash=.22*Math.sin(k*Math.PI)});A.flash=0;STG.flash=0}
+ if(ranged){const kind=type==='bow'?'arrow':type==='lance'?'javelin':'axe',icon=kind==='arrow'?null:artImg('icons',it.id);
+  await tw(T(kind==='arrow'?280:220),k=>{A.x=A.x0-dir*18*k;A.rot=-dir*.06*k},easeOut);
+  const sx=A.x+dir*50,sy=GROUND-118,ex=D.x0-dir*(r.hit?14:-70),ey=GROUND-(r.hit?100:150),H=kind==='arrow'?28:90,p={x:sx,y:sy,a:0};
+  const f=addFx(1e9,cx=>drawProj(cx,kind,p,icon));const back=tw(T(220),k=>{A.x=A.x0-dir*18*(1-k);A.rot=-dir*.06*(1-k)});
+  await tw(kind==='arrow'?210:320,k=>{p.x=sx+(ex-sx)*k;p.y=sy+(ey-sy)*k-H*Math.sin(k*Math.PI);p.a=kind==='axe'?dir*k*Math.PI*5:Math.atan2((ey-sy)-H*Math.PI*Math.cos(k*Math.PI),ex-sx)});
+  f.dead=true;await back;await impact(A,D,r,type,onImpact,p.x,p.y);A.x=A.x0;A.rot=0;await tw(140,()=>{});return}
+ const tx=D.x0-dir*(type==='lance'?120:type==='axe'?92:100);
+ if(type==='sword'){
+  await tw(T(110),k=>{A.x=A.x0-dir*10*k;A.rot=-dir*.05*k},easeOut);
+  await tw(T(130),k=>{A.x=A.x0-dir*10+(tx-A.x0+dir*10)*k;A.rot=dir*(-.05+.15*k)},easeIn);
+  slashFx(D,r.crit,dir)}
+ else if(type==='lance'){const wind=24*(j.dash||1);
+  await tw(T(200),k=>{A.x=A.x0-dir*wind*k;A.rot=-dir*.06*k},easeOut);
+  speedLines(A,dir);await tw(T(150*(j.dash||1)),k=>{A.x=A.x0-dir*wind+(tx-A.x0+dir*wind)*k;A.rot=dir*.1*k},easeIn);
+  await tw(T(60),k=>{A.x=tx+dir*28*k});thrustFx(D,r.crit,dir)}
+ else{const hgt=90+heavy*40;
+  await tw(T(170+heavy*120),k=>{A.y=8*k;A.rot=-dir*(.12+heavy*.08)*k},easeOut);
+  await tw(T(300),k=>{A.x=A.x0+(tx-A.x0)*k;A.y=8*(1-k)-hgt*Math.sin(k*Math.PI);A.rot=dir*(-(.12+heavy*.08)+(.5+heavy*.1)*k)+(rough?Math.sin(k*18)*.06:0)});
+  smashFx(D,heavy)}
+ const ix=D.x0-dir*30,iy=GROUND-105;await impact(A,D,r,type,onImpact,ix,iy);
+ const fx0=A.x,fy0=A.y,fr0=A.rot;
+ await tw(T(240),k=>{A.x=fx0+(A.x0-fx0)*k;A.y=fy0*(1-k)-(type==='axe'?24*Math.sin(k*Math.PI):0);A.rot=fr0*(1-k)+(rough?Math.sin(k*20)*.05*rough:0)},easeOut);
+ A.x=A.x0;A.y=0;A.rot=0;stageDraw();await tw(110,()=>{})}
 function battleHp(p,e){$('allyHp').textContent=`HP ${p.hp} / ${p.maxHp}`;$('foeHp').textContent=`HP ${e.hp} / ${e.maxHp}`;$('allyBar').style.width=`${p.hp/p.maxHp*100}%`;$('foeBar').style.width=`${e.hp/e.maxHp*100}%`}
 const stLine=s=>s?`威力${s.dmg}${s.double?'×2':''} 命中${s.hit} 必殺${s.crt}`:'反撃不可';
 async function combat(a,aIt,b){locked=true;if(b.guard)b.aggro=true;if(a.guard)a.aggro=true;update();
  const f=forecast(a,aIt,b),p=a.team==='p'?a:b,e=a.team==='p'?b:a,pS=a===p?f.A:f.B,eS=a===p?f.B:f.A;
  const sa={u:a,o:b,s:f.A,it:aIt},sb=f.B?{u:b,o:a,s:f.B,it:f.bIt}:null,seq=[sa];if(sb)seq.push(sb);if(f.A.double)seq.push(sa);if(sb&&f.B.double)seq.push(sb);
- const bg=artUrl('backgrounds','battle');$('battle').style.backgroundImage=bg?`linear-gradient(#10243a99,#10243acc),url("${bg}")`:'';
+ const bg=artUrl('backgrounds','battle'+(ch+1))||artUrl('backgrounds','battle');$('battle').style.backgroundImage=bg?`linear-gradient(#10243a55,#10243a88 45%,#10243ae6 75%),url("${bg}")`:'';
  $('battleTitle').textContent=a.team==='p'?'攻撃！':'敵の攻撃！';$('allyName').textContent=`${p.name} Lv${p.lv}`;$('foeName').textContent=`${e.name} Lv${e.lv}`;$('allySt').textContent=stLine(pS);$('foeSt').textContent=stLine(eS);$('battleNote').textContent='';$('battleDmg').textContent='⚔';$('battleDmg').classList.remove('crit');
- fighterArt('allyFig',p);fighterArt('foeFig',e);battleHp(p,e);$('battle').classList.add('show');await sleep(420);
+ stageStart(p,e,dist(a,b));battleHp(p,e);$('battle').classList.add('show');await sleep(380);
  const dealt=new Set();
  for(const st of seq){if(a.hp<=0||b.hp<=0)break;if(!st.u.items.includes(st.it))continue;
   const hit=Math.random()*100<st.s.hit,crit=hit&&Math.random()*100<st.s.crt,dmg=hit?st.s.dmg*(crit?3:1):0;
   if(hit){st.o.hp=Math.max(0,st.o.hp-dmg);if(dmg>0)dealt.add(st.u.id)}
   let broke=false;if(st.it.uses!=null){st.it.uses--;if(st.it.uses<=0){st.u.items.splice(st.u.items.indexOf(st.it),1);broke=true}}
-  const el=$(st.o===p?'allyFig':'foeFig'),cls=crit?'crit-flash':'attack-flash',bd=$('battleDmg');
-  bd.classList.toggle('crit',crit);bd.innerHTML=!hit?'MISS':crit?`必殺！<br>${dmg}`:dmg>0?`${dmg}`:'NO DAMAGE';el.classList.add(cls);battleHp(p,e);
-  await sleep(crit?820:560);el.classList.remove(cls);
+  const bd=$('battleDmg');bd.textContent='';bd.classList.remove('crit');
+  await strikeAnim(st.u===p?'L':'R',st.it,{hit,crit,dmg,kill:st.o.hp<=0},()=>{bd.classList.toggle('crit',crit);bd.innerHTML=!hit?'MISS':crit?`必殺！<br>${dmg}`:dmg>0?`${dmg}`:'NO DAMAGE';battleHp(p,e)});
   if(broke){$('battleNote').textContent=`${st.u.name}の${idef(st.it).name}が壊れた！`;await sleep(700)}
   await sleep(120)}
  const lines=[];
@@ -427,7 +516,7 @@ async function combat(a,aIt,b){locked=true;if(b.guard)b.aggro=true;if(a.guard)a.
   if(p.exp>=100){p.exp-=100;$('battle').classList.remove('show');await showLevelUp(p,levelUp(p));if(p.lv>=MAX_LV)p.exp=0}}
  if(p.hp>0&&e.hp<=0&&e.drop){const it=mkItem(e.drop),fits=u=>u.items.length<MAX_ITEMS&&(idef(it).type==='heal'||canUse(u,it)),who=fits(p)?p:alive('p').find(fits);
   if(who){who.items.push(it);lines.push(who===p?`${p.name}は${idef(it).name}を手に入れた！`:`${idef(it).name}を手に入れ、${who.name}に渡した。`)}else lines.push(`${idef(it).name}を使える仲間がいない（持ち物がいっぱい）。`)}
- $('battle').classList.remove('show');if(lines.length)msg(lines.join(' '));else msg(`${a.name} と ${b.name} の戦闘が終わった。`);
+ stageStop();$('battle').classList.remove('show');if(lines.length)msg(lines.join(' '));else msg(`${a.name} と ${b.name} の戦闘が終わった。`);
  draw();update();return checkEnd()}
 function levelUp(u){u.lv++;const g={};for(const k of STATS)if(Math.random()*100<u.grow[k])g[k]=1;
  if(!Object.keys(g).length){const best=STATS.reduce((m,k)=>u.grow[k]>u.grow[m]?k:m,STATS[0]);g[best]=1}
@@ -500,6 +589,7 @@ function loadGame(){if(locked&&!over)return;const d=readSave();if(!d){msg('セ�
  $('resultModal').classList.remove('open');$('battle').classList.remove('show');$('lvup').classList.remove('show');
  msg(`第${ch+1}章 第 ${turn} ターンの戦況をロードしました。`);update();draw();checkEnd()}
 $('saveBtn').onclick=saveGame;$('loadBtn').onclick=loadGame;$('resultLoadBtn').onclick=loadGame;
+setInterval(()=>{if(!document.hidden&&!$('battle').classList.contains('show'))draw()},480);
 loadArt();campaign=loadCampaign();startChapter(campaign.ch);showSaveInfo();update();
 })();
 </script></body></html>

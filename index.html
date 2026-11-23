@@ -84,6 +84,8 @@ const ART={
   'カイル':'assets/face_kyle.png','リナ':'assets/face_rina.png','エド':'assets/face_ed.png','ソラ':'assets/face_sora.png',
   '見張り':'assets/face_lookout.png','ガルド':'assets/face_gard.png'},
  battle:{},     // 戦闘画面の立ち絵（正方形）。なければ units の絵を使う
+ motion:{       // 戦闘モーション：正方形6コマを横一列に並べた画像（構え・溜め・攻撃・振り抜き・被弾・回避）。右向き・足元をそろえる
+ },
  tiles:{        // 地形1マス（正方形）。G2/W2 は草原・水辺の別パターン（ランダムに混ぜる）
   G:'assets/tile_grass.png',G2:'assets/tile_grass2.png',F:'assets/tile_forest.png',P:'assets/tile_road.png',C:'assets/tile_fort.png',
   W:'assets/tile_water.png',W2:'assets/tile_water2.png',M:'assets/tile_mountain.png',B:'assets/tile_bridge.png'},
@@ -425,8 +427,12 @@ const STG={c:null,cx:null,L:null,R:null,fx:[],shake:0,flash:0,range:1},GROUND=35
 const easeOut=k=>1-(1-k)**3,easeIn=k=>k*k;
 function spriteOf(u){const S=240,c=document.createElement('canvas');c.width=c.height=S;const cx=c.getContext('2d'),im=artImg('battle',u.name,u.job)||artImg('units',u.name,u.job);
  if(im){cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality='high';cx.drawImage(im,0,0,S,S)}else{cx.imageSmoothingEnabled=false;cx.save();cx.scale(6,6);unitArt(cx,{...u,acted:false},0,6);cx.restore()}return c}
-function mkFighter(u,x,flip){const img=spriteOf(u),w=document.createElement('canvas');w.width=w.height=img.width;const wx=w.getContext('2d');wx.drawImage(img,0,0);wx.globalCompositeOperation='source-atop';wx.fillStyle='#fff';wx.fillRect(0,0,w.width,w.height);
- return{u,img,white:w,x0:x,x,y:0,flip,dir:flip?-1:1,alpha:1,flash:0,rot:0,job:JOB_ANIM[u.job]||{}}}
+function whiteOf(img){const w=document.createElement('canvas');w.width=img.width;w.height=img.height;const wx=w.getContext('2d');wx.drawImage(img,0,0);wx.globalCompositeOperation='source-atop';wx.fillStyle='#fff';wx.fillRect(0,0,w.width,w.height);return w}
+const POSE={ready:0,windup:1,strike:2,follow:3,hurt:4,dodge:5};
+function framesOf(u){const im=artImg('motion',u.name,u.job);if(!im)return null;const S=im.naturalHeight,n=Math.floor(im.naturalWidth/S);if(n<6)return null;
+ return [...Array(6)].map((_,i)=>{const c=document.createElement('canvas');c.width=c.height=240;const cx=c.getContext('2d');cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality='high';cx.drawImage(im,i*S,0,S,S,0,0,240,240);return{img:c,white:whiteOf(c)}})}
+function mkFighter(u,x,flip){const img=spriteOf(u),fr=framesOf(u);
+ return{u,img,white:whiteOf(img),frames:fr,pose:'ready',x0:x,x,y:0,flip,dir:flip?-1:1,alpha:1,flash:0,rot:0,job:JOB_ANIM[u.job]||{}}}
 function stageStart(p,e,d){const c=$('stage');STG.c=c;STG.cx=c.getContext('2d');STG.fx=[];STG.shake=0;STG.flash=0;STG.range=d;
  const gap=d>=2?190:130;STG.L=mkFighter(p,360-gap,false);STG.R=mkFighter(e,360+gap,true);stageDraw()}
 function stageStop(){STG.L=STG.R=null;STG.fx=[]}
@@ -437,8 +443,9 @@ function stageDraw(){const {cx,c}=STG;if(!cx||!STG.L)return;cx.setTransform(1,0,
  for(const f of [STG.L,STG.R])drawFighter(cx,f);
  const now=performance.now();STG.fx=STG.fx.filter(f=>{const k=(now-f.t0)/f.dur;if(f.dead||k>=1)return false;cx.save();f.draw(cx,Math.max(0,k));cx.restore();return true});
  if(STG.flash>0){cx.setTransform(1,0,0,1,0,0);cx.fillStyle=`rgba(255,236,200,${STG.flash})`;cx.fillRect(0,0,c.width,c.height)}}
-function drawFighter(cx,f){if(f.alpha<=0)return;cx.save();cx.globalAlpha=f.alpha;cx.translate(f.x,GROUND+f.y);if(f.flip)cx.scale(-1,1);cx.rotate(f.rot);
- cx.drawImage(f.img,-SZ/2,-SZ+4,SZ,SZ);if(f.flash>0){cx.globalAlpha=f.alpha*Math.min(1,f.flash);cx.drawImage(f.white,-SZ/2,-SZ+4,SZ,SZ)}cx.restore()}
+function drawFighter(cx,f){if(f.alpha<=0)return;const fr=f.frames&&f.frames[POSE[f.pose]||0],img=fr?fr.img:f.img,white=fr?fr.white:f.white;
+ cx.save();cx.globalAlpha=f.alpha;cx.translate(f.x,GROUND+f.y);if(f.flip)cx.scale(-1,1);cx.rotate(f.rot*(f.frames?.3:1));// ポーズ絵があるときは体の傾けを控えめに
+ cx.drawImage(img,-SZ/2,-SZ+4,SZ,SZ);if(f.flash>0){cx.globalAlpha=f.alpha*Math.min(1,f.flash);cx.drawImage(white,-SZ/2,-SZ+4,SZ,SZ)}cx.restore()}
 // 時間 ms をかけて fn(進み具合0〜1) を呼びながら描く。裏のタブでも止まらないように setTimeout でも進める
 function tw(ms,fn,ease=k=>k){return new Promise(res=>{const s=performance.now();
  const step=()=>{const k=Math.min(1,(performance.now()-s)/Math.max(1,ms));fn(ease(k),k);stageDraw();if(k<1)tick();else res()};
@@ -457,39 +464,40 @@ function drawProj(cx,kind,p,icon){cx.translate(p.x,p.y);cx.rotate(p.a);
  if(kind==='arrow'){cx.fillStyle='#8a6a45';cx.fillRect(-34,-1.5,46,3);cx.fillStyle='#e8eef2';cx.beginPath();cx.moveTo(18,0);cx.lineTo(8,-6);cx.lineTo(8,6);cx.fill();cx.fillStyle='#f3ead6';cx.fillRect(-36,-6,8,4);cx.fillRect(-36,2,8,4);return}
  if(icon){cx.rotate(Math.PI/4);cx.drawImage(icon,-55,-55,110,110);return}
  cx.fillStyle='#d6bd73';cx.fillRect(-30,-3,60,6)}
-async function impact(A,D,r,type,onImpact,ix,iy){onImpact();
+async function impact(A,D,r,type,onImpact,ix,iy){onImpact();A.pose='strike';D.pose=r.hit?'hurt':'dodge';
  if(r.hit){STG.shake=r.crit?20:A.job.heavy?15:type==='axe'?10:r.dmg>0?6:2;if(r.dmg>0)sparks(ix,iy,r.crit?18:10,r.crit?'#ffb86b':'#fff4d0');
   await tw(r.crit?280:190,k=>{D.flash=1-k;D.x=D.x0-D.dir*16*Math.sin(k*Math.PI);STG.shake*=.85;STG.flash=r.crit?.4*(1-k):0});STG.shake=0;STG.flash=0;D.flash=0;D.x=D.x0;
-  if(r.kill)await tw(480,k=>{D.flash=Math.min(1,k*2);D.alpha=1-k;D.y=6*k})}
- else await tw(240,k=>{D.x=D.x0-D.dir*50*Math.sin(k*Math.PI);D.y=-12*Math.sin(k*Math.PI)},easeOut).then(()=>{D.x=D.x0;D.y=0})}
+  if(r.kill)await tw(480,k=>{D.flash=Math.min(1,k*2);D.alpha=1-k;D.y=6*k});else D.pose='ready'}
+ else await tw(240,k=>{D.x=D.x0-D.dir*50*Math.sin(k*Math.PI);D.y=-12*Math.sin(k*Math.PI)},easeOut).then(()=>{D.x=D.x0;D.y=0;D.pose='ready'})}
 async function strikeAnim(side,it,r,onImpact){const A=side==='L'?STG.L:STG.R,D=side==='L'?STG.R:STG.L;
  if(!A||!D){onImpact();await sleep(r.crit?820:560);return}
  const type=idef(it).type,j=A.job,T=ms=>ms/(j.spd||1),dir=A.dir,rough=j.rough||0,heavy=j.heavy||0,ranged=type==='bow'||STG.range>=2;
- A.x=A.x0;A.y=0;A.rot=0;
- if(r.crit){addFx(T(340),(cx,k)=>{cx.strokeStyle=`rgba(255,200,120,${1-k})`;cx.lineWidth=6;cx.beginPath();cx.ellipse(A.x,GROUND-90,40+90*k,60+120*k,0,0,Math.PI*2);cx.stroke()});
+ A.x=A.x0;A.y=0;A.rot=0;A.pose='ready';D.pose='ready';
+ if(r.crit){A.pose='windup';addFx(T(340),(cx,k)=>{cx.strokeStyle=`rgba(255,200,120,${1-k})`;cx.lineWidth=6;cx.beginPath();cx.ellipse(A.x,GROUND-90,40+90*k,60+120*k,0,0,Math.PI*2);cx.stroke()});
   await tw(T(340),k=>{A.flash=.85*Math.sin(k*Math.PI);STG.flash=.22*Math.sin(k*Math.PI)});A.flash=0;STG.flash=0}
  if(ranged){const kind=type==='bow'?'arrow':type==='lance'?'javelin':'axe',icon=kind==='arrow'?null:artImg('icons',it.id);
-  await tw(T(kind==='arrow'?280:220),k=>{A.x=A.x0-dir*18*k;A.rot=-dir*.06*k},easeOut);
+  A.pose='windup';await tw(T(kind==='arrow'?280:220),k=>{A.x=A.x0-dir*18*k;A.rot=-dir*.06*k},easeOut);A.pose='strike';
   const sx=A.x+dir*50,sy=GROUND-118,ex=D.x0-dir*(r.hit?14:-70),ey=GROUND-(r.hit?100:150),H=kind==='arrow'?28:90,p={x:sx,y:sy,a:0};
   const f=addFx(1e9,cx=>drawProj(cx,kind,p,icon));const back=tw(T(220),k=>{A.x=A.x0-dir*18*(1-k);A.rot=-dir*.06*(1-k)});
   await tw(kind==='arrow'?210:320,k=>{p.x=sx+(ex-sx)*k;p.y=sy+(ey-sy)*k-H*Math.sin(k*Math.PI);p.a=kind==='axe'?dir*k*Math.PI*5:Math.atan2((ey-sy)-H*Math.PI*Math.cos(k*Math.PI),ex-sx)});
-  f.dead=true;await back;await impact(A,D,r,type,onImpact,p.x,p.y);A.x=A.x0;A.rot=0;await tw(140,()=>{});return}
+  A.pose='follow';f.dead=true;await back;await impact(A,D,r,type,onImpact,p.x,p.y);A.pose='follow';await tw(160,()=>{});A.x=A.x0;A.rot=0;A.pose='ready';stageDraw();await tw(80,()=>{});return}
  const tx=D.x0-dir*(type==='lance'?120:type==='axe'?92:100);
+ A.pose='windup';
  if(type==='sword'){
   await tw(T(110),k=>{A.x=A.x0-dir*10*k;A.rot=-dir*.05*k},easeOut);
   await tw(T(130),k=>{A.x=A.x0-dir*10+(tx-A.x0+dir*10)*k;A.rot=dir*(-.05+.15*k)},easeIn);
-  slashFx(D,r.crit,dir)}
+  A.pose='strike';slashFx(D,r.crit,dir)}
  else if(type==='lance'){const wind=24*(j.dash||1);
   await tw(T(200),k=>{A.x=A.x0-dir*wind*k;A.rot=-dir*.06*k},easeOut);
   speedLines(A,dir);await tw(T(150*(j.dash||1)),k=>{A.x=A.x0-dir*wind+(tx-A.x0+dir*wind)*k;A.rot=dir*.1*k},easeIn);
-  await tw(T(60),k=>{A.x=tx+dir*28*k});thrustFx(D,r.crit,dir)}
+  A.pose='strike';await tw(T(60),k=>{A.x=tx+dir*28*k});thrustFx(D,r.crit,dir)}
  else{const hgt=90+heavy*40;
   await tw(T(170+heavy*120),k=>{A.y=8*k;A.rot=-dir*(.12+heavy*.08)*k},easeOut);
   await tw(T(300),k=>{A.x=A.x0+(tx-A.x0)*k;A.y=8*(1-k)-hgt*Math.sin(k*Math.PI);A.rot=dir*(-(.12+heavy*.08)+(.5+heavy*.1)*k)+(rough?Math.sin(k*18)*.06:0)});
-  smashFx(D,heavy)}
- const ix=D.x0-dir*30,iy=GROUND-105;await impact(A,D,r,type,onImpact,ix,iy);
+  A.pose='strike';smashFx(D,heavy)}
+ const ix=D.x0-dir*30,iy=GROUND-105;await impact(A,D,r,type,onImpact,ix,iy);A.pose='follow';
  const fx0=A.x,fy0=A.y,fr0=A.rot;
- await tw(T(240),k=>{A.x=fx0+(A.x0-fx0)*k;A.y=fy0*(1-k)-(type==='axe'?24*Math.sin(k*Math.PI):0);A.rot=fr0*(1-k)+(rough?Math.sin(k*20)*.05*rough:0)},easeOut);
+ await tw(T(240),k=>{if(k>.6)A.pose='ready';A.x=fx0+(A.x0-fx0)*k;A.y=fy0*(1-k)-(type==='axe'?24*Math.sin(k*Math.PI):0);A.rot=fr0*(1-k)+(rough?Math.sin(k*20)*.05*rough:0)},easeOut);
  A.x=A.x0;A.y=0;A.rot=0;stageDraw();await tw(110,()=>{})}
 function battleHp(p,e){$('allyHp').textContent=`HP ${p.hp} / ${p.maxHp}`;$('foeHp').textContent=`HP ${e.hp} / ${e.maxHp}`;$('allyBar').style.width=`${p.hp/p.maxHp*100}%`;$('foeBar').style.width=`${e.hp/e.maxHp*100}%`}
 const stLine=s=>s?`威力${s.dmg}${s.double?'×2':''} 命中${s.hit} 必殺${s.crt}`:'反撃不可';

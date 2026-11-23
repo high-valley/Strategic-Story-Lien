@@ -14,6 +14,7 @@
 .board-wrap{padding:5px;background:linear-gradient(140deg,#bbc7c4,#506783 30%,#31445b 70%,#829ba3);border:2px solid #c5be91;box-shadow:0 7px 0 #0a111b,0 14px 24px #0008;position:relative;user-select:none}.board-inner{position:relative;background:#527550;overflow:hidden;aspect-ratio:1/1;touch-action:manipulation}.board-inner canvas{display:block;width:100%;height:100%;image-rendering:pixelated;touch-action:manipulation;cursor:pointer}.turn-toast{position:absolute;left:8%;right:8%;top:39%;pointer-events:none;transform:translateY(-20%);background:#17233fe9;border:2px solid #e4c580;box-shadow:0 4px 20px #0009;color:#fff1d0;padding:16px 0;text-align:center;font-weight:800;letter-spacing:.22em;font-size:23px;opacity:0;transition:opacity .2s}.turn-toast.show{opacity:1}.legend{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#d2dbe6;padding:14px 2px 8px}.dot{display:inline-block;width:9px;height:9px;margin-right:5px}.dot.blue{background:#55a5fb}.dot.red{background:#ef7570}.dot.green{background:#a6df91}
 .card{min-height:85px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px;background:linear-gradient(165deg,#23334c,#182438);border:1px solid #677b9d;box-shadow:inset 0 0 0 2px #152236;margin-top:2px}.card h3{margin:0;color:#fff1d2;font-size:17px}.card small{font-size:11px;color:#a8bad2}.card p{margin:4px 0 0;color:#d5deea;font-size:12px}.health{height:8px;width:115px;background:#0f1723;border:1px solid #ac9a7a;margin-top:6px}.health>i{display:block;background:linear-gradient(90deg,#32a867,#9de69c);height:100%;width:100%;transition:width .2s}.stats{text-align:right;white-space:nowrap}.stats strong{font-size:18px;color:#e5f6cb}.stats span{font-size:11px;color:#aabbcd}
 .actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:8px}.btn{border:1px solid #a6adc2;background:linear-gradient(#334968,#223652);box-shadow:inset 0 0 0 1px #152339,0 3px 0 #0b111c;color:white;min-height:48px;border-radius:2px;font-weight:750;font-size:13px;line-height:1.25}.btn.primary{background:linear-gradient(#b6975d,#80623a);border-color:#e1c38f;color:#fff9eb}.btn.danger{border-color:#d39482;background:linear-gradient(#8b4c49,#572d35)}.btn:active:not(:disabled){transform:translateY(2px);box-shadow:none}
+.save-row{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px}.save-row .btn{min-height:40px;font-size:12px}.save-info{font-size:10px;color:#8fa1b8;text-align:center;padding-top:5px;min-height:15px}
 .log{font-size:12px;min-height:34px;padding:13px 5px 0;color:#c1cfde;line-height:1.5;text-align:center}.footer{margin-top:15px;border-top:1px solid #405165;padding-top:11px;font-size:10px;color:#8191a8;text-align:center}
 .modal{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:20px;background:#09121edb}.modal.open{display:flex}.modal-content{max-width:425px;width:100%;border:3px double #d6bc7d;background:linear-gradient(#26374d,#111e2d);padding:20px;box-shadow:0 12px 50px #000d;color:#e5eaf3}.modal h2{margin:0 0 12px;color:#f8e1a7;font-size:22px}.modal p,.modal li{line-height:1.75;font-size:13px}.modal ul{padding-left:18px}.modal .btn{width:100%;margin-top:10px}
 .battle{position:absolute;inset:0;z-index:3;display:none;flex-direction:column;justify-content:center;padding:16px;background:linear-gradient(165deg,#10243aea,#23293eeb);pointer-events:none}.battle.show{display:flex}.battle-title{color:#f8dca5;font:800 15px serif;text-align:center;margin-bottom:12px}.fighters{display:flex;align-items:center;justify-content:space-around;gap:15px}.fighter{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;font-weight:bold}.fig-canvas{width:80px;height:80px;image-rendering:pixelated}.big-dmg{height:28px;text-align:center;font-size:24px;font-weight:900;color:#ffe3aa;text-shadow:2px 2px #4c1e28}.fig-hp{color:#f4e8d8}.attack-flash{animation:flash .25s ease-in-out}@keyframes flash{50%{filter:brightness(3) sepia(.4);transform:translateX(6px)}}
@@ -29,10 +30,11 @@
 <div class="legend"><span><i class="dot blue"></i>青：移動範囲</span><span><i class="dot red"></i>赤：攻撃可能</span><span><i class="dot green"></i>緑：森林・砦の恩恵</span></div>
 <section class="card" id="info"><div><h3 id="infoTitle">味方ユニットを選択</h3><small id="infoRole">青い駒をタップして指揮を開始</small><p id="infoDetail">マスをタップして移動できます。</p></div><div class="stats"><span id="hpLabel">戦況</span><div><strong id="hpVal">3</strong> <span id="hpMax">人の味方</span></div><div class="health"><i id="hpBar" style="width:100%"></i></div></div></section>
 <div class="actions"><button class="btn" id="cancelBtn">選択解除</button><button class="btn primary" id="waitBtn">待機</button><button class="btn danger" id="endBtn">ターン終了</button></div>
+<div class="save-row"><button class="btn" id="saveBtn">💾 セーブ</button><button class="btn" id="loadBtn">📂 ロード</button></div><div class="save-info" id="saveInfo"></div>
 <div class="log" id="message" aria-live="polite">ユニットを選び、敵を全滅させよう。</div><div class="footer">オリジナル試作版 • タップ操作対応 • 戦闘は剣 ＞ 斧 ＞ 槍 ＞ 剣</div>
 </main>
 <div class="modal" id="helpModal"><div class="modal-content"><h2>遊び方</h2><p>味方をタップすると、青いマスに移動できます。移動先を決め、赤い印の敵をタップすると戦闘開始です。</p><ul><li>剣は斧に、斧は槍に、槍は剣に有利。</li><li>森と砦にいるユニットは被ダメージが減少。</li><li>弓は2マス離れた敵を狙えますが、隣接攻撃はできません。</li><li>行動後は灰色になります。全員が動いたら「ターン終了」。</li><li>敵を全滅させれば勝利。味方が全滅すると敗北です。</li></ul><button class="btn primary" id="closeHelp">戦いに戻る</button></div></div>
-<div class="modal" id="resultModal"><div class="modal-content"><h2 id="resultTitle">勝利！</h2><p id="resultText"></p><button class="btn primary" id="resetBtn">もう一度プレイ</button></div></div>
+<div class="modal" id="resultModal"><div class="modal-content"><h2 id="resultTitle">勝利！</h2><p id="resultText"></p><button class="btn primary" id="resetBtn">もう一度プレイ</button><button class="btn" id="resultLoadBtn">セーブから再開</button></div></div>
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),cv=$('game'),ctx=cv.getContext('2d');ctx.imageSmoothingEnabled=false;
@@ -111,7 +113,7 @@ function update(){const enemies=units.filter(u=>u.team==='e'&&u.hp>0),allies=uni
  let u=selected;
  if(!u){$('infoTitle').textContent='味方ユニットを選択';$('infoRole').textContent='マップ上の青い駒をタップ';$('infoDetail').textContent='敵を全滅させると勝利。';$('hpLabel').textContent='味方';$('hpVal').textContent=allies.length;$('hpMax').textContent='/ 3';$('hpBar').style.width=(allies.length/3*100)+'%'}
  else{$('infoTitle').textContent=u.name;$('infoRole').textContent=`${u.job} ・ ${weapons[u.weapon]} ・ 移動 ${u.move}`;$('infoDetail').textContent=stage==='move'?'青いマスを選んで移動':stage==='action'?(targets(u).length?'赤い敵をタップで攻撃':'敵に届かない場合は待機'):'行動済み';$('hpLabel').textContent='HP';$('hpVal').textContent=u.hp;$('hpMax').textContent='/ '+u.maxHp;$('hpBar').style.width=(u.hp/u.maxHp*100)+'%'}
- $('cancelBtn').disabled=locked||!selected;$('cancelBtn').textContent=stage==='action'?'移動を戻す':'選択解除';$('waitBtn').disabled=locked||!selected||stage!=='action';$('endBtn').disabled=locked||over;
+ $('cancelBtn').disabled=locked||!selected;$('cancelBtn').textContent=stage==='action'?'移動を戻す':'選択解除';$('waitBtn').disabled=locked||!selected||stage!=='action';$('endBtn').disabled=locked||over;$('saveBtn').disabled=locked||over;$('loadBtn').disabled=(locked&&!over)||!readSave();
 }
 function pick(x,y){if(locked||over)return;let u=at(x,y);
  if(!selected){if(u?.team==='p'&&!u.acted){selected=u;stage='move';reachable=getReach(u);msg(`${u.name} を選択。移動先の青いマスをタップ。`)}else if(u){selected=u;stage='inspect';msg(`${u.name}：${weapons[u.weapon]} / HP ${u.hp} / ${terrain(u.x,u.y).name}`)}else{msg(`${terrain(x,y).name}：地形防御 +${terrain(x,y).def}`)}}
@@ -124,7 +126,7 @@ $('cancelBtn').onclick=()=>{if(locked||!selected)return;if(stage==='action'&&ori
 function actDone(){if(selected){selected.acted=true;}selected=null;stage='none';origin=null;reachable=new Map();update();draw();if(units.filter(u=>u.team==='p'&&u.hp>0).every(u=>u.acted)){msg('味方は全員行動済み。ターン終了で敵が動きます。')}}
 $('waitBtn').onclick=()=>{if(locked||!selected||stage!=='action')return;msg(`${selected.name} は待機した。`);actDone()};
 function activeUnit(u){return u&&u.hp>0}
-function checkEnd(){const p=units.filter(u=>u.team==='p'&&activeUnit(u)),e=units.filter(u=>u.team==='e'&&activeUnit(u));if(e.length&&p.length)return false;over=true;locked=true;const win=e.length===0;$('resultTitle').textContent=win?'勝利！ 霧の谷を突破':'敗北… 戦旗は地に落ちた';$('resultText').textContent=win?`第1章クリア！ ${turn}ターンで勝利。生存した仲間は${p.length}人。次は育成・会話・新マップを追加できます。`:'味方は全滅しました。武器の相性や森の防御を利用し、もう一度挑戦しましょう。';$('resultModal').classList.add('open');update();return true}
+function checkEnd(){const p=units.filter(u=>u.team==='p'&&activeUnit(u)),e=units.filter(u=>u.team==='e'&&activeUnit(u));if(e.length&&p.length)return false;over=true;locked=true;const win=e.length===0;$('resultTitle').textContent=win?'勝利！ 霧の谷を突破':'敗北… 戦旗は地に落ちた';$('resultText').textContent=win?`第1章クリア！ ${turn}ターンで勝利。生存した仲間は${p.length}人。次は育成・会話・新マップを追加できます。`:'味方は全滅しました。武器の相性や森の防御を利用し、もう一度挑戦しましょう。';$('resultLoadBtn').style.display=readSave()?'':'none';$('resultModal').classList.add('open');update();return true}
 async function showFight(a,b,first){$('battle').classList.add('show');let player=a.team==='p'?a:b,enemy=a.team==='e'?a:b;
  $('battleTitle').textContent=first?'交戦！':'反撃！';$('allyName').textContent=player.name;$('foeName').textContent=enemy.name;$('allyHp').textContent=`HP ${player.hp} / ${player.maxHp}`;$('foeHp').textContent=`HP ${enemy.hp} / ${enemy.maxHp}`;$('battleDmg').textContent='⚔';
  for(const [id,unit] of [['allyFig',player],['foeFig',enemy]]){const c=$(id),cx=c.getContext('2d');cx.clearRect(0,0,80,80);cx.imageSmoothingEnabled=false;cx.save();cx.scale(2,2);unitArt(cx,unit,0,1);cx.restore()}
@@ -146,6 +148,27 @@ $('endBtn').onclick=enemyTurn;
 $('howBtn').onclick=()=>$('helpModal').classList.add('open');$('closeHelp').onclick=()=>$('helpModal').classList.remove('open');$('resetBtn').onclick=reset;
 // Keyboard accessibility for desktop testing
 let cx=1,cy=8;window.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter',' '].includes(e.key)){if(e.key==='ArrowUp')cy=Math.max(0,cy-1);if(e.key==='ArrowDown')cy=Math.min(9,cy+1);if(e.key==='ArrowLeft')cx=Math.max(0,cx-1);if(e.key==='ArrowRight')cx=Math.min(9,cx+1);if(e.key==='Enter'||e.key===' '){pick(cx,cy)}if(document.activeElement===document.body)e.preventDefault()}});
-reset();
+// ---- セーブ / ロード (localStorage) ----
+const SAVE_KEY='torchBanner.save.v1';
+function storage(){try{return window.localStorage}catch(e){return null}}
+function readSave(){const ls=storage();if(!ls)return null;try{const d=JSON.parse(ls.getItem(SAVE_KEY));return validSave(d)?d:null}catch(e){return null}}
+function validSave(d){if(!d||d.v!==1||!Number.isInteger(d.turn)||d.turn<1||!Array.isArray(d.units))return false;
+ if(d.units.length!==original.length)return false;
+ return d.units.every(s=>{const o=original.find(u=>u.id===s.id);return o&&Number.isInteger(s.x)&&Number.isInteger(s.y)&&inBounds(s.x,s.y)&&Number.isInteger(s.hp)&&s.hp>=0&&s.hp<=o.maxHp&&typeof s.acted==='boolean'})}
+function fmtTime(t){const d=new Date(t);return isNaN(d)?'':`${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`}
+function showSaveInfo(){const d=readSave();$('saveInfo').textContent=d?`セーブデータ：第 ${d.turn} ターン（${fmtTime(d.savedAt)}）`:storage()?'セーブデータなし':'この環境ではセーブできません'}
+function saveGame(){if(locked||over)return;const ls=storage();if(!ls){msg('この環境ではセーブできません。');return}
+ // 移動を確定していないユニットは移動前の位置で保存する
+ const pending=stage==='action'&&origin?selected:null;
+ const data={v:1,savedAt:Date.now(),turn,units:units.map(u=>({id:u.id,x:u===pending?origin.x:u.x,y:u===pending?origin.y:u.y,hp:u.hp,acted:u.acted}))};
+ try{ls.setItem(SAVE_KEY,JSON.stringify(data))}catch(e){msg('セーブに失敗しました（容量不足など）。');return}
+ msg(`第 ${turn} ターンの戦況をセーブしました。`);showSaveInfo();update()}
+function loadGame(){if(locked&&!over)return;const d=readSave();if(!d){msg('セーブデータがありません。');showSaveInfo();update();return}
+ units=original.map(o=>{const s=d.units.find(u=>u.id===o.id);return{...o,x:s.x,y:s.y,hp:s.hp,acted:s.acted}});
+ turn=d.turn;selected=null;stage='none';origin=null;reachable=new Map();attackables=[];over=false;locked=false;flashUnit=null;
+ $('resultModal').classList.remove('open');$('battle').classList.remove('show');
+ msg(`第 ${turn} ターンの戦況をロードしました。`);update();draw();checkEnd()}
+$('saveBtn').onclick=saveGame;$('loadBtn').onclick=loadGame;$('resultLoadBtn').onclick=loadGame;
+reset();showSaveInfo();update();
 })();
 </script></body></html>

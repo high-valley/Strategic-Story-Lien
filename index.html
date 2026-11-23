@@ -240,8 +240,8 @@ const atkSpd=(u,w)=>Math.max(0,u.spd-Math.max(0,(w?w.wt:0)-u.str));
 function forecast(a,aIt,b){const d=dist(a,b),aw=aIt?idef(aIt):null,bIt=weaponsFor(b,d)[0]||null,bw=bIt?idef(bIt):null;
  const side=(u,w,o,ow)=>{const t=terrain(o.x,o.y),tri=triangle(w,ow);
   return{dmg:Math.max(0,u.str+w.mt+tri-o.def-t.def),hit:clamp(w.hit+u.skl*2+Math.floor(u.lck/2)+tri*15-(atkSpd(o,ow)*2+o.lck+t.avo),0,100),crt:clamp(w.crt+Math.floor(u.skl/2)-o.lck,0,100),tri}};
- const A=side(a,aw,b,bw),B=bw?side(b,bw,a,aw):null;
- A.double=atkSpd(a,aw)-atkSpd(b,bw)>=4;if(B)B.double=atkSpd(b,bw)-atkSpd(a,aw)>=4;
+ const bEq=bw||(equipped(b)?idef(equipped(b)):null),A=side(a,aw,b,bEq),B=bw?side(b,bw,a,aw):null;
+ A.double=atkSpd(a,aw)-atkSpd(b,bEq)>=4;if(B)B.double=atkSpd(b,bw)-atkSpd(a,aw)>=4;
  return{aIt,bIt,A,B}}
 
 // ===== 移動範囲（味方はすり抜け可、敵は通れない）=====

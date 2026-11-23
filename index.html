@@ -24,7 +24,7 @@
 .modal{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:20px;background:#09121edb}.modal.open{display:flex}.modal-content{max-width:425px;width:100%;max-height:92vh;overflow:auto;border:3px double #d6bc7d;background:linear-gradient(#26374d,#111e2d);padding:20px;box-shadow:0 12px 50px #000d;color:#e5eaf3}.modal h2{margin:0 0 12px;color:#f8e1a7;font-size:22px}.modal p,.modal li{line-height:1.7;font-size:13px}.modal ul{padding-left:18px}.modal .btn{width:100%;margin-top:10px}
 .battle{position:absolute;inset:0;z-index:3;display:none;flex-direction:column;justify-content:center;padding:14px;background:linear-gradient(165deg,#10243aee,#23293eef);pointer-events:none;background-size:cover;background-position:center}.battle.show{display:flex}.battle-title{color:#f8dca5;font:800 15px serif;text-align:center;margin-bottom:12px;letter-spacing:.1em}.fighters{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.fighter{width:40%;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-weight:bold}.fig-canvas{width:96px;height:96px;image-rendering:pixelated}.fig-hp{color:#f4e8d8}.fighter .bar{width:100%;flex:none}.fig-st{font-size:10px;color:#b9c7d8;font-weight:600}.big-dmg{flex:1;align-self:center;min-height:56px;text-align:center;font-size:22px;font-weight:900;color:#ffe3aa;text-shadow:2px 2px #4c1e28;line-height:1.2}.big-dmg.crit{color:#ff8a5c;font-size:26px}.battle-note{text-align:center;margin-top:12px;min-height:20px;font-size:13px;color:#ffe9be;font-weight:700}.attack-flash{animation:flash .25s ease-in-out}@keyframes flash{50%{filter:brightness(3) sepia(.4);transform:translateX(6px)}}.crit-flash{animation:cflash .4s ease-in-out}@keyframes cflash{30%{filter:brightness(4) hue-rotate(-30deg);transform:translateX(-8px) scale(1.08)}70%{transform:translateX(8px)}}
 .lvup{position:absolute;inset:0;z-index:4;display:none;align-items:center;justify-content:center;background:#0a1220c8;cursor:pointer}.lvup.show{display:flex}.lvup-box{width:82%;border:3px double #e4c580;background:linear-gradient(#2b3f5b,#16243a);padding:14px;text-align:center;box-shadow:0 8px 30px #000b}.lvup-title{font:900 22px serif;color:#ffe08a;letter-spacing:.2em}.lvup-name{margin:4px 0 10px;color:#e8eef6;font-size:14px;font-weight:700}.lvup-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 14px;text-align:left;font-size:14px}.lvup-grid span{display:flex;justify-content:space-between;border-bottom:1px solid #3c5170;padding:2px 0}.lvup-grid em{font-style:normal;color:#8de08a;font-weight:800;margin-left:6px}.lvup-foot{margin-top:10px;font-size:11px;color:#9fb0c6}
-.story{position:fixed;inset:0;z-index:30;display:none;flex-direction:column;justify-content:flex-end;align-items:center;padding:20px 12px calc(24px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#09121e55,#09121ef2 70%);background-size:cover;background-position:center;cursor:pointer}.story.open{display:flex}.story-chapter{position:absolute;top:calc(22% + env(safe-area-inset-top));left:0;right:0;text-align:center;color:#f5d18c;font:800 22px serif;letter-spacing:.2em;text-shadow:2px 2px #070f19}.story-chapter small{display:block;font:600 11px system-ui;letter-spacing:.3em;color:#adbbce;margin-bottom:6px}.story-box{max-width:446px;width:100%;display:flex;gap:12px;align-items:flex-start;border:3px double #d6bc7d;background:linear-gradient(#26374df2,#111e2df2);padding:14px;box-shadow:0 12px 40px #000c;min-height:128px}.story-portrait{width:72px;height:72px;flex:none;image-rendering:pixelated;background:#16233a;border:1px solid #5d718c}.story-portrait.hide{display:none}.story-name{color:#f8e1a7;font-weight:800;font-size:14px;margin-bottom:6px}.story-text{font-size:14px;line-height:1.75;color:#eef2f8;white-space:pre-line}.story-text.narration{font-family:serif;color:#dfe6ee}.story-foot{max-width:446px;width:100%;display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:11px;color:#9fb0c6}.story-skip{background:#28364a;border:1px solid #5d718c;color:#f4ead7;padding:7px 12px;font-size:12px;border-radius:4px}.modal .btn.sub{background:linear-gradient(#334968,#223652);border-color:#a6adc2}.modal .btn.hidden{display:none}
+.story{position:fixed;inset:0;z-index:30;display:none;flex-direction:column;justify-content:flex-end;align-items:center;padding:20px 12px calc(24px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#09121e55,#09121ef2 70%);background-size:cover;background-position:center;cursor:pointer}.story.open{display:flex}.story-chapter{position:absolute;top:calc(22% + env(safe-area-inset-top));left:0;right:0;text-align:center;color:#f5d18c;font:800 22px serif;letter-spacing:.2em;text-shadow:2px 2px #070f19}.story-chapter small{display:block;font:600 11px system-ui;letter-spacing:.3em;color:#adbbce;margin-bottom:6px}.story-box{max-width:446px;width:100%;display:flex;gap:12px;align-items:flex-start;border:3px double #d6bc7d;background:linear-gradient(#26374df2,#111e2df2);padding:14px;box-shadow:0 12px 40px #000c;min-height:128px}.story-portrait{width:72px;height:72px;flex:none;image-rendering:pixelated;background:#16233a;border:1px solid #5d718c}.story-portrait.hide{display:none}.story-name{color:#f8e1a7;font-weight:800;font-size:14px;margin-bottom:6px}.story-text{font-size:14px;line-height:1.75;color:#eef2f8;white-space:pre-line}.story-text.narration{font-family:serif;color:#dfe6ee}.story-foot{max-width:446px;width:100%;display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:11px;color:#9fb0c6}.story-skip{background:#28364a;border:1px solid #5d718c;color:#f4ead7;padding:7px 12px;font-size:12px;border-radius:4px}.modal .btn.sub{background:linear-gradient(#334968,#223652);border-color:#a6adc2}.modal .btn.hidden{display:none}.item-row{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;min-height:0}.item-row small{display:block;font-weight:500;color:#c9d4e3;margin-top:3px}
 @media(max-height:740px){.app{padding-top:8px}.top{padding-bottom:7px}.title{font-size:23px}.chapter{padding:5px 10px;margin-bottom:5px}.legend{padding:9px 2px 5px}.card{padding:7px 9px}.btn{min-height:42px}.footer{margin-top:8px;padding-top:7px}}
 </style>
 </head>
@@ -37,7 +37,7 @@
 <div class="big-dmg" id="battleDmg">⚔</div>
 <div class="fighter"><canvas class="fig-canvas" id="foeFig" width="96" height="96"></canvas><div id="foeName">敵</div><div class="fig-hp" id="foeHp"></div><div class="bar enemy"><i id="foeBar"></i></div><div class="fig-st" id="foeSt"></div></div>
 </div><div class="battle-note" id="battleNote"></div></div>
-<div class="lvup" id="lvup"><div class="lvup-box"><div class="lvup-title">LEVEL UP!</div><div class="lvup-name" id="lvupName"></div><div class="lvup-grid" id="lvupGrid"></div><div class="lvup-foot">タップで続ける</div></div></div>
+<div class="lvup" id="lvup"><div class="lvup-box"><div class="lvup-title" id="lvupTitle">LEVEL UP!</div><div class="lvup-name" id="lvupName"></div><div class="lvup-grid" id="lvupGrid"></div><div class="lvup-foot">タップで続ける</div></div></div>
 </div></section>
 <div class="legend"><span><i class="dot blue"></i>移動範囲</span><span><i class="dot red"></i>攻撃範囲</span><span><i class="dot purple"></i>敵の危険範囲</span></div>
 <section class="card" id="info"></section>
@@ -57,8 +57,12 @@
 <li><b>成長</b>：戦うと経験値。100でレベルアップし、キャラごとの成長率で能力が上がります。育てた能力は次の章へ引き継ぎ。</li>
 <li><b>ロスト</b>：倒れた仲間は二度と戻りません。カイルが倒れるとゲームオーバー。</li>
 <li><b>敵の動き</b>：敵をタップするとその敵の攻撃範囲、「危険範囲」で全敵の範囲を表示。陣地から動かない敵もいます。</li>
-<li>勝利条件は章ごとに異なります（第一章：敵の全滅／第二章：首領の撃破）。</li>
+<li><b>杖</b>：修道士ミアは隣の味方をタップしてHP回復（敵は攻撃できない）。</li>
+<li><b>クラスチェンジ</b>：Lv5以上で「道具」から灯火の紋章を使うと上級職に。能力が上がり、使える武器が増えます。</li>
+<li><b>支援</b>：仲良しの2人が隣り合ってターンを終えると絆が深まり、移動後に相手をタップ（💬）すると支援会話。支援レベルC/Bで、2マス以内にいると命中・回避が上がります。</li>
+<li>勝利条件は章ごとに異なります（第一章：敵の全滅／第二章：首領の撃破／第三章：カイルが祭壇に到達して待機）。</li>
 </ul><button class="btn primary" id="closeHelp">戦いに戻る</button></div></div>
+<div class="modal" id="itemModal"><div class="modal-content"><h2>道具</h2><div id="itemList"></div><button class="btn sub" id="itemClose">閉じる</button></div></div>
 <div class="modal" id="resultModal"><div class="modal-content"><h2 id="resultTitle">勝利！</h2><p id="resultText"></p><button class="btn primary" id="resetBtn">もう一度プレイ</button><button class="btn sub" id="resultLoadBtn">セーブから再開</button><button class="btn sub hidden" id="altBtn">第一章から遊ぶ</button></div></div>
 <div class="story" id="story"><div class="story-chapter" id="storyChapter"></div><div class="story-box"><canvas class="story-portrait" id="storyPortrait" width="72" height="72"></canvas><div><div class="story-name" id="storyName"></div><div class="story-text" id="storyText"></div></div></div><div class="story-foot"><span>タップで次へ ▼</span><button class="story-skip" id="storySkip">スキップ</button></div></div>
 <script>
@@ -94,7 +98,8 @@ const TERRAIN={
  C:{name:'砦',cost:1,def:2,avo:20,heal:20},
  W:{name:'水辺',cost:99,def:0,avo:0},
  M:{name:'山',cost:3,def:2,avo:30},
- B:{name:'橋',cost:1,def:0,avo:0}};
+ B:{name:'橋',cost:1,def:0,avo:0},
+ T:{name:'祭壇',cost:1,def:1,avo:10}};
 
 // ===== 武器・道具 =====（uses:0 は壊れない）
 const ITEMS={
@@ -106,7 +111,21 @@ const ITEMS={
  hand_axe:{name:'手斧',type:'axe',mt:7,hit:60,crt:0,wt:9,min:1,max:2,uses:15},
  hunt_bow:{name:'狩人の弓',type:'bow',mt:6,hit:85,crt:0,wt:5,min:2,max:2,uses:40},
  chief_axe:{name:'首領の大斧',type:'axe',mt:11,hit:70,crt:5,wt:13,min:1,max:1,uses:0},
- salve:{name:'傷薬',type:'heal',heal:10,uses:3}};
+ steel_sword:{name:'鋼の剣',type:'sword',mt:8,hit:75,crt:0,wt:10,min:1,max:1,uses:30},
+ steel_lance:{name:'鋼の槍',type:'lance',mt:10,hit:70,crt:0,wt:13,min:1,max:1,uses:30},
+ steel_axe:{name:'鋼の斧',type:'axe',mt:11,hit:65,crt:0,wt:15,min:1,max:1,uses:30},
+ long_bow:{name:'長弓',type:'bow',mt:7,hit:65,crt:0,wt:10,min:2,max:3,uses:20},
+ heal_staff:{name:'癒しの杖',type:'staff',heal:10,min:1,max:1,uses:20},
+ salve:{name:'傷薬',type:'heal',heal:10,uses:3},
+ seal:{name:'灯火の紋章',type:'seal',uses:1}};
+// ===== クラスチェンジ（Lv5以上で灯火の紋章を使う）=====
+const PROMO_LV=5;
+const PROMO={
+ '剣士':{to:'灯火騎士',wt:['lance'],bonus:{hp:4,str:2,skl:2,spd:1,def:2},mov:1},
+ '弓使い':{to:'狙撃手',wt:[],bonus:{hp:3,str:2,skl:3,spd:2,def:1},mov:0},
+ '槍騎士':{to:'聖槍騎士',wt:['sword'],bonus:{hp:4,str:2,skl:1,spd:2,def:2},mov:1},
+ '斧戦士':{to:'戦士長',wt:['bow'],bonus:{hp:5,str:3,skl:2,spd:1,def:1},mov:0},
+ '修道士':{to:'司祭',wt:[],bonus:{hp:3,str:1,skl:2,spd:1,lck:2,def:2},mov:0}};
 const WNAME={sword:'剣',lance:'槍',axe:'斧',bow:'弓'};
 const STATS=['hp','str','skl','spd','lck','def'],LABEL={hp:'HP',str:'力',skl:'技',spd:'速さ',lck:'幸運',def:'守備',mov:'移動'};
 const MAX_LV=20,MAX_ITEMS=5;
@@ -120,16 +139,33 @@ const HEROES={
  3:{id:3,name:'エド',job:'槍騎士',joinCh:0,color:'#a8a2e5',lv:2,hp:22,str:7,skl:5,spd:5,lck:3,def:6,mov:6,
    wt:['lance'],grow:{hp:85,str:50,skl:35,spd:35,lck:25,def:45},items:['iron_lance','javelin'],death:'隊長……あとは、頼みます……'},
  8:{id:8,name:'ソラ',job:'斧戦士',joinCh:1,color:'#d9a75a',lv:3,hp:26,str:8,skl:4,spd:6,lck:4,def:4,mov:5,
-   wt:['axe'],grow:{hp:90,str:55,skl:35,spd:40,lck:30,def:25},items:['iron_axe','hand_axe','salve'],death:'村のみんな……ごめん……'}};
+   wt:['axe'],grow:{hp:90,str:55,skl:35,spd:40,lck:30,def:25},items:['iron_axe','hand_axe','salve'],death:'村のみんな……ごめん……'},
+ 15:{id:15,name:'ミア',job:'修道士',joinCh:2,color:'#e8a6c8',lv:3,hp:18,str:2,skl:5,spd:6,lck:7,def:2,mov:5,
+   wt:['staff'],grow:{hp:55,str:20,skl:45,spd:50,lck:60,def:20},items:['heal_staff','salve'],death:'みなさん……どうか、灯を……'}};
 
 // 会話シーンの顔グラフィック用
 const CAST={見張り:{team:'e',weapon:'bow',color:'#bb7e8e'},ガルド:{team:'e',weapon:'axe',color:'#c4544a',boss:true}};
+CAST.ヴェルン={team:'e',weapon:'sword',color:'#7a5ac4',boss:true};
 for(const h of Object.values(HEROES))CAST[h.name]={team:'p',weapon:ITEMS[h.items[0]].type,color:h.color};
+
+// ===== 支援会話（2人が隣り合ってターンを終えるとポイント。C=2 B=5で会話できる）=====
+const SUP_NEED=[0,2,5],SUP_RANK=['','C','B'];
+const SUPPORTS={
+ '1-2':{C:[{s:'リナ',t:'カイル、さっきの戦い、前に出すぎ。'},{s:'カイル',t:'隊長が下がるわけにはいかないだろ。'},{s:'リナ',t:'隊長だからこそ、倒れたら終わりなの。……私が後ろから守るから、少しは頼って。'},{s:'カイル',t:'……わかった。背中は任せる。'}],
+  B:[{s:'カイル',t:'リナ、弓はいつから？'},{s:'リナ',t:'村で狩りをしてたの。獲物を外したら冬を越せない。だから一本一本を大事に撃つ。'},{s:'カイル',t:'それで外さないのか。'},{s:'リナ',t:'外すわよ、たまには。……でも、あなたを狙う敵は外さない。'}]},
+ '1-3':{C:[{s:'エド',t:'隊長、武器の相性は頭に入っていますか。'},{s:'カイル',t:'剣は斧に強く、槍に弱い……だろ。'},{s:'エド',t:'槍兵は私が引き受けます。隊長は斧の相手を。'},{s:'カイル',t:'頼もしいな。だから隊長はよせって。'}],
+  B:[{s:'カイル',t:'エド、なんで俺を隊長って呼ぶんだ？'},{s:'エド',t:'騎士団の試験の日、隊長は落ちた私の槍を拾ってくれた。……あのときから、ついていく人を決めていました。'},{s:'カイル',t:'……そんなこと、覚えてたのか。'},{s:'エド',t:'ええ。だから、倒れないでください。'}]},
+ '2-8':{C:[{s:'ソラ',t:'あんた、木の上の鳥も射抜けるのか？'},{s:'リナ',t:'風がなければね。'},{s:'ソラ',t:'すげえ。俺は斧で木を倒すのは得意だけど。'},{s:'リナ',t:'じゃあ、あなたが前で敵を止めて。私が後ろから仕留める。'},{s:'ソラ',t:'いい組み合わせだ！'}],
+  B:[{s:'リナ',t:'ソラ、村のこと……まだつらい？'},{s:'ソラ',t:'……正直な。でも、ここで戦ってると、少しだけ前を向ける気がする。'},{s:'リナ',t:'全部終わったら、村を建て直すのを手伝うわ。'},{s:'ソラ',t:'本当か？　じゃあ、一番いい木を切っとく。'}]},
+ '3-8':{C:[{s:'エド',t:'ソラ、斧の振りが大きい。隙ができるぞ。'},{s:'ソラ',t:'うっ……木こりの癖でさ。'},{s:'エド',t:'槍兵は私が引きつける。君は斧の届く相手を確実に倒せ。'},{s:'ソラ',t:'了解、先輩！'}],
+  B:[{s:'ソラ',t:'エド先輩、槍の構えを教えてくれよ。'},{s:'エド',t:'斧使いが槍を？'},{s:'ソラ',t:'相手の動きがわかれば、避けられるだろ？'},{s:'エド',t:'……いい考えだ。今夜、焚き火のそばで。'}]},
+ '1-15':{C:[{s:'ミア',t:'カイルさん、傷を見せてください。'},{s:'カイル',t:'かすり傷だよ。'},{s:'ミア',t:'かすり傷でも、放っておけば命取りです。……はい、癒やしました。'},{s:'カイル',t:'ありがとう。ミアがいると心強いな。'}],
+  B:[{s:'カイル',t:'ミア、どうして祠に仕えるようになったんだ？'},{s:'ミア',t:'小さいころ、騎士団の人に命を助けられたんです。灯のともった砦で。'},{s:'カイル',t:'……灯台砦か。'},{s:'ミア',t:'はい。だから今度は、わたしが誰かを癒やす番なんです。'}]}};
 
 // ===== 章データ：マップ(rows)・味方の出撃位置(deploy)・敵(enemies)・会話(intro/outro) =====
 // guard:true の敵は、味方が攻撃範囲に入るか攻撃されるまで動かない。drop は撃破時に手に入るアイテム
 const CHAPTERS=[
-{title:'第一章　霧の谷の遭遇',goal:'rout',goalText:'勝利条件：敵の全滅',
+{title:'第一章　霧の谷の遭遇',goal:'rout',goalText:'勝利条件：敵の全滅',winTitle:'勝利！ 霧の谷を突破',
 rows:[
 'GGGGFFGGGG',
 'GGGFFGGGCG',
@@ -160,7 +196,7 @@ outro:[
 {s:'リナ',t:'見て、カイル。北の空……砦のほうで烽火が上がってる。'},
 {s:'カイル',t:'あそこはもともと騎士団の砦だ。取り戻しに行こう。'},
 {t:'霧の谷を抜けた一行は、烽火を目指して北へ進んだ。'}]},
-{title:'第二章　灯台砦の夜襲',goal:'boss',goalText:'勝利条件：首領ガルドの撃破',
+{title:'第二章　灯台砦の夜襲',goal:'boss',goalText:'勝利条件：首領ガルドの撃破',winTitle:'勝利！ 灯台砦に灯がともる',
 rows:[
 'MGGFGGGCGM',
 'MGFFGPPPGG',
@@ -196,11 +232,51 @@ outro:[
 {s:'リナ',t:'ガルドの荷物に紋章入りの書状が……。誰かが山賊に武器を流していたみたい。'},
 {s:'カイル',t:'……調べる必要があるな。でもまずは、砦に灯をともそう。'},
 {s:'カイル',t:'この灯が、俺たちの戦旗だ。'},
-{t:'灯台砦に、ふたたび火がともった。\nだが、山賊の背後にひそむ影は、まだ姿を見せていない――。'}]}];
+{t:'灯台砦に、ふたたび火がともった。\nだが、山賊の背後にひそむ影は、まだ姿を見せていない――。'}]},
+{title:'第三章　風鳴りの祠',goal:'seize',goalText:'勝利条件：カイルが祭壇に到達',winTitle:'勝利！ 祠を取り戻した',
+rows:[
+'MMFGGTGGFM',
+'MFGGCGCGGM',
+'GGGFGGGFGG',
+'GPPPPPPPPG',
+'GPFGGGGFPG',
+'GPGGMMGGPG',
+'GPGGMMGGPG',
+'GPPPGGPPPG',
+'FGGPGGPGGF',
+'GGGGGGGGGG'],
+deploy:{1:[4,9],2:[3,9],3:[5,8],8:[6,9],15:[4,8]},
+enemies:[
+{id:20,name:'ヴェルン',job:'傭兵長',boss:true,lv:8,hp:34,str:9,skl:10,spd:9,lck:5,def:7,mov:0,items:['steel_sword'],drop:'seal',x:5,y:0,color:'#7a5ac4'},
+{id:21,name:'傭兵',job:'剣士',lv:5,hp:22,str:7,skl:8,spd:8,lck:3,def:4,mov:4,items:['iron_sword'],guard:true,x:4,y:1,color:'#bc627b'},
+{id:22,name:'傭兵',job:'槍兵',lv:5,hp:25,str:8,skl:5,spd:5,lck:2,def:7,mov:4,items:['steel_lance'],guard:true,x:6,y:1,color:'#d38f63'},
+{id:23,name:'弓兵',job:'射手',lv:5,hp:21,str:7,skl:7,spd:6,lck:2,def:3,mov:4,items:['long_bow'],x:2,y:2,color:'#bb7e8e'},
+{id:24,name:'山賊E',job:'戦斧兵',lv:4,hp:27,str:8,skl:3,spd:5,lck:0,def:3,mov:4,items:['iron_axe','hand_axe'],x:1,y:3,color:'#dd8763'},
+{id:25,name:'山賊F',job:'戦斧兵',lv:4,hp:27,str:8,skl:3,spd:4,lck:0,def:3,mov:4,items:['iron_axe'],x:8,y:3,color:'#dd8763'},
+{id:26,name:'槍兵',job:'槍兵',lv:5,hp:24,str:8,skl:5,spd:5,lck:1,def:6,mov:4,items:['iron_lance','javelin'],x:5,y:3,color:'#d38f63'},
+{id:27,name:'剣士',job:'剣士',lv:5,hp:22,str:7,skl:9,spd:9,lck:3,def:3,mov:4,items:['keen_sword'],drop:'seal',x:8,y:6,color:'#bc627b'}],
+intro:[
+{t:'ガルドの書状の紋章を手がかりに、一行は東の山地「風鳴りの祠」へ向かった。'},
+{t:'祠は、山賊に武器を流していた傭兵団の隠れ家になっているという。'},
+{s:'ミア',t:'待ってください！　あなたたち、騎士団の方ですよね？'},
+{s:'カイル',t:'そうだ。君は？'},
+{s:'ミア',t:'ミア。祠に仕える修道士です。傭兵たちに祠を追われて……。癒しの杖なら使えます。けがをしたら、わたしのそばへ。'},
+{s:'リナ',t:'回復役は助かるわ。でも戦えないなら、前には出ないでね。'},
+{s:'エド',t:'祭壇の前にいるのが傭兵長ヴェルンか。左右の砦にも兵がいる。守りが固いな。'},
+{s:'ソラ',t:'あいつを倒して、カイルが祭壇に立てば祠は取り戻せる。'},
+{s:'ヴェルン',t:'騎士団の子どもか。仕事の邪魔だ。……まとめて片づけろ。'},
+{s:'カイル',t:'祭壇を取り戻す。ミアを守りながら進むぞ！'}],
+outro:[
+{s:'ヴェルン',t:'……雇い主の名か？　言えんな。ただ、王都の紋章を持つ者だった、とだけ言っておく。'},
+{s:'ミア',t:'王都……？　騎士団の本部がある場所なのに。'},
+{s:'エド',t:'騎士団の中に、山賊や傭兵へ武器を流した者がいる……ということか。'},
+{s:'カイル',t:'確かめよう。この戦旗に誓って。'},
+{t:'祠の祭壇に灯がともる。\n一行は、王都へ続く道を見すえた――。'}]}];
+const KANJI=['一','二','三','四','五','六','七','八','九','十'];
 
 // ===== 状態 =====
 let ch=0,rows=CHAPTERS[0].rows,story=null,storyEnd=null;
-let campaign={ch:0,roster:null,fallen:[]};
+let campaign={ch:0,roster:null,fallen:[],supports:{}},supports={},seized=false;
 let units=[],selected=null,stage='none',reachable=new Map(),origin=null,target=null,fcIndex=0,tileSel=null,turn=1,locked=false,over=false,dangerOn=false,cursor=null,flashUnit=null;
 const msg=s=>{$('message').textContent=s};
 const sleep=t=>new Promise(r=>setTimeout(r,t));
@@ -230,7 +306,8 @@ function buildUnits(i){const C=CHAPTERS[i],list=[],roster=campaign.roster,fallen
 // ===== 武器と戦闘計算 =====
 const idef=it=>ITEMS[it.id];
 const canUse=(u,it)=>(u.wt||[]).includes(idef(it).type);
-const weaponsOf=u=>u.items.filter(it=>canUse(u,it));
+const weaponsOf=u=>u.items.filter(it=>WNAME[idef(it).type]&&canUse(u,it));
+const staffOf=u=>u.items.find(it=>idef(it).type==='staff'&&canUse(u,it));
 const equipped=u=>weaponsOf(u)[0]||null;
 const weaponsFor=(u,d)=>weaponsOf(u).filter(it=>{const w=idef(it);return d>=w.min&&d<=w.max});
 const icon=it=>{const u=artUrl('icons',it.id);return u?`<img class="wicon" src="${u}" alt="">`:''};
@@ -239,7 +316,7 @@ function triangle(wa,wb){if(!wa||!wb)return 0;const beats={sword:'axe',axe:'lanc
 const atkSpd=(u,w)=>Math.max(0,u.spd-Math.max(0,(w?w.wt:0)-u.str));
 function forecast(a,aIt,b){const d=dist(a,b),aw=aIt?idef(aIt):null,bIt=weaponsFor(b,d)[0]||null,bw=bIt?idef(bIt):null;
  const side=(u,w,o,ow)=>{const t=terrain(o.x,o.y),tri=triangle(w,ow);
-  return{dmg:Math.max(0,u.str+w.mt+tri-o.def-t.def),hit:clamp(w.hit+u.skl*2+Math.floor(u.lck/2)+tri*15-(atkSpd(o,ow)*2+o.lck+t.avo),0,100),crt:clamp(w.crt+Math.floor(u.skl/2)-o.lck,0,100),tri}};
+  return{dmg:Math.max(0,u.str+w.mt+tri-o.def-t.def),hit:clamp(w.hit+u.skl*2+Math.floor(u.lck/2)+tri*15+supBonus(u)*5-(atkSpd(o,ow)*2+o.lck+t.avo+supBonus(o)*5),0,100),crt:clamp(w.crt+Math.floor(u.skl/2)-o.lck,0,100),tri}};
  const bEq=bw||(equipped(b)?idef(equipped(b)):null),A=side(a,aw,b,bEq),B=bw?side(b,bw,a,aw):null;
  A.double=atkSpd(a,aw)-atkSpd(b,bEq)>=4;if(B)B.double=atkSpd(b,bw)-atkSpd(a,aw)>=4;
  return{aIt,bIt,A,B}}
@@ -260,16 +337,26 @@ const targets=u=>units.filter(v=>v.hp>0&&v.team!==u.team&&weaponsFor(u,dist(u,v)
 // ===== 章の開始 =====
 const CAMP_KEY='torchBanner.campaign.v1',OLD_PROGRESS_KEY='torchBanner.chapter';
 function storage(){try{return window.localStorage}catch(e){return null}}
-function loadCampaign(){const ls=storage();try{const c=JSON.parse(ls.getItem(CAMP_KEY));if(c&&Number.isInteger(c.ch)&&c.ch>=0&&c.ch<CHAPTERS.length&&(c.roster===null||Array.isArray(c.roster)))return{ch:c.ch,roster:c.roster,fallen:Array.isArray(c.fallen)?c.fallen:[]}}catch(e){}
- let n=0;try{n=parseInt(ls.getItem(OLD_PROGRESS_KEY)||'0',10)}catch(e){}return{ch:n>=0&&n<CHAPTERS.length?n:0,roster:null,fallen:[]}}
+function loadCampaign(){const ls=storage();try{const c=JSON.parse(ls.getItem(CAMP_KEY));if(c&&Number.isInteger(c.ch)&&c.ch>=0&&c.ch<CHAPTERS.length&&(c.roster===null||Array.isArray(c.roster)))return{ch:c.ch,roster:c.roster,fallen:Array.isArray(c.fallen)?c.fallen:[],supports:c.supports&&typeof c.supports==='object'?c.supports:{}}}catch(e){}
+ let n=0;try{n=parseInt(ls.getItem(OLD_PROGRESS_KEY)||'0',10)}catch(e){}return{ch:n>=0&&n<CHAPTERS.length?n:0,roster:null,fallen:[],supports:{}}}
 function saveCampaign(){try{storage().setItem(CAMP_KEY,JSON.stringify(campaign))}catch(e){}}
 function clearSelection(){selected=null;stage='none';origin=null;target=null;tileSel=null;reachable=new Map()}
-function reset(){units=buildUnits(ch);clearSelection();turn=1;locked=false;over=false;flashUnit=null;
+function reset(){units=buildUnits(ch);supports=clone(campaign.supports||{});seized=false;clearSelection();turn=1;locked=false;over=false;flashUnit=null;$('itemModal').classList.remove('open');
  $('resultModal').classList.remove('open');$('battle').classList.remove('show');$('lvup').classList.remove('show');$('chapterLabel').textContent=CHAPTERS[ch].title;
  msg(`${CHAPTERS[ch].goalText}。ユニットを選んで指揮しよう。`);update();draw()}
 function startChapter(i,withStory=true){ch=i;rows=CHAPTERS[i].rows;campaign.ch=i;saveCampaign();reset();
  if(withStory){locked=true;update();playStory(CHAPTERS[i].intro,CHAPTERS[i].title,()=>{locked=false;update();toast('PLAYER PHASE')},'story'+(i+1))}else toast('PLAYER PHASE')}
-function newCampaign(){campaign={ch:0,roster:null,fallen:[]};startChapter(0)}
+function newCampaign(){campaign={ch:0,roster:null,fallen:[],supports:{}};startChapter(0)}
+// ===== 支援 =====
+const pairKey=(a,b)=>a<b?`${a}-${b}`:`${b}-${a}`;
+const supLv=(a,b)=>supports[pairKey(a,b)]?.lv||0;
+function supBonus(u){if(u.team!=='p')return 0;let s=0;for(const v of units)if(v!==u&&v.team==='p'&&v.hp>0&&dist(u,v)<=2)s+=supLv(u.id,v.id);return s}
+function talkReady(a,b){const k=pairKey(a.id,b.id);if(!SUPPORTS[k])return false;const s=supports[k]||{pts:0,lv:0};return s.lv<2&&s.pts>=SUP_NEED[s.lv+1]}
+function supportTick(){const ps=alive('p'),ready=[];for(const k of Object.keys(SUPPORTS)){const [a,b]=k.split('-').map(Number),ua=ps.find(u=>u.id===a),ub=ps.find(u=>u.id===b);
+ if(ua&&ub&&dist(ua,ub)<=1){const s=supports[k]||(supports[k]={pts:0,lv:0});const was=talkReady(ua,ub);s.pts++;if(!was&&talkReady(ua,ub))ready.push(`${ua.name}と${ub.name}`)}}return ready}
+const talkTargets=u=>alive('p').filter(v=>v!==u&&dist(u,v)===1&&talkReady(u,v));
+const healTargets=u=>staffOf(u)?alive('p').filter(v=>v!==u&&dist(u,v)===1&&v.hp<v.maxHp):[];
+function supportText(u){if(u.team!=='p')return'';const l=alive('p').filter(v=>v!==u&&supLv(u.id,v.id)).map(v=>v.name+SUP_RANK[supLv(u.id,v.id)]);return l.length?`<div class="items">支援：${l.join('　')}</div>`:''}
 
 // ===== 会話シーン =====
 function playStory(lines,heading,done,bg){story={lines,i:0,heading};storyEnd=done;const url=bg&&artUrl('backgrounds',bg);
@@ -296,9 +383,10 @@ function tileArt(x,y){const t=rows[y][x],X=x*TILE,Y=y*TILE,n=seed(x,y),im=artImg
  if(t==='F'){rect(X+7,Y+9,4,23,'#463e30');rect(X+18,Y+7,4,25,'#463e30');rect(X+3,Y+14,30,11,'#315c46');rect(X+10,Y+5,21,12,'#477b52');rect(X+3,Y+10,17,12,'#5e9459');rect(X+14,Y+3,10,5,'#82af66');rect(X+25,Y+13,7,7,'#739b61')}
  if(t==='M'){rect(X+2,Y+24,36,14,'#5f6a55');rect(X+6,Y+14,28,14,'#7c7d6e');rect(X+12,Y+6,16,10,'#97968a');rect(X+16,Y+3,8,5,'#e6e4dc');rect(X+22,Y+16,8,8,'#6a6b5f');rect(X+4,Y+30,10,4,'#4d5947')}
  if(t==='B'){rect(X,Y,TILE,TILE,'#426f9b');rect(X+3,Y,34,40,'#8a6a45');for(let i=0;i<5;i++)rect(X+3,Y+i*8+6,34,2,'#5c452d');rect(X+3,Y,3,40,'#6b5236');rect(X+34,Y,3,40,'#6b5236')}
+ if(t==='T'){rect(X+4,Y+22,32,15,'#7d7a8a');rect(X+8,Y+15,24,9,'#aeabbb');rect(X+4,Y+35,32,2,'#55525f');rect(X+17,Y+7,6,9,'#5a4b3a');rect(X+16,Y+2,8,6,'#ff9e3d');rect(X+18,Y+1,4,4,'#ffe28a')}
  if(t==='C'){rect(X+4,Y+18,32,21,'#635e66');rect(X+8,Y+9,24,20,'#a2a0a1');rect(X+6,Y+5,7,9,'#c6bba3');rect(X+16,Y+4,7,10,'#c6bba3');rect(X+27,Y+5,7,9,'#c6bba3');rect(X+18,Y+23,9,16,'#4f4450');rect(X+5,Y+30,8,4,'#bbb4a8')}
  rect(X,Y,40,1,'#16291c15');rect(X,Y,1,40,'#15271618')}
-function weaponType(u){if(u.weapon)return u.weapon;const w=u.items&&equipped(u);return w?idef(w).type:null}
+function weaponType(u){if(u.weapon)return u.weapon;const w=u.items&&(equipped(u)||staffOf(u));return w?idef(w).type:null}
 function unitArt(c,u,tx,ty,scale=1){const d=(x,y,w,h,color)=>{c.fillStyle=color;c.fillRect(tx+x*scale,ty+y*scale,w*scale,h*scale)},skin='#edc49f',dark='#293c50',shirt=u.team==='p'?'#e8f0f9':'#f5e3d0';
  const main=u.color,cloak=u.team==='p'?'#294d95':'#833446',wt=weaponType(u);
  d(5,25,24,4,'#1b2b3166');d(8,15,21,14,cloak);d(10,18,17,9,main);
@@ -309,6 +397,7 @@ function unitArt(c,u,tx,ty,scale=1){const d=(x,y,w,h,color)=>{c.fillStyle=color;
  if(wt==='sword'){d(32,11,2,17,'#d4ebee');d(30,23,7,3,'#d5b46f');d(33,7,2,4,'#eef8fc')}
  else if(wt==='lance'){d(31,2,2,29,'#d0b781');d(29,2,6,7,'#d1e3e9');d(30,0,4,3,'#e6f4fc')}
  else if(wt==='bow'){d(32,7,3,22,'#bb8b4e');d(28,8,4,3,'#bb8b4e');d(28,26,4,3,'#bb8b4e');d(34,10,1,17,'#f9ecd4')}
+ else if(wt==='staff'){d(32,5,2,27,'#c9a46a');d(30,1,6,5,'#9fe0ff');d(31,2,4,3,'#e8fbff')}
  else if(wt==='axe'){d(32,6,3,27,'#8a6a45');d(28,6,9,7,'#d6bd73');d(27,8,2,3,'#eef0e6')}}
 function drawUnit(u,X,Y){const im=artImg('units',u.name,u.job);if(im)ctx.drawImage(im,X,Y,TILE,TILE);else unitArt(ctx,u,X,Y);if(u.acted)rect(X+3,Y+3,34,29,'#15233170')}
 function shade(set,fill,edge){for(const k of set){const [x,y]=unkey(k);rect(x*40+1,y*40+1,38,38,fill);if(edge)rect(x*40+4,y*40+4,32,2,edge)}}
@@ -317,6 +406,7 @@ function draw(){ctx.clearRect(0,0,400,400);for(let y=0;y<H;y++)for(let x=0;x<W;x
  if(dangerOn){const all=new Set();for(const e of alive('e'))for(const k of dangerTiles(e))all.add(k);shade(all,'#9b4fd44d')}
  if(selected&&stage==='move'){const reach=new Set(reachable.keys()),atk=rangeTiles(selected,reach);for(const k of reach)atk.delete(k);shade(atk,'#ff5a4a55');shade(reach,'#4384d379','#9fd1fc55')}
  if(selected&&stage==='inspect'&&selected.team==='e'){shade(dangerTiles(selected),'#ff5a4a5c')}
+ if(selected&&stage==='action'){for(const v of healTargets(selected))shade([key(v.x,v.y)],'#4fd17a80','#c8ffd6');for(const v of talkTargets(selected)){rect(v.x*40+1,v.y*40+1,38,38,'#ffd86a66');rect(v.x*40+24,v.y*40+2,14,10,'#fffbe8');rect(v.x*40+27,v.y*40+12,3,3,'#fffbe8');rect(v.x*40+27,v.y*40+6,8,2,'#7a6a40')}}
  if(selected&&(stage==='action'||stage==='forecast')){for(const v of targets(selected)){rect(v.x*40+1,v.y*40+1,38,38,'#ff655a96');rect(v.x*40+3,v.y*40+3,34,3,'#ffd3ab')}}
  if(stage==='tile'&&tileSel)frame(tileSel.x,tileSel.y,'#f5e18d');
  for(const u of units){if(u.hp<=0)continue;const X=u.x*40,Y=u.y*40;
@@ -328,12 +418,12 @@ function draw(){ctx.clearRect(0,0,400,400);for(let y=0;y<H;y++)for(let x=0;x<W;x
 
 // ===== 情報パネル =====
 function itemsHTML(u){if(!u.items.length)return'所持品なし';const eq=equipped(u);
- return u.items.map(it=>{const w=idef(it);return`<span class="${it===eq?'eq':''}${canUse(u,it)||w.type==='heal'?'':' ng'}">${it===eq?'◆':''}${icon(it)}${w.name}${w.type!=='heal'?`(${WNAME[w.type]}${w.min!==w.max?' '+w.min+'-'+w.max:''})`:''}<span class="cnt"> ${it.uses!=null?it.uses:'∞'}</span></span>`}).join('　')}
+ return u.items.map(it=>{const w=idef(it);return`<span class="${it===eq?'eq':''}${canUse(u,it)||!WNAME[w.type]&&w.type!=='staff'?'':' ng'}">${it===eq?'◆':''}${icon(it)}${w.name}${WNAME[w.type]?`(${WNAME[w.type]}${w.min!==w.max?' '+w.min+'-'+w.max:''})`:''}<span class="cnt"> ${it.uses!=null?it.uses:'∞'}</span></span>`}).join('　')}
 function unitHTML(u){const t=terrain(u.x,u.y);
  return`<div class="u-top"><h3>${u.boss?'<em class="boss-tag">首領</em>':''}${u.name}<small>Lv${u.lv} ${u.job}</small></h3><span class="sub">${t.name} 回避+${t.avo} 守備+${t.def}</span></div>
  <div class="hpline"><span>HP <b>${u.hp}</b>/${u.maxHp}</span><div class="bar${u.team==='e'?' enemy':''}"><i style="width:${u.hp/u.maxHp*100}%"></i></div>${u.team==='p'?`<span>EXP ${u.exp}</span><div class="bar exp"><i style="width:${u.exp}%"></i></div>`:''}</div>
  <div class="sgrid">${['str','skl','spd','lck','def','mov'].map(k=>`<span>${LABEL[k]}<b>${u[k]}</b></span>`).join('')}</div>
- <div class="items">${itemsHTML(u)}</div>`}
+ <div class="items">${itemsHTML(u)}</div>${supportText(u)}`}
 function tileHTML(x,y){const t=terrain(x,y);
  return`<h3>${t.name}<small>地形情報</small></h3><p>${t.cost>=99?'通行できません。':`移動コスト ${t.cost}　回避 +${t.avo}　守備 +${t.def}`}${t.heal?`<br>ターン開始時に最大HPの${t.heal}%回復。`:''}</p>`}
 function overviewHTML(){const p=alive('p'),total=units.filter(u=>u.team==='p').length,fallen=campaign.fallen.map(id=>HEROES[id]?.name).filter(Boolean);
@@ -354,19 +444,21 @@ function renderInfo(){const el=$('info');
  if(selected){el.innerHTML=unitHTML(selected);return}
  if(stage==='tile'&&tileSel){el.innerHTML=tileHTML(tileSel.x,tileSel.y);return}
  el.innerHTML=overviewHTML()}
-const salveOf=u=>u.items.find(it=>idef(it).type==='heal');
+function usableItems(u){return u.items.filter(it=>{const w=idef(it);if(w.type==='heal')return u.hp<u.maxHp;if(w.type==='seal')return !u.promoted&&u.lv>=PROMO_LV&&!!PROMO[u.job];return false})}
 function update(){$('turnLabel').textContent=String(turn).padStart(2,'0');$('enemyLabel').textContent=alive('e').length;renderInfo();
  const cb=$('cancelBtn'),ib=$('itemBtn'),wb=$('waitBtn');
  cb.disabled=locked||!(selected||tileSel);cb.textContent=stage==='action'?'移動を戻す':stage==='forecast'?'戻る':'選択解除';
  if(stage==='forecast'){ib.textContent='武器切替';ib.disabled=locked||fcWeapons().length<2;wb.textContent='攻撃する'}
- else{const s=selected&&stage==='action'&&salveOf(selected);ib.textContent=s?`傷薬 ${s.uses}`:'道具';ib.disabled=locked||!s||selected.hp>=selected.maxHp;wb.textContent='待機'}
+ else{ib.textContent='道具';ib.disabled=locked||!selected||stage!=='action'||!usableItems(selected).length;wb.textContent=CHAPTERS[ch].goal==='seize'&&selected?.lord&&stage==='action'&&rows[selected.y][selected.x]==='T'?'制圧':'待機'}
  wb.disabled=locked||!selected||(stage!=='action'&&stage!=='forecast');
  $('endBtn').disabled=locked||over;$('saveBtn').disabled=locked||over;$('loadBtn').disabled=(locked&&!over)||!readSave();
  $('dangerBtn').classList.toggle('on',dangerOn)}
 
 // ===== 操作 =====
 function selectUnit(u){selected=u;stage='move';tileSel=null;reachable=getReach(u);msg(`${u.name} を選択。青いマスへ移動（その場をタップで移動しない）。`)}
-function enterAction(){stage='action';const t=targets(selected);msg(t.length?'赤く光る敵をタップで戦闘予測。':'攻撃できる敵がいません。「待機」で行動終了。')}
+function enterAction(){stage='action';const t=targets(selected),h=healTargets(selected),k=talkTargets(selected),parts=[];
+ if(t.length)parts.push('赤い敵をタップで戦闘予測');if(h.length)parts.push('緑の味方をタップで杖による回復');if(k.length)parts.push('💬の味方をタップで支援会話');
+ msg(parts.length?parts.join('、')+'。':CHAPTERS[ch].goal==='seize'&&selected.lord&&rows[selected.y][selected.x]==='T'?'「制圧」で祭壇を取り戻す！':'攻撃できる敵がいません。「待機」で行動終了。')}
 function openForecast(e){target=e;fcIndex=0;stage='forecast';msg('予測を確認。もう一度タップか「攻撃する」で攻撃。')}
 function pick(x,y){if(locked||over)return;const u=at(x,y);
  if(stage==='move'){
@@ -374,7 +466,7 @@ function pick(x,y){if(locked||over)return;const u=at(x,y);
   else if(u&&u.team==='p'&&!u.acted)selectUnit(u);
   else if(!u&&reachable.has(key(x,y))){origin={x:selected.x,y:selected.y};selected.x=x;selected.y=y;enterAction()}
   else{clearSelection();msg('選択を解除しました。')}}
- else if(stage==='action'){if(u&&u.team==='e'&&targets(selected).includes(u))openForecast(u);else msg('赤く光る敵を選ぶか、「待機」を押してください。')}
+ else if(stage==='action'){if(u&&u.team==='e'&&targets(selected).includes(u))openForecast(u);else if(u&&talkTargets(selected).includes(u)){talk(selected,u);return}else if(u&&healTargets(selected).includes(u)){staffHeal(selected,u);return}else msg('行動を選ぶか、「待機」を押してください。')}
  else if(stage==='forecast'){if(u===target){attack();return}else if(u&&u.team==='e'&&targets(selected).includes(u))openForecast(u);else{stage='action';target=null;msg('攻撃対象を選び直してください。')}}
  else{clearSelection();
   if(u&&u.team==='p'&&!u.acted)selectUnit(u);
@@ -389,11 +481,26 @@ $('cancelBtn').onclick=()=>{if(locked)return;
  update();draw()};
 $('itemBtn').onclick=()=>{if(locked||!selected)return;
  if(stage==='forecast'){fcIndex=(fcIndex+1)%Math.max(1,fcWeapons().length);update();return}
- const s=stage==='action'&&salveOf(selected);if(!s||selected.hp>=selected.maxHp)return;
- const before=selected.hp;selected.hp=Math.min(selected.maxHp,selected.hp+idef(s).heal);s.uses--;if(s.uses<=0)selected.items.splice(selected.items.indexOf(s),1);
- msg(`${selected.name} は傷薬を使った。HP ${before} → ${selected.hp}`);actDone()};
+ if(stage!=='action')return;const list=usableItems(selected);if(!list.length)return;
+ $('itemList').innerHTML='';for(const it of list){const w=idef(it),b=document.createElement('button');b.className='btn item-row';
+  b.innerHTML=`${icon(it)}${w.name}（残り${it.uses}）<small>${w.type==='heal'?`HPを${w.heal}回復`:`${selected.job} → ${PROMO[selected.job].to} にクラスチェンジ`}</small>`;b.onclick=()=>{$('itemModal').classList.remove('open');useItem(selected,it)};$('itemList').appendChild(b)}
+ $('itemModal').classList.add('open')};
+$('itemClose').onclick=()=>$('itemModal').classList.remove('open');
+function consume(u,it){it.uses--;if(it.uses<=0)u.items.splice(u.items.indexOf(it),1)}
+async function useItem(u,it){if(locked||selected!==u)return;const w=idef(it);
+ if(w.type==='heal'){const before=u.hp;u.hp=Math.min(u.maxHp,u.hp+w.heal);consume(u,it);msg(`${u.name} は傷薬を使った。HP ${before} → ${u.hp}`);actDone();return}
+ if(w.type==='seal'){locked=true;update();const from=u.job,g=promote(u);consume(u,it);await showLevelUp(u,g,'CLASS CHANGE',`${u.name}　${from} → ${u.job}`);locked=false;
+  const nw=PROMO_WT(u);msg(`${u.name} は ${u.job} にクラスチェンジした！${nw}`);actDone()}}
+const PROMO_WT=u=>{const t=PROMO[Object.keys(PROMO).find(k=>PROMO[k].to===u.job)]?.wt||[];return t.length?`${t.map(x=>WNAME[x]).join('・')}も使えるようになった。`:''};
+function promote(u){const P=PROMO[u.job],g={};u.job=P.to;u.promoted=true;
+ for(const k of STATS){const v=P.bonus[k]||0;if(!v)continue;g[k]=v;if(k==='hp'){u.maxHp+=v;u.hp+=v}else u[k]+=v}
+ if(P.mov){u.mov+=P.mov;g.mov=P.mov}u.wt=[...new Set([...(u.wt||[]),...P.wt])];return g}
+async function staffHeal(u,v){const st=staffOf(u);if(!st)return;locked=true;const before=v.hp;v.hp=Math.min(v.maxHp,v.hp+idef(st).heal+Math.floor(u.lv/2));consume(u,st);
+ flashUnit=v;draw();await sleep(260);flashUnit=null;msg(`${u.name} は ${v.name} を癒やした。HP ${before} → ${v.hp}`);draw();await gainExp(u,15);locked=false;actDone()}
+function talk(a,b){const k=pairKey(a.id,b.id),s=supports[k]||(supports[k]={pts:0,lv:0}),lines=SUPPORTS[k][s.lv===0?'C':'B'];locked=true;update();
+ playStory(lines,null,()=>{s.lv++;locked=false;msg(`${a.name}と${b.name}の支援レベルが${SUP_RANK[s.lv]}になった！ 2マス以内で命中・回避アップ。`);update();draw()})}
 $('waitBtn').onclick=()=>{if(locked||!selected)return;if(stage==='forecast'){attack();return}if(stage!=='action')return;msg(`${selected.name} は待機した。`);actDone()};
-function actDone(){if(selected)selected.acted=true;clearSelection();update();draw();if(!over&&alive('p').every(u=>u.acted))msg('味方は全員行動済み。「ターン終了」で敵が動きます。')}
+function actDone(){if(selected){selected.acted=true;if(CHAPTERS[ch].goal==='seize'&&selected.lord&&selected.hp>0&&rows[selected.y][selected.x]==='T'){seized=true;clearSelection();checkEnd();return}}clearSelection();update();draw();if(!over&&alive('p').every(u=>u.acted))msg('味方は全員行動済み。「ターン終了」で敵が動きます。')}
 async function attack(){if(locked||over||!selected||!target)return;const ws=fcWeapons(),it=ws[fcIndex%ws.length];if(!it)return;
  const u=selected,e=target;u.items.splice(u.items.indexOf(it),1);u.items.unshift(it);// 使った武器を装備
  stage='action';target=null;const done=await combat(u,it,e);locked=false;if(!done)actDone();else update()}
@@ -423,29 +530,29 @@ async function combat(a,aIt,b){locked=true;if(b.guard)b.aggro=true;if(a.guard)a.
  if(e.hp<=0){lines.push(`${e.name}を倒した！`);$('battleNote').textContent=`${e.name}を倒した！`;await sleep(500)}
  if(p.hp<=0){$('battleNote').textContent=`${p.name}「${HEROES[p.id]?.death||'……'}」`;lines.push(`${p.name}は倒れた……`);await sleep(1900)}
  if(p.hp>0&&p.lv<MAX_LV){const diff=e.lv-p.lv;let gain=dealt.has(p.id)?Math.max(1,12+diff*2):1;if(e.hp<=0)gain+=Math.max(8,28+diff*3)+(e.boss?40:0);gain=Math.min(100,gain);
-  p.exp+=gain;$('battleNote').textContent=`${p.name} EXP +${gain}`;await sleep(750);
-  if(p.exp>=100){p.exp-=100;$('battle').classList.remove('show');await showLevelUp(p,levelUp(p));if(p.lv>=MAX_LV)p.exp=0}}
- if(p.hp>0&&e.hp<=0&&e.drop){const it=mkItem(e.drop),fits=u=>u.items.length<MAX_ITEMS&&(idef(it).type==='heal'||canUse(u,it)),who=fits(p)?p:alive('p').find(fits);
+  $('battleNote').textContent=`${p.name} EXP +${gain}`;await sleep(750);$('battle').classList.remove('show');await gainExp(p,gain)}
+ if(p.hp>0&&e.hp<=0&&e.drop){const it=mkItem(e.drop),fits=u=>u.items.length<MAX_ITEMS&&(!WNAME[idef(it).type]&&idef(it).type!=='staff'||canUse(u,it)),who=fits(p)?p:alive('p').find(fits);
   if(who){who.items.push(it);lines.push(who===p?`${p.name}は${idef(it).name}を手に入れた！`:`${idef(it).name}を手に入れ、${who.name}に渡した。`)}else lines.push(`${idef(it).name}を使える仲間がいない（持ち物がいっぱい）。`)}
  $('battle').classList.remove('show');if(lines.length)msg(lines.join(' '));else msg(`${a.name} と ${b.name} の戦闘が終わった。`);
  draw();update();return checkEnd()}
+async function gainExp(u,gain){if(u.lv>=MAX_LV)return;u.exp+=gain;if(u.exp>=100){u.exp-=100;await showLevelUp(u,levelUp(u));if(u.lv>=MAX_LV)u.exp=0}}
 function levelUp(u){u.lv++;const g={};for(const k of STATS)if(Math.random()*100<u.grow[k])g[k]=1;
  if(!Object.keys(g).length){const best=STATS.reduce((m,k)=>u.grow[k]>u.grow[m]?k:m,STATS[0]);g[best]=1}
  for(const k of Object.keys(g)){if(k==='hp'){u.maxHp++;u.hp++}else u[k]++}return g}
-function showLevelUp(u,g){$('lvupName').textContent=`${u.name}　Lv ${u.lv-1} → ${u.lv}`;
- $('lvupGrid').innerHTML=STATS.map(k=>`<span>${LABEL[k]}<b>${k==='hp'?u.maxHp:u[k]}${g[k]?'<em>+1</em>':''}</b></span>`).join('');
+function showLevelUp(u,g,title='LEVEL UP!',sub=null){$('lvupTitle').textContent=title;$('lvupName').textContent=sub||`${u.name}　Lv ${u.lv-1} → ${u.lv}`;
+ $('lvupGrid').innerHTML=[...STATS,...(g.mov?['mov']:[])].map(k=>`<span>${LABEL[k]}<b>${k==='hp'?u.maxHp:u[k]}${g[k]?`<em>+${g[k]}</em>`:''}</b></span>`).join('');
  const el=$('lvup');el.classList.add('show');return new Promise(r=>{const done=()=>{el.classList.remove('show');el.removeEventListener('click',done);clearTimeout(tm);r()};const tm=setTimeout(done,6000);setTimeout(()=>el.addEventListener('click',done),300)})}
 
 // ===== 勝敗 =====
 function checkEnd(){if(over)return true;const p=alive('p'),e=alive('e'),C=CHAPTERS[ch];
  const lordDown=units.some(u=>u.lord&&u.hp<=0),bossDown=C.goal==='boss'&&units.some(u=>u.boss&&u.hp<=0);
- const win=!lordDown&&p.length>0&&(e.length===0||bossDown),lose=lordDown||p.length===0;if(!win&&!lose)return false;
+ const win=!lordDown&&p.length>0&&(e.length===0||bossDown||seized),lose=lordDown||p.length===0;if(!win&&!lose)return false;
  over=true;locked=true;const last=ch===CHAPTERS.length-1,lostNow=units.filter(u=>u.team==='p'&&u.hp<=0);
- if(win&&!last){campaign={ch:ch+1,roster:p.map(u=>{const r=clone(u);r.hp=r.maxHp;r.acted=false;return r}),fallen:[...campaign.fallen,...lostNow.map(u=>u.id)]};saveCampaign()}
- const showResult=()=>{$('resultTitle').textContent=win?(last?'勝利！ 灯台砦に灯がともる':'勝利！ 霧の谷を突破'):'敗北… 戦旗は地に落ちた';
+ if(win&&!last){campaign={ch:ch+1,roster:p.map(u=>{const r=clone(u);r.hp=r.maxHp;r.acted=false;return r}),fallen:[...campaign.fallen,...lostNow.map(u=>u.id)],supports:clone(supports)};saveCampaign()}
+ const showResult=()=>{$('resultTitle').textContent=win?C.winTitle:'敗北… 戦旗は地に落ちた';
   const lostTxt=lostNow.length?`戦死：${lostNow.map(u=>u.name).join('・')}（次の章には出撃できません）。`:'全員生還！';
   $('resultText').textContent=win?`第${ch+1}章クリア！ ${turn}ターンで勝利。${lostTxt}${last?'物語は次章へ続きます。':'育てた能力と持ち物は次の章に引き継がれます。'}`:lordDown?'隊長カイルが倒れました。武器の相性、地形の回避、敵の攻撃範囲を確かめて、もう一度挑戦しましょう。':'味方は全滅しました。もう一度挑戦しましょう。';
-  $('resetBtn').textContent=win?(last?'この章をもう一度':'第二章へ進む'):'この章をやり直す';$('resetBtn').onclick=()=>win&&!last?startChapter(ch+1):startChapter(ch,false);
+  $('resetBtn').textContent=win?(last?'この章をもう一度':`第${KANJI[ch+1]}章へ進む`):'この章をやり直す';$('resetBtn').onclick=()=>win&&!last?startChapter(ch+1):startChapter(ch,false);
   $('altBtn').classList.toggle('hidden',ch===0&&!win);$('resultLoadBtn').style.display=readSave()?'':'none';$('resultModal').classList.add('open');update()};
  if(win){$('battle').classList.remove('show');setTimeout(()=>playStory(C.outro,null,showResult,'story'+(ch+1)),300)}else showResult();
  update();return true}
@@ -462,7 +569,7 @@ function enemyPlan(e){const reach=e.mov>0?getReach(e):new Map([[key(e.x,e.y),0]]
  e.x=ox;e.y=oy;if(best)return best;if(e.mov===0)return null;
  const field=distField();let mv=null;for(const k of reach.keys()){const v=(field.get(k)??1e9)-terrain(...unkey(k)).def*.1;if(!mv||v<mv.v)mv={v,k}}
  if(!mv)return null;const [x,y]=unkey(mv.k);return{x,y,p:null}}
-async function enemyTurn(){if(locked||over)return;clearSelection();locked=true;update();draw();toast('ENEMY PHASE');await sleep(770);
+async function enemyTurn(){if(locked||over)return;clearSelection();locked=true;const rd=supportTick();update();draw();toast('ENEMY PHASE');await sleep(770);if(rd.length){msg(`${rd.join('、')}が支援会話できるようになった（💬）。`);await sleep(900)}
  const h=fortHeal('e');if(h.length){msg(`砦で回復：${h.join(' ')}`);draw();update();await sleep(500)}
  for(const e of alive('e')){if(over)break;if(e.hp<=0||!alive('p').length)continue;
   if(e.guard&&!e.aggro){const zone=dangerTiles(e);if(alive('p').some(p=>zone.has(key(p.x,p.y))))e.aggro=true;else continue}
@@ -491,12 +598,12 @@ function fmtTime(t){const d=new Date(t);return isNaN(d)?'':`${d.getMonth()+1}/${
 function showSaveInfo(){const d=readSave();$('saveInfo').textContent=d?`セーブデータ：第${d.ch+1}章 第 ${d.turn} ターン（${fmtTime(d.savedAt)}）`:storage()?'セーブデータなし':'この環境ではセーブできません'}
 function saveGame(){if(locked||over)return;const ls=storage();if(!ls){msg('この環境ではセーブできません。');return}
  const pending=(stage==='action'||stage==='forecast')&&origin?selected:null;// 行動を確定していないユニットは移動前の位置で保存
- const data={v:3,ch,savedAt:Date.now(),turn,campaign,units:units.map(u=>{const s=clone(u);if(u===pending){s.x=origin.x;s.y=origin.y}return s})};
+ const data={v:3,ch,savedAt:Date.now(),turn,campaign,supports,seized:false,units:units.map(u=>{const s=clone(u);if(u===pending){s.x=origin.x;s.y=origin.y}return s})};
  try{ls.setItem(SAVE_KEY,JSON.stringify(data))}catch(e){msg('セーブに失敗しました（容量不足など）。');return}
  msg(`第${ch+1}章 第 ${turn} ターンの戦況をセーブしました。`);showSaveInfo();update()}
 function loadGame(){if(locked&&!over)return;const d=readSave();if(!d){msg('セーブデータがありません。');showSaveInfo();update();return}
  ch=d.ch;rows=CHAPTERS[ch].rows;campaign=clone(d.campaign);saveCampaign();$('chapterLabel').textContent=CHAPTERS[ch].title;if(story){story=null;storyEnd=null;$('story').classList.remove('open')}
- units=clone(d.units);turn=d.turn;clearSelection();over=false;locked=false;flashUnit=null;
+ units=clone(d.units);supports=clone(d.supports||campaign.supports||{});seized=false;turn=d.turn;$('itemModal').classList.remove('open');clearSelection();over=false;locked=false;flashUnit=null;
  $('resultModal').classList.remove('open');$('battle').classList.remove('show');$('lvup').classList.remove('show');
  msg(`第${ch+1}章 第 ${turn} ターンの戦況をロードしました。`);update();draw();checkEnd()}
 $('saveBtn').onclick=saveGame;$('loadBtn').onclick=loadGame;$('resultLoadBtn').onclick=loadGame;

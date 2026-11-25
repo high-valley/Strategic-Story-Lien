@@ -26,12 +26,53 @@
 .lvup{position:absolute;inset:0;z-index:4;display:none;align-items:center;justify-content:center;background:#0a1220c8;cursor:pointer}.lvup.show{display:flex}.lvup-box{width:82%;border:3px double #e4c580;background:linear-gradient(#2b3f5b,#16243a);padding:14px;text-align:center;box-shadow:0 8px 30px #000b}.lvup-title{font:900 22px serif;color:#ffe08a;letter-spacing:.2em}.lvup-name{margin:4px 0 10px;color:#e8eef6;font-size:14px;font-weight:700}.lvup-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 14px;text-align:left;font-size:14px}.lvup-grid span{display:flex;justify-content:space-between;border-bottom:1px solid #3c5170;padding:2px 0}.lvup-grid em{font-style:normal;color:#8de08a;font-weight:800;margin-left:6px}.lvup-foot{margin-top:10px;font-size:11px;color:#9fb0c6}
 .story{position:fixed;inset:0;z-index:30;display:none;flex-direction:column;justify-content:flex-end;align-items:center;padding:20px 12px calc(24px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#09121e55,#09121ef2 70%);background-size:cover;background-position:center;cursor:pointer}.story.open{display:flex}.story-chapter{position:absolute;top:calc(22% + env(safe-area-inset-top));left:0;right:0;text-align:center;color:#f5d18c;font:800 22px serif;letter-spacing:.2em;text-shadow:2px 2px #070f19}.story-chapter small{display:block;font:600 11px system-ui;letter-spacing:.3em;color:#adbbce;margin-bottom:6px}.story-box{max-width:446px;width:100%;display:flex;gap:12px;align-items:flex-start;border:3px double #d6bc7d;background:linear-gradient(#26374df2,#111e2df2);padding:14px;box-shadow:0 12px 40px #000c;min-height:128px}.story-portrait{width:72px;height:72px;flex:none;image-rendering:pixelated;background:#16233a;border:1px solid #5d718c}.story-portrait.hide{display:none}.story-name{color:#f8e1a7;font-weight:800;font-size:14px;margin-bottom:6px}.story-text{font-size:14px;line-height:1.75;color:#eef2f8;white-space:pre-line}.story-text.narration{font-family:serif;color:#dfe6ee}.story-foot{max-width:446px;width:100%;display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:11px;color:#9fb0c6}.story-skip{background:#28364a;border:1px solid #5d718c;color:#f4ead7;padding:7px 12px;font-size:12px;border-radius:4px}.modal .btn.sub{background:linear-gradient(#334968,#223652);border-color:#a6adc2}.modal .btn.hidden{display:none}.item-row{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;min-height:0}.item-row small{display:block;font-weight:500;color:#c9d4e3;margin-top:3px}
 @media(max-height:740px){.app{padding-top:8px}.top{padding-bottom:7px}.title{font-size:23px}.chapter{padding:5px 10px;margin-bottom:5px}.legend{padding:9px 2px 5px}.card{padding:7px 9px}.btn{min-height:42px}.footer{margin-top:8px;padding-top:7px}}
+
+/* ===== 新UI ===== */
+.top{padding:0 2px 8px}.title{font-size:22px}.eyebrow{font-size:9px}.top-btns{display:flex;gap:6px}.icon-btn{background:#28364a;border:1px solid #5d718c;color:#f4ead7;min-width:44px;height:40px;padding:0 10px;font-size:13px;border-radius:6px;font-weight:700}.icon-btn:active{transform:translateY(1px)}
+.chapter{align-items:center;gap:8px;padding:6px 10px}.chapter .ch-l{min-width:0;display:flex;flex-direction:column}.chapter strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.goal-pill{margin-top:2px;align-self:flex-start;background:#132238;border:1px solid #4f6684;color:#ffe3b0;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700}.ch-r{flex:none;display:flex;gap:6px}.ch-r span{background:#132238;border:1px solid #3e5370;padding:3px 7px;border-radius:4px;font-size:11px;white-space:nowrap}
+.log{min-height:0;padding:7px 8px;margin:7px 0 0;background:#0f1826;border:1px solid #2f415a;border-left:3px solid #c8a868;border-radius:2px;text-align:left;font-size:12px;line-height:1.45;color:#d6e0ec}
+.card{min-height:84px;margin-top:6px;padding:8px 10px;border-radius:2px}
+.mini{display:flex;gap:10px;align-items:center}.face{flex:none;width:58px;height:58px;border:2px solid #6a7fa0;background:#16233a center/cover no-repeat;image-rendering:auto;border-radius:3px}.face.e{border-color:#b3625c}.face.big{width:96px;height:96px}.mini-body{flex:1;min-width:0}.mini-body h3{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mini-row{display:flex;justify-content:space-between;gap:6px;margin-top:4px;font-size:11px;color:#cbd6e4;white-space:nowrap}.mini-row .wp{overflow:hidden;text-overflow:ellipsis}.mini .hpline{margin-top:4px}.tag{display:inline-block;font-size:10px;padding:0 5px;border-radius:3px;margin-left:4px;vertical-align:1px;font-weight:700}.tag.done{background:#3a4556;color:#b8c4d4}.tag.guard{background:#4c3d24;color:#ffd99a}.tag.talk{background:#2e4a35;color:#c6f2c9}
+.detail-btn{flex:none;align-self:stretch;min-width:56px;border:1px solid #c9ad74;background:linear-gradient(#46597a,#2b3b57);color:#fff4da;border-radius:3px;font-size:12px;font-weight:800;line-height:1.3}
+.hint{color:#a8bad2;font-size:11px;margin-top:4px;line-height:1.5}
+.toolbar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px}.toolbar .btn{min-height:38px;font-size:12px;background:linear-gradient(#26364e,#1a283d);border-color:#55688a}.toolbar .btn.on{background:linear-gradient(#6d4b8c,#45305e);border-color:#c9a2ec}
+.footer{margin-top:10px;padding-top:8px}.icon-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05;font-size:15px;min-width:48px;height:44px;padding:0 6px}.icon-btn small{font-size:9px;font-weight:600;color:#c3cfdf;margin-top:2px}.icon-btn.on{background:linear-gradient(#6d4b8c,#45305e);border-color:#c9a2ec}.top-btns{gap:5px}
+/* モーダル共通 */
+.modal{align-items:flex-end;padding:0}.modal-content{max-width:470px;max-height:88vh;padding:16px 16px calc(16px + env(safe-area-inset-bottom));border-radius:10px 10px 0 0;border-bottom:none;animation:sheet .18s ease-out}@keyframes sheet{from{transform:translateY(30px);opacity:.4}}
+@media(min-width:620px){.modal{align-items:center;padding:20px}.modal-content{border-radius:6px;border-bottom:3px double #d6bc7d}}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.sheet-head h2{margin:0}.x-btn{background:none;border:1px solid #5d718c;color:#dfe6ee;width:36px;height:36px;border-radius:50%;font-size:16px}
+.tabs{display:flex;gap:4px;overflow-x:auto;margin-bottom:10px;scrollbar-width:none}.tabs button{flex:1 0 auto;background:#1a283b;border:1px solid #3e5370;color:#b9c7d8;padding:8px 10px;font-size:12px;border-radius:4px;font-weight:700}.tabs button.on{background:#5b4a2a;border-color:#e1c38f;color:#fff3d6}
+.tab-pane{display:none}.tab-pane.on{display:block}
+.menu-list{display:grid;gap:8px}.menu-list .btn{margin:0;text-align:left;padding:10px 14px;min-height:52px;font-size:14px}.menu-list .btn small{display:block;font-weight:500;font-size:11px;color:#c3cfdf;margin-top:2px}
+.tri{display:block;width:100%;max-width:300px;margin:4px auto 8px}.rule-box{background:#101a2a;border:1px solid #33465f;padding:8px 10px;border-radius:4px;font-size:12px;line-height:1.7;margin-top:8px}.rule-box b{color:#ffe3b0}
+.ttable{width:100%;border-collapse:collapse;font-size:12px}.ttable th,.ttable td{border-bottom:1px solid #2f415a;padding:5px 4px;text-align:center}.ttable th{color:#a8bad2;font-weight:600;font-size:11px}.ttable td:first-child{text-align:left;white-space:nowrap}.ttable img{width:22px;height:22px;vertical-align:-6px;margin-right:5px;border:1px solid #33465f}
+.legend2{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;margin:6px 0}
+/* 詳細ステータス */
+.d-head{display:flex;gap:12px;align-items:center}.d-head h2{margin:0;font-size:20px}.d-head .sub{font-size:12px;color:#a8bad2;margin-top:2px}.d-sec{margin-top:12px}.d-sec h4{margin:0 0 5px;font-size:12px;color:#f5d18c;letter-spacing:.1em;border-bottom:1px solid #3c5170;padding-bottom:3px}
+.st-list{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}.st-list div{display:grid;grid-template-columns:34px 24px 1fr;align-items:center;gap:6px;font-size:12px}.st-list b{text-align:right;font-size:14px;color:#f1f5e8}.st-list i{height:6px;background:#0f1723;border:1px solid #33465f;position:relative}.st-list i>u{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#4f7fc4,#9cc8ff)}.st-list small{grid-column:1/-1;font-size:10px;color:#8fa1b8;margin-top:-3px}
+.wtable{width:100%;border-collapse:collapse;font-size:11px}.wtable th{color:#8fa1b8;font-weight:600;padding:3px 2px;text-align:center}.wtable td{border-top:1px solid #2a3a52;padding:5px 2px;text-align:center;color:#dfe6ee}.wtable td:first-child{text-align:left;white-space:nowrap}.wtable tr.ng td{opacity:.45}.wtable tr.eq td:first-child{color:#f5d18c}
+.roster-row{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:#172437;border:1px solid #3e5370;color:#e6ebf1;padding:7px 9px;margin-top:6px;border-radius:4px}.roster-row .face{width:44px;height:44px}.roster-row .rb{flex:1;min-width:0}.roster-row .rb b{font-size:13px}.roster-row .rb span{display:block;font-size:11px;color:#a8bad2}.roster-row .bar{height:5px;margin-top:3px}.roster-row.acted{opacity:.6}
+.eyebrow{display:none}.top .title{font-size:20px}.top{padding-bottom:6px}.chapter .ch-l{flex-direction:row;align-items:center;gap:6px;flex-wrap:wrap}.goal-pill{margin-top:0}.actions .btn{min-height:44px}
+@media(max-height:740px){.app{padding-top:calc(6px + env(safe-area-inset-top))}.title{font-size:19px}.card{min-height:76px}.face{width:50px;height:50px}.log{padding:5px 8px}}
+
+/* ===== マップ上で完結する操作UI ===== */
+.title{white-space:nowrap}.icon-btn small{white-space:nowrap}@media(max-width:390px){.top .title{font-size:17px;letter-spacing:.06em}.icon-btn{min-width:44px;padding:0 4px}.icon-btn small{font-size:8px}.top-btns{gap:4px}}
+.app{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}.board-wrap{margin:auto 0}.chapter{margin-bottom:10px}
+.icon-btn.end{background:linear-gradient(#8b4c49,#572d35);border-color:#d39482}.icon-btn.end.ready{background:linear-gradient(#c9a25e,#8a6534);border-color:#ffe2a6;animation:pulse 1.2s ease-in-out infinite}.icon-btn.end.ready small{color:#fff6e0}.icon-btn:disabled{opacity:.45}
+@keyframes pulse{50%{box-shadow:0 0 0 4px #f5d18c55,0 0 14px #f5d18c}}
+.hud{position:absolute;left:2%;right:2%;z-index:2;display:none;pointer-events:none;background:#0c1525e6;border:1px solid #c8a868;border-radius:6px;padding:6px 8px;box-shadow:0 4px 16px #000a;font-size:12px;color:#d5deea}.hud.show{display:block;animation:pop .14s ease-out}.hud.top{top:2%}.hud.bottom{bottom:2%}.hud button{pointer-events:auto}
+@keyframes pop{from{opacity:0;transform:scale(.97)}}
+.hud .face{width:44px;height:44px}.hud .mini{gap:8px}.hud .mini-body h3{font-size:14px;margin:0;color:#fff1d2}.hud .mini-body h3 small{font-size:10px;color:#a8bad2;margin-left:4px}.hud .hpline{margin-top:3px}.hud .mini-row{margin-top:3px}.hud .detail-btn{min-width:48px;font-size:11px}.hud h3{margin:0;color:#fff1d2;font-size:14px}.hud h3 small{font-size:10px;color:#a8bad2;margin-left:4px}.hud p{margin:3px 0 0;font-size:12px}
+.hud .fc{gap:1px 8px;font-size:12px}.hud .fc .hd{font-size:13px}.fc-btns{display:flex;gap:5px;margin-top:6px}.fc-btns button{flex:1;min-height:40px}
+.cbtn{border:1px solid #a6adc2;background:linear-gradient(#3a5274,#223652);color:#fff;border-radius:4px;font-weight:800;font-size:13px;padding:0 8px;min-height:40px;text-align:left;box-shadow:0 2px 0 #0b111c}.cbtn.primary{background:linear-gradient(#b6975d,#80623a);border-color:#e1c38f;text-align:center}.cbtn.sub{background:linear-gradient(#2e3a4c,#1b2331);border-color:#66738a;color:#d3dbe6}.cbtn:active{transform:translateY(1px);box-shadow:none}.fc-btns .cbtn{text-align:center}
+.cmd{position:absolute;z-index:2;display:none;flex-direction:column;gap:4px;width:29%;min-width:96px}.cmd.show{display:flex;animation:pop .14s ease-out}.cmd .cbtn{width:100%}
+.hint{position:absolute;left:4%;right:4%;z-index:2;pointer-events:none;text-align:center;opacity:0;transition:opacity .25s}.hint span{display:inline-block;background:#0b1322d9;border:1px solid #4f6684;color:#eef3fa;font-size:12px;line-height:1.45;padding:4px 10px;border-radius:12px;max-width:100%}.hint.show{opacity:1}.hint.top{top:2%}.hint.bottom{bottom:2%}
 </style>
 </head>
 <body><main class="app">
-<header class="top"><div><div class="eyebrow">TACTICAL FANTASY RPG</div><div class="title">灯火の戦旗</div></div><button class="help-btn" id="howBtn">？ 遊び方</button></header>
-<div class="chapter"><div><strong id="chapterLabel">第一章　霧の谷の遭遇</strong></div><div><span>TURN <b id="turnLabel">01</b></span> <span>敵 <b id="enemyLabel">4</b></span></div></div>
-<section class="board-wrap"><div class="board-inner" id="board"><canvas id="game" width="400" height="400" aria-label="戦略マップ。青い味方を選んで移動、敵を攻撃"></canvas><div class="turn-toast" id="toast"></div>
+<header class="top"><div><div class="eyebrow">TACTICAL FANTASY RPG</div><div class="title">灯火の戦旗</div></div><div class="top-btns"><button class="icon-btn" id="dangerBtn" aria-label="敵の危険範囲">⚠<small>危険</small></button><button class="icon-btn" id="rosterBtn" aria-label="部隊一覧">👥<small>部隊</small></button><button class="icon-btn" id="menuBtn" aria-label="メニュー">☰<small>メニュー</small></button><button class="icon-btn end" id="endBtn" aria-label="ターン終了">▶<small>ターン終了</small></button></div></header>
+<div class="chapter"><div class="ch-l"><strong id="chapterLabel">第一章　霧の谷の遭遇</strong><span class="goal-pill" id="goalLabel"></span></div><div class="ch-r"><span>TURN <b id="turnLabel">01</b></span><span>敵 <b id="enemyLabel">4</b></span></div></div>
+<section class="board-wrap"><div class="board-inner" id="board"><canvas id="game" width="400" height="400" aria-label="戦略マップ。青い味方を選んで移動、敵を攻撃"></canvas><div class="turn-toast" id="toast"></div><div class="hud" id="hud"></div><div class="cmd" id="cmd"></div><div class="hint" id="hint" aria-live="polite"></div>
 <div class="battle" id="battle"><div class="battle-title" id="battleTitle">交戦！</div><canvas class="stage" id="stage" width="720" height="400"></canvas><div class="fighters">
 <div class="fighter"><div id="allyName">味方</div><div class="fig-hp" id="allyHp"></div><div class="bar"><i id="allyBar"></i></div><div class="fig-st" id="allySt"></div></div>
 <div class="big-dmg" id="battleDmg">⚔</div>
@@ -39,31 +80,45 @@
 </div><div class="battle-note" id="battleNote"></div></div>
 <div class="lvup" id="lvup"><div class="lvup-box"><div class="lvup-title" id="lvupTitle">LEVEL UP!</div><div class="lvup-name" id="lvupName"></div><div class="lvup-grid" id="lvupGrid"></div><div class="lvup-foot">タップで続ける</div></div></div>
 </div></section>
-<div class="legend"><span><i class="dot blue"></i>移動範囲</span><span><i class="dot red"></i>攻撃範囲</span><span><i class="dot purple"></i>敵の危険範囲</span></div>
-<section class="card" id="info"></section>
-<div class="actions"><button class="btn" id="cancelBtn">選択解除</button><button class="btn" id="itemBtn">道具</button><button class="btn primary" id="waitBtn">待機</button><button class="btn danger" id="endBtn">ターン終了</button></div>
-<div class="save-row"><button class="btn" id="dangerBtn">⚠ 危険範囲</button><button class="btn" id="saveBtn">💾 セーブ</button><button class="btn" id="loadBtn">📂 ロード</button></div><div class="save-info" id="saveInfo"></div>
-<div class="log" id="message" aria-live="polite">ユニットを選び、敵を全滅させよう。</div><div class="footer">オリジナル試作版 • タップ操作対応 • 剣 ＞ 斧 ＞ 槍 ＞ 剣</div>
+<div hidden><button id="cancelBtn"></button><button id="itemBtn"></button><button id="waitBtn"></button><span id="message"></span></div>
 </main>
-<div class="modal" id="helpModal"><div class="modal-content"><h2>遊び方</h2>
-<p>青い味方をタップ → 青いマスへ移動 → 赤く光る敵をタップすると<b>戦闘予測</b>が出ます。もう一度タップ（または「攻撃する」）で攻撃します。</p>
-<ul>
-<li><b>武器の相性</b>：剣は斧に、斧は槍に、槍は剣に強い（有利で命中+15・威力+1）。</li>
+<div class="modal" id="menuModal"><div class="modal-content"><div class="sheet-head"><h2>メニュー</h2><button class="x-btn" data-close="menuModal" aria-label="閉じる">✕</button></div>
+<div class="menu-list"><button class="btn" id="saveBtn">💾 セーブ<small>今の戦況を保存（1枠）</small></button><button class="btn" id="loadBtn">📂 ロード<small id="saveInfo"></small></button>
+<button class="btn" id="menuRules">📖 遊び方・ルール<small>操作・三すくみ・地形・システム</small></button><button class="btn" id="menuRoster">👥 部隊一覧<small>味方と敵のステータスを確認</small></button></div>
+<button class="btn primary" data-close="menuModal">戦いに戻る</button></div></div>
+<div class="modal" id="helpModal"><div class="modal-content"><div class="sheet-head"><h2>遊び方・ルール</h2><button class="x-btn" data-close="helpModal" aria-label="閉じる">✕</button></div>
+<div class="tabs" data-tabs="help"><button class="on" data-tab="h-basic">操作</button><button data-tab="h-tri">三すくみ</button><button data-tab="h-terrain">地形</button><button data-tab="h-system">システム</button><button data-tab="h-goal">勝利条件</button></div>
+<div class="tab-pane on" id="h-basic"><p>① 青い味方をタップ → ② 青いマスをタップして移動（その場をもう一度タップで移動しない）→ ③ 横に出る<b>コマンド</b>から「攻撃」「待機」などを選ぶ。赤く光る敵を直接タップしても<b>戦闘予測</b>が開きます。</p>
+<div class="legend2"><span><i class="dot blue"></i>移動範囲</span><span><i class="dot red"></i>攻撃範囲</span><span><i class="dot purple"></i>敵の危険範囲</span></div>
+<ul><li>ユニットを選ぶとマップ上に<b>簡易ステータス</b>が出ます。「詳細」で能力・武器・支援をすべて確認できます。</li><li>移動範囲の外をタップすると選択解除。コマンドの「戻る」で移動を取り消せます。</li><li>敵をタップするとその敵の攻撃範囲、上の「⚠ 危険」で全敵の範囲を表示。</li><li>何もないマスをタップすると地形情報。</li><li>全員動かすと右上の「▶ ターン終了」が光ります。途中で押したときは、もう一度押すと確定。</li><li>セーブ・ロード・このルールは「☰ メニュー」から。</li></ul></div>
+<div class="tab-pane" id="h-tri"><svg class="tri" viewBox="0 0 300 220" aria-label="剣は斧に強く、斧は槍に強く、槍は剣に強い">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#f5d18c"/></marker></defs>
+<g stroke="#f5d18c" stroke-width="3" fill="none" marker-end="url(#ar)"><path d="M128 52L68 150"/><path d="M92 178H208"/><path d="M232 150L172 52"/></g>
+<g font-size="12" fill="#ffe3b0" text-anchor="middle"><text x="78" y="96">強い</text><text x="150" y="200">強い</text><text x="222" y="96">強い</text></g>
+<g text-anchor="middle" font-weight="800" font-size="17" fill="#fff"><circle cx="150" cy="34" r="26" fill="#2f4f7f" stroke="#9cc8ff" stroke-width="2"/><text x="150" y="40">剣</text>
+<circle cx="62" cy="172" r="26" fill="#7f3a2f" stroke="#ff9982" stroke-width="2"/><text x="62" y="178">斧</text>
+<circle cx="238" cy="172" r="26" fill="#2f6f4a" stroke="#9de69c" stroke-width="2"/><text x="238" y="178">槍</text></g></svg>
+<div class="rule-box"><b>剣 ＞ 斧 ＞ 槍 ＞ 剣</b><br>有利な武器で戦うと<b>命中+15・威力+1</b>、不利だと命中−15・威力−1。<br>戦闘予測では有利が <span class="up">▲</span>、不利が <span class="dn">▼</span> で表示されます。</div>
+<div class="rule-box"><b>弓</b>：三すくみの外。2マス離れた敵を攻撃でき、隣の敵には反撃できません。<br><b>手斧・投げ槍</b>：1〜2マスどちらも攻撃可能。<br><b>杖</b>：攻撃できない代わりに隣の味方を回復。</div></div>
+<div class="tab-pane" id="h-terrain"><table class="ttable" id="terrainTable"></table><p class="hint">砦はターン開始時にHPが回復します。水辺は通れません。</p></div>
+<div class="tab-pane" id="h-system"><ul>
 <li><b>命中・必殺</b>：命中は技と幸運、回避は速さと幸運と地形で決まります。必殺はダメージ3倍。</li>
 <li><b>追撃</b>：攻撃速度（速さ − 武器の重さ超過分）が相手より4以上高いと2回攻撃（×2）。</li>
-<li><b>武器</b>：使用回数があり、0で壊れます。手斧・投げ槍は1〜2マス、弓は2マス。予測画面の「武器切替」で持ち替え。</li>
-<li><b>傷薬</b>：移動後に「傷薬」でHPを10回復（3回まで）。</li>
-<li><b>地形</b>：森林は回避+20/守備+1、山は回避+30/守備+2、砦は回避+20/守備+2で毎ターンHP回復。何もないマスをタップすると地形情報。</li>
-<li><b>成長</b>：戦うと経験値。100でレベルアップし、キャラごとの成長率で能力が上がります。育てた能力は次の章へ引き継ぎ。</li>
+<li><b>武器</b>：使用回数があり、0で壊れます。予測画面の「武器切替」で持ち替え。</li>
+<li><b>傷薬</b>：移動後に「道具」からHPを10回復。</li>
+<li><b>成長</b>：戦うと経験値。100でレベルアップし、キャラごとの成長率で能力が上がります。次の章へ引き継ぎ。</li>
 <li><b>ロスト</b>：倒れた仲間は二度と戻りません。カイルが倒れるとゲームオーバー。</li>
-<li><b>敵の動き</b>：敵をタップするとその敵の攻撃範囲、「危険範囲」で全敵の範囲を表示。陣地から動かない敵もいます。</li>
-<li><b>杖</b>：修道士ミアは隣の味方をタップしてHP回復（敵は攻撃できない）。</li>
-<li><b>クラスチェンジ</b>：Lv5以上で「道具」から灯火の紋章を使うと上級職に。能力が上がり、使える武器が増えます。</li>
-<li><b>支援</b>：仲良しの2人が隣り合ってターンを終えると絆が深まり、移動後に相手をタップ（💬）すると支援会話。支援レベルC/Bで、2マス以内にいると命中・回避が上がります。</li>
-<li>勝利条件は章ごとに異なります（第一章：敵の全滅／第二章：首領の撃破／第三章：カイルが祭壇に到達して待機／第四章：6ターン耐える）。</li>
-<li><b>村・宝箱</b>：村や宝箱のマスで待機すると「訪問」「開ける」になり、道具が手に入ります（一度きり）。</li>
-<li><b>増援と説得</b>：決まったターンに敵の増援が現れます。カイルで特定の敵の隣から話しかける（💬）と仲間になることも。</li>
-</ul><button class="btn primary" id="closeHelp">戦いに戻る</button></div></div>
+<li><b>クラスチェンジ</b>：Lv5以上で「道具」から灯火の紋章を使うと上級職に。</li>
+<li><b>支援</b>：仲良しの2人が隣り合ってターンを終えると絆が深まり、移動後に相手をタップ（💬）すると支援会話。2マス以内で命中・回避アップ。</li>
+<li><b>村・宝箱</b>：そのマスで待機すると「訪問」「開ける」になり、道具が手に入ります。</li>
+<li><b>増援と説得</b>：決まったターンに増援が現れます。カイルで特定の敵の隣から話しかける（💬）と仲間になることも。</li>
+<li><b>待ち伏せ</b>：陣地から動かない敵は、近づくか攻撃するまで動きません。</li></ul></div>
+<div class="tab-pane" id="h-goal"><p id="goalNow" class="rule-box"></p><ul><li>第一章：敵の全滅</li><li>第二章：首領の撃破</li><li>第三章：カイルが祭壇に到達して「制圧」</li><li>第四章：6ターン耐える</li></ul></div>
+<button class="btn primary" id="closeHelp">戦いに戻る</button></div></div>
+<div class="modal" id="rosterModal"><div class="modal-content"><div class="sheet-head"><h2>部隊一覧</h2><button class="x-btn" data-close="rosterModal" aria-label="閉じる">✕</button></div>
+<div class="tabs" data-tabs="roster"><button class="on" data-tab="r-p">味方</button><button data-tab="r-e">敵</button></div><div class="tab-pane on" id="r-p"></div><div class="tab-pane" id="r-e"></div>
+<button class="btn sub" data-close="rosterModal">閉じる</button></div></div>
+<div class="modal" id="unitModal"><div class="modal-content"><div id="unitDetail"></div><button class="btn sub" data-close="unitModal">閉じる</button></div></div>
 <div class="modal" id="itemModal"><div class="modal-content"><h2>道具</h2><div id="itemList"></div><button class="btn sub" id="itemClose">閉じる</button></div></div>
 <div class="modal" id="resultModal"><div class="modal-content"><h2 id="resultTitle">勝利！</h2><p id="resultText"></p><button class="btn primary" id="resetBtn">もう一度プレイ</button><button class="btn sub" id="resultLoadBtn">セーブから再開</button><button class="btn sub hidden" id="altBtn">第一章から遊ぶ</button></div></div>
 <div class="story" id="story"><div class="story-chapter" id="storyChapter"></div><div class="story-box"><canvas class="story-portrait" id="storyPortrait" width="72" height="72"></canvas><div><div class="story-name" id="storyName"></div><div class="story-text" id="storyText"></div></div></div><div class="story-foot"><span>タップで次へ ▼</span><button class="story-skip" id="storySkip">スキップ</button></div></div>
@@ -351,8 +406,8 @@ const KANJI=['一','二','三','四','五','六','七','八','九','十'];
 // ===== 状態 =====
 let ch=0,rows=CHAPTERS[0].rows,story=null,storyEnd=null;
 let campaign={ch:0,roster:null,fallen:[],supports:{}},supports={},seized=false,survived=false,mapDone=[];
-let units=[],selected=null,stage='none',reachable=new Map(),origin=null,target=null,fcIndex=0,tileSel=null,turn=1,locked=false,over=false,dangerOn=false,cursor=null,flashUnit=null;
-const msg=s=>{$('message').textContent=s};
+let endArmed=false;let units=[],selected=null,stage='none',reachable=new Map(),origin=null,target=null,fcIndex=0,tileSel=null,turn=1,locked=false,over=false,dangerOn=false,cursor=null,flashUnit=null;
+let hintT=0;const msg=s=>{const h=$('hint');if(!h||!s)return;h.innerHTML='';const sp=document.createElement('span');sp.textContent=s;h.appendChild(sp);h.classList.add('show');clearTimeout(hintT);hintT=setTimeout(()=>h.classList.remove('show'),2600)};
 const sleep=t=>new Promise(r=>setTimeout(r,t));
 const key=(x,y)=>`${x},${y}`;
 const unkey=k=>k.split(',').map(Number);
@@ -515,7 +570,7 @@ function unitHTML(u){const t=terrain(u.x,u.y);
 function tileHTML(x,y){const t=terrain(x,y);
  return`<h3>${t.name}<small>地形情報</small></h3><p>${t.cost>=99?'通行できません。':`移動コスト ${t.cost}　回避 +${t.avo}　守備 +${t.def}`}${t.heal?`<br>ターン開始時に最大HPの${t.heal}%回復。`:''}</p>`}
 function overviewHTML(){const p=alive('p'),total=units.filter(u=>u.team==='p').length,fallen=campaign.fallen.map(id=>HEROES[id]?.name).filter(Boolean);
- return`<h3>${CHAPTERS[ch].goalText}</h3><p>味方 ${p.length}/${total}　ターン ${turn}${CHAPTERS[ch].goal==='survive'?`（あと ${CHAPTERS[ch].turns-turn+1}）`:''}${fallen.length?`<br><span class="sub">戦死：${fallen.join('・')}</span>`:''}<br><span class="sub">ユニットをタップで能力表示、何もないマスで地形情報。敵をタップするとその敵の攻撃範囲が出ます。</span></p>`}
+ return`<h3>${CHAPTERS[ch].goalText}</h3><p>味方 ${p.length}/${total}　ターン ${turn}${CHAPTERS[ch].goal==='survive'?`（あと ${CHAPTERS[ch].turns-turn+1}）`:''}${fallen.length?`<br><span class="sub">戦死：${fallen.join('・')}</span>`:''}</p><div class="hint">ユニットをタップで簡易ステータス、「詳細」で全能力。ルールは右上の「？ ルール」から。</div>`}
 const fcWeapons=()=>selected&&target?weaponsFor(selected,dist(selected,target)):[];
 const triMark=t=>t>0?'<span class="up">▲</span>':t<0?'<span class="dn">▼</span>':'';
 function forecastHTML(){const ws=fcWeapons(),it=ws[fcIndex%ws.length],f=forecast(selected,it,target),A=f.A,B=f.B;
@@ -527,13 +582,63 @@ function forecastHTML(){const ws=fcWeapons(),it=ws[fcIndex%ws.length],f=forecast
  <div class="pv">${kill(A,target)}${A.dmg}${A.double?'<span class="x2">×2</span>':''}</div><div class="l">威力</div><div class="ev">${B?B.dmg+(B.double?'<span class="x2">×2</span>':'')+kill(B,selected):'—'}</div>
  <div class="pv">${A.hit}</div><div class="l">命中</div><div class="ev">${B?B.hit:'—'}</div>
  <div class="pv">${A.crt}</div><div class="l">必殺</div><div class="ev">${B?B.crt:'—'}</div></div>`}
-function renderInfo(){const el=$('info');
- if(stage==='forecast'&&selected&&target){el.innerHTML=forecastHTML();return}
- if(selected){el.innerHTML=unitHTML(selected);return}
- if(stage==='tile'&&tileSel){el.innerHTML=tileHTML(tileSel.x,tileSel.y);return}
- el.innerHTML=overviewHTML()}
+// 顔グラフィック（会話用の顔→マップ駒→ドット絵の順で使う）
+const faceCache={};
+function faceURL(u){const p=artUrl('portraits',u.name)||artUrl('units',u.name)||artUrl('units',u.job);if(p)return p;
+ const k=u.team+u.name+u.job+u.color;if(faceCache[k])return faceCache[k];const c=document.createElement('canvas');c.width=c.height=80;const cx=c.getContext('2d');cx.imageSmoothingEnabled=false;cx.scale(2,2);unitArt(cx,{...u,acted:false},0,0);return faceCache[k]=c.toDataURL()}
+const faceHTML=(u,cls='')=>`<div class="face ${u.team==='e'?'e':''} ${cls}" style="background-image:url('${faceURL(u)}')"></div>`;
+function unitTags(u){let t='';if(u.team==='p'&&u.acted)t+='<span class="tag done">行動済</span>';if(u.team==='e'&&u.guard&&!u.aggro)t+='<span class="tag guard">待ち伏せ</span>';if(u.recruit)t+='<span class="tag talk">💬説得可</span>';return t}
+function miniHTML(u){const t=terrain(u.x,u.y),eq=equipped(u)||staffOf(u);
+ return`<div class="mini">${faceHTML(u)}<div class="mini-body"><h3>${u.boss?'<em class="boss-tag">首領</em>':''}${u.name}<small>Lv${u.lv} ${u.job}</small>${unitTags(u)}</h3>
+ <div class="hpline"><span>HP <b>${u.hp}</b>/${u.maxHp}</span><div class="bar${u.team==='e'?' enemy':''}"><i style="width:${u.hp/u.maxHp*100}%"></i></div></div>
+ <div class="mini-row"><span class="wp">${eq?itemLabel(eq):'武器なし'}</span><span>${t.name}${t.avo||t.def?` 回${t.avo}/守${t.def}`:''}</span></div></div>
+ <button class="detail-btn" data-detail="${units.indexOf(u)}">詳細<br>▶</button></div>`}
+function statBar(u,k){const cap=k==='hp'?60:30,v=k==='hp'?u.maxHp:u[k];return`<div><span>${LABEL[k]}</span><b>${v}</b><i><u style="width:${Math.min(100,v/cap*100)}%"></u></i>${u.team==='p'&&u.grow&&u.grow[k]!=null?`<small>成長率 ${u.grow[k]}%</small>`:''}</div>`}
+function detailHTML(u){const t=terrain(u.x,u.y),eq=equipped(u),ws=(u.wt||[]).map(x=>WNAME[x]||(x==='staff'?'杖':'')).filter(Boolean);
+ const promo=u.team==='p'&&PROMO[u.job]&&!u.promoted?`<div class="hint">Lv${PROMO_LV}以上で灯火の紋章を使うと「${PROMO[u.job].to}」にクラスチェンジ。</div>`:'';
+ const rows=u.items.map(it=>{const w=idef(it),wep=WNAME[w.type];return`<tr class="${it===eq?'eq':''}${wep&&!canUse(u,it)?' ng':''}"><td>${it===eq?'◆':''}${icon(it)}${w.name}</td>${wep?`<td>${WNAME[w.type]}</td><td>${w.mt}</td><td>${w.hit}</td><td>${w.crt}</td><td>${w.wt}</td><td>${w.min===w.max?w.min:w.min+'-'+w.max}</td>`:`<td colspan="6" style="text-align:left;color:#a8bad2">${w.type==='staff'?`隣の味方をHP${w.heal}+回復（射程1）`:w.type==='heal'?`HPを${w.heal}回復`:w.type==='seal'?'クラスチェンジに使う':''}</td>`}<td>${it.uses!=null&&w.uses?it.uses:'∞'}</td></tr>`}).join('');
+ const sup=u.team==='p'?alive('p').filter(v=>v!==u&&SUPPORTS[pairKey(u.id,v.id)]).map(v=>`${v.name}：${SUP_RANK[supLv(u.id,v.id)]||'—'}${talkReady(u,v)?' 💬':''}`):[];
+ const notes=[];if(u.team==='e'){if(u.boss)notes.push('この章の首領。');if(u.guard&&!u.aggro)notes.push('近づくか攻撃されるまで動かない。');if(u.mov===0)notes.push('その場から動かない。');if(u.drop)notes.push(`倒すと「${ITEMS[u.drop].name}」を落とす。`);if(u.recruit)notes.push(`${HEROES[u.recruit.by].name}で隣から話しかけると……？`)}
+ return`<div class="d-head">${faceHTML(u,'big')}<div><h2>${u.boss?'<em class="boss-tag">首領</em>':''}${u.name}</h2><div class="sub">${u.team==='p'?'味方':'敵'}　${u.job}　Lv ${u.lv}${unitTags(u)}</div>
+ <div class="hpline"><span>HP <b>${u.hp}</b>/${u.maxHp}</span><div class="bar${u.team==='e'?' enemy':''}" style="width:90px;flex:none"><i style="width:${u.hp/u.maxHp*100}%"></i></div></div>
+ ${u.team==='p'?`<div class="hpline"><span>EXP ${u.exp}/100</span><div class="bar exp"><i style="width:${u.exp}%"></i></div></div>`:''}</div></div>
+ <div class="d-sec"><h4>能力</h4><div class="st-list">${['str','skl','spd','lck','def'].map(k=>statBar(u,k)).join('')}<div><span>移動</span><b>${u.mov}</b><i><u style="width:${u.mov/8*100}%"></u></i></div></div>
+ <div class="hint">攻撃速度 ${atkSpd(u,eq?idef(eq):null)}　使える武器：${ws.join('・')||'なし'}</div>${promo}</div>
+ <div class="d-sec"><h4>持ち物</h4>${u.items.length?`<table class="wtable"><tr><th style="text-align:left">名前</th><th>種</th><th>威力</th><th>命中</th><th>必殺</th><th>重さ</th><th>射程</th><th>回数</th></tr>${rows}</table>`:'<div class="hint">所持品なし</div>'}</div>
+ <div class="d-sec"><h4>地形</h4><div class="hint" style="margin:0">${t.name}　回避+${t.avo}　守備+${t.def}${t.heal?'　毎ターン回復':''}</div></div>
+ ${sup.length?`<div class="d-sec"><h4>支援</h4><div class="hint" style="margin:0">${sup.join('　')}</div></div>`:''}
+ ${notes.length?`<div class="d-sec"><h4>メモ</h4><div class="hint" style="margin:0">${notes.join('<br>')}</div></div>`:''}`}
+function openDetail(u){if(!u)return;$('unitDetail').innerHTML=detailHTML(u);openModal('unitModal')}
+function rosterHTML(team){const list=units.filter(u=>u.team===team&&u.hp>0);if(!list.length)return'<p class="hint">いません。</p>';
+ return list.map(u=>`<button class="roster-row${u.team==='p'&&u.acted?' acted':''}" data-detail="${units.indexOf(u)}">${faceHTML(u)}<div class="rb"><b>${u.boss?'<em class="boss-tag">首領</em>':''}${u.name}</b>${unitTags(u)}<span>Lv${u.lv} ${u.job}　HP ${u.hp}/${u.maxHp}</span><div class="bar${team==='e'?' enemy':''}"><i style="width:${u.hp/u.maxHp*100}%"></i></div></div><span style="color:#f5d18c">▶</span></button>`).join('')}
+function openRoster(){$('r-p').innerHTML=rosterHTML('p');$('r-e').innerHTML=rosterHTML('e');openModal('rosterModal')}
+function openModal(id){$(id).classList.add('open')}
+function closeModal(id){$(id).classList.remove('open')}
+// ステータス表示はマップ上に重ね、注目しているユニットと反対側（上下）に出す
+function renderInfo(){const el=$('hud'),f=target&&stage==='forecast'?selected:selected||tileSel,side=f&&f.y>=5?'top':'bottom';let h='';
+ if(!locked){if(stage==='forecast'&&selected&&target)h=forecastHTML()+fcButtons();else if(selected)h=miniHTML(selected);else if(stage==='tile'&&tileSel)h=tileHTML(tileSel.x,tileSel.y)}
+ el.innerHTML=h;el.className='hud '+side+(h?' show':'');$('hint').className='hint '+(h&&side==='top'?'bottom':'top')+($('hint').classList.contains('show')?' show':'');renderCmd()}
+function fcButtons(){const n=targets(selected).length;return`<div class="fc-btns"><button class="cbtn primary" data-cmd="attack">⚔ 攻撃</button>${fcWeapons().length>1?'<button class="cbtn" data-cmd="swap">⇄ 武器</button>':''}${n>1?'<button class="cbtn" data-cmd="next">次の敵</button>':''}<button class="cbtn sub" data-cmd="back">戻る</button></div>`}
+// 移動後のコマンド（ユニットと反対側の端に縦並びで出す）
+function renderCmd(){const el=$('cmd');if(locked||over||stage!=='action'||!selected){el.className='cmd';el.innerHTML='';return}
+ const u=selected,list=[],ev=tileEvent(u),seize=CHAPTERS[ch].goal==='seize'&&u.lord&&rows[u.y][u.x]==='T';
+ if(targets(u).length)list.push(['pickAtk','⚔ 攻撃','primary']);if(healTargets(u).length)list.push(['heal','✚ 杖']);if(talkTargets(u).length)list.push(['talk','💬 話す']);
+ if(seize)list.push(['wait','🏳 制圧','primary']);else if(ev)list.push(['wait',ev.type==='chest'?'🗝 開ける':'🏠 訪問','primary']);
+ if(usableItems(u).length)list.push(['item','🎒 道具']);if(!seize&&!ev)list.push(['wait','⏸ 待機']);list.push(['back','↩ 戻る','sub']);
+ el.innerHTML=list.map(([c,t,k])=>`<button class="cbtn ${k||''}" data-cmd="${c}">${t}</button>`).join('');
+ const right=u.x<5;el.style.left=right?'':'2%';el.style.right=right?'2%':'';el.className='cmd show';const B=$('board').clientHeight,hud=$('hud'),hh=hud.classList.contains('show')?hud.offsetHeight+B*.03:0,cH=el.offsetHeight;
+ let lo=B*.02,hi=B*.98-cH;if(hud.classList.contains('top'))lo+=hh;else hi-=hh;el.style.top=Math.max(lo,Math.min(hi,(u.y+.5)*B/10-cH/2))+'px'}
+function runCmd(c){if(locked||over||!selected)return;const u=selected;
+ if(c==='pickAtk'){const t=targets(u);if(t.length){openForecast(t[0]);if(t.length>1)msg('別の敵は「次の敵」か、赤い敵をタップ。')}}
+ else if(c==='heal'){const h=healTargets(u);if(h.length===1){staffHeal(u,h[0]);return}msg('回復する味方（緑のマス）をタップ。')}
+ else if(c==='talk'){const k=talkTargets(u);if(k.length===1){talk(u,k[0]);return}msg('話しかける相手（💬）をタップ。')}
+ else if(c==='wait'||c==='attack'){$('waitBtn').click();return}
+ else if(c==='item'||c==='swap'){$('itemBtn').click();return}
+ else if(c==='back'){$('cancelBtn').click();return}
+ else if(c==='next'){const t=targets(u),i=t.indexOf(target);openForecast(t[(i+1)%t.length])}
+ update();draw()}
 function usableItems(u){return u.items.filter(it=>{const w=idef(it);if(w.type==='heal')return u.hp<u.maxHp;if(w.type==='seal')return !u.promoted&&u.lv>=PROMO_LV&&!!PROMO[u.job];return false})}
-function update(){$('turnLabel').textContent=String(turn).padStart(2,'0');$('enemyLabel').textContent=alive('e').length;renderInfo();
+function update(){$('turnLabel').textContent=String(turn).padStart(2,'0');$('goalLabel').textContent=CHAPTERS[ch].goalText.replace('勝利条件：','🏁 ')+(CHAPTERS[ch].goal==='survive'?`（あと${Math.max(0,CHAPTERS[ch].turns-turn+1)}）`:'');$('enemyLabel').textContent=alive('e').length;renderInfo();const eb=$('endBtn');eb.classList.toggle('ready',!locked&&!over&&alive('p').every(u=>u.acted));if(locked||over)endArmed=false;
  const cb=$('cancelBtn'),ib=$('itemBtn'),wb=$('waitBtn');
  cb.disabled=locked||!(selected||tileSel);cb.textContent=stage==='action'?'移動を戻す':stage==='forecast'?'戻る':'選択解除';
  if(stage==='forecast'){ib.textContent='武器切替';ib.disabled=locked||fcWeapons().length<2;wb.textContent='攻撃する'}
@@ -543,11 +648,11 @@ function update(){$('turnLabel').textContent=String(turn).padStart(2,'0');$('ene
  $('dangerBtn').classList.toggle('on',dangerOn)}
 
 // ===== 操作 =====
-function selectUnit(u){selected=u;stage='move';tileSel=null;reachable=getReach(u);msg(`${u.name} を選択。青いマスへ移動（その場をタップで移動しない）。`)}
+function selectUnit(u){selected=u;stage='move';tileSel=null;reachable=getReach(u);msg(`青いマスをタップで移動（その場をタップで移動しない）`)}
 function enterAction(){stage='action';const t=targets(selected),h=healTargets(selected),k=talkTargets(selected),parts=[];
- if(tileEvent(selected))parts.push(tileEvent(selected).type==='chest'?'「開ける」で宝箱を開ける':'「訪問」で村を訪れる');if(t.length)parts.push('赤い敵をタップで戦闘予測');if(h.length)parts.push('緑の味方をタップで杖による回復');if(k.length)parts.push('💬の味方をタップで支援会話');
- msg(parts.length?parts.join('、')+'。':CHAPTERS[ch].goal==='seize'&&selected.lord&&rows[selected.y][selected.x]==='T'?'「制圧」で祭壇を取り戻す！':'攻撃できる敵がいません。「待機」で行動終了。')}
-function openForecast(e){target=e;fcIndex=0;stage='forecast';msg('予測を確認。もう一度タップか「攻撃する」で攻撃。')}
+ if(tileEvent(selected))parts.push(tileEvent(selected).type==='chest'?'「開ける」で宝箱を開ける':'「訪問」で村を訪れる');if(k.length)parts.push('💬の相手と話せます');
+ msg(parts.length?parts.join('、')+'。':CHAPTERS[ch].goal==='seize'&&selected.lord&&rows[selected.y][selected.x]==='T'?'「制圧」で祭壇を取り戻す！':'')}
+function openForecast(e){target=e;fcIndex=0;stage='forecast';msg('もう一度敵をタップか「攻撃」で攻撃。')}
 function pick(x,y){if(locked||over)return;const u=at(x,y);
  if(stage==='move'){
   if(u===selected){origin={x:u.x,y:u.y};enterAction()}
@@ -750,11 +855,23 @@ async function enemyTurn(){if(locked||over)return;clearSelection();locked=true;c
  if(!over){turn++;units.filter(u=>u.team==='p').forEach(u=>u.acted=false);locked=false;toast('PLAYER PHASE');
   const hp=fortHeal('p');msg(`第 ${turn} ターン。味方の行動を選択してください。${hp.length?` 砦で回復：${hp.join(' ')}`:''}`);update();draw()}}
 function toast(text){const el=$('toast');el.textContent=text;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),700)}
-$('endBtn').onclick=enemyTurn;
+$('endBtn').onclick=()=>{if(locked||over)return;const left=alive('p').filter(u=>!u.acted).length;
+ if(left&&!endArmed){endArmed=true;msg(`まだ ${left} 人が行動できます。もう一度押すとターン終了。`);setTimeout(()=>endArmed=false,3000);return}
+ endArmed=false;clearSelection();enemyTurn()};
 $('dangerBtn').onclick=()=>{dangerOn=!dangerOn;msg(dangerOn?'紫のマスは、敵が次のターンに攻撃できる範囲です。':'危険範囲の表示を消しました。');update();draw()};
-$('howBtn').onclick=()=>$('helpModal').classList.add('open');$('closeHelp').onclick=()=>$('helpModal').classList.remove('open');$('altBtn').onclick=newCampaign;
+function openHelp(tab){$('goalNow').innerHTML=`いまの章：<b>${CHAPTERS[ch].title}</b><br>${CHAPTERS[ch].goalText}`;if(tab)switchTab('help',tab);openModal('helpModal')}
+function switchTab(group,id){const bar=document.querySelector(`[data-tabs="${group}"]`);for(const b of bar.children){const on=b.dataset.tab===id;b.classList.toggle('on',on);$(b.dataset.tab).classList.toggle('on',on)}}
+$('terrainTable').innerHTML='<tr><th>地形</th><th>移動</th><th>回避</th><th>守備</th></tr>'+Object.entries(TERRAIN).filter(([k])=>k!=='H').map(([k,t])=>{const u=artUrl('tiles',k)||ART.tiles[k];return`<tr><td>${u?`<img src="${u}" alt="">`:''}${t.name}</td><td>${t.cost>=99?'×':t.cost}</td><td>+${t.avo}</td><td>+${t.def}${t.heal?' 回復':''}</td></tr>`}).join('');
+document.addEventListener('click',e=>{const c=e.target.closest('[data-close]');if(c){closeModal(c.dataset.close);return}
+ const t=e.target.closest('[data-tab]');if(t){switchTab(t.parentElement.dataset.tabs,t.dataset.tab);return}
+ const cm=e.target.closest('[data-cmd]');if(cm){runCmd(cm.dataset.cmd);return}
+ const d=e.target.closest('[data-detail]');if(d){openDetail(units[+d.dataset.detail]);return}
+ if(e.target.classList.contains('modal')&&!['resultModal'].includes(e.target.id))closeModal(e.target.id)});
+$('closeHelp').onclick=()=>closeModal('helpModal');
+$('menuBtn').onclick=()=>{showSaveInfo();openModal('menuModal')};
+$('menuRules').onclick=()=>{closeModal('menuModal');openHelp()};$('menuRoster').onclick=()=>{closeModal('menuModal');openRoster()};$('rosterBtn').onclick=openRoster;$('altBtn').onclick=newCampaign;
 // キーボード操作（PC確認用）
-window.addEventListener('keydown',e=>{if(story&&['Enter',' '].includes(e.key)){e.preventDefault();nextLine();return}
+window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!story){$('cancelBtn').click();return}if(story&&['Enter',' '].includes(e.key)){e.preventDefault();nextLine();return}
  if($('lvup').classList.contains('show')&&['Enter',' '].includes(e.key)){e.preventDefault();$('lvup').click();return}
  if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter',' '].includes(e.key)){if(!cursor)cursor={x:1,y:8};
   if(e.key==='ArrowUp')cursor.y=Math.max(0,cursor.y-1);if(e.key==='ArrowDown')cursor.y=Math.min(9,cursor.y+1);if(e.key==='ArrowLeft')cursor.x=Math.max(0,cursor.x-1);if(e.key==='ArrowRight')cursor.x=Math.min(9,cursor.x+1);
@@ -777,7 +894,7 @@ function loadGame(){if(locked&&!over)return;const d=readSave();if(!d){msg('セ�
  units=clone(d.units);supports=clone(d.supports||campaign.supports||{});seized=false;survived=false;mapDone=Array.isArray(d.mapDone)?d.mapDone.slice():[];turn=d.turn;$('itemModal').classList.remove('open');clearSelection();over=false;locked=false;flashUnit=null;
  $('resultModal').classList.remove('open');$('battle').classList.remove('show');$('lvup').classList.remove('show');
  msg(`第${ch+1}章 第 ${turn} ターンの戦況をロードしました。`);update();draw();checkEnd()}
-$('saveBtn').onclick=saveGame;$('loadBtn').onclick=loadGame;$('resultLoadBtn').onclick=loadGame;
+$('saveBtn').onclick=()=>{saveGame();closeModal('menuModal')};$('loadBtn').onclick=()=>{closeModal('menuModal');loadGame()};$('resultLoadBtn').onclick=loadGame;
 setInterval(()=>{if(!document.hidden&&!$('battle').classList.contains('show'))draw()},480);
 loadArt();campaign=loadCampaign();startChapter(campaign.ch);showSaveInfo();update();
 })();

@@ -85,22 +85,24 @@ const ART={
  units:{      // マップ上の駒（正方形の画像。透過PNG推奨。右向きで描き、敵は自動で左右反転）
   'カイル':'assets/unit_kyle.png','リナ':'assets/unit_rina.png','エド':'assets/unit_ed.png','ソラ':'assets/unit_sora.png',
   '戦斧兵':'assets/unit_bandit_axe.png','剣士':'assets/unit_bandit_sword.png','槍兵':'assets/unit_soldier_lance.png','射手':'assets/unit_bandit_bow.png',
-  '山賊頭':'assets/unit_gard.png','ガルド':'assets/unit_gard.png','傭兵長':'assets/unit_bandit_sword.png'},
+  '山賊頭':'assets/unit_gard.png','ガルド':'assets/unit_gard.png','傭兵長':'assets/unit_bandit_sword.png',
+  'ミア':'assets/unit_mia.png','ヴェルン':'assets/unit_vern.png'},
  portraits:{  // 会話シーンの顔（正方形）
   'カイル':'assets/face_kyle.png','リナ':'assets/face_rina.png','エド':'assets/face_ed.png','ソラ':'assets/face_sora.png',
-  '見張り':'assets/face_lookout.png','ガルド':'assets/face_gard.png'},
+  '見張り':'assets/face_lookout.png','ガルド':'assets/face_gard.png','ミア':'assets/face_mia.png','ヴェルン':'assets/face_vern.png'},
  battle:{},     // 戦闘画面の立ち絵（正方形）。なければ units の絵を使う
  motion:{       // 戦闘モーション：正方形6コマを横一列に並べた画像（構え・溜め・攻撃・振り抜き・被弾・回避）。右向き・足元をそろえる
- },
+  // 1コマの中で、キャラは立ち絵の 1/1.6 の大きさ（武器を振る余白つき）
+  'カイル':'assets/motion_kyle.png'},
  tiles:{        // 地形1マス（正方形）。G2/W2 は草原・水辺の別パターン（ランダムに混ぜる）
   G:'assets/tile_grass.png',G2:'assets/tile_grass2.png',F:'assets/tile_forest.png',P:'assets/tile_road.png',C:'assets/tile_fort.png',
-  W:'assets/tile_water.png',W2:'assets/tile_water2.png',M:'assets/tile_mountain.png',B:'assets/tile_bridge.png'},
+  W:'assets/tile_water.png',W2:'assets/tile_water2.png',M:'assets/tile_mountain.png',B:'assets/tile_bridge.png',T:'assets/tile_altar.png'},
  icons:{        // 武器・道具のアイコン。キーは ITEMS のID
   iron_sword:'assets/icon_iron_sword.png',keen_sword:'assets/icon_steel_sword.png',iron_lance:'assets/icon_iron_lance.png',javelin:'assets/icon_steel_lance.png',
   iron_axe:'assets/icon_iron_axe.png',hand_axe:'assets/icon_iron_axe.png',chief_axe:'assets/icon_steel_axe.png',hunt_bow:'assets/icon_short_bow.png',
-  steel_sword:'assets/icon_steel_sword.png',steel_lance:'assets/icon_steel_lance.png',steel_axe:'assets/icon_steel_axe.png',long_bow:'assets/icon_long_bow.png',heal_staff:'assets/icon_heal_staff.png'},
+  steel_sword:'assets/icon_steel_sword.png',steel_lance:'assets/icon_steel_lance.png',steel_axe:'assets/icon_steel_axe.png',long_bow:'assets/icon_long_bow.png',heal_staff:'assets/icon_heal_staff.png',seal:'assets/icon_seal.png',salve:'assets/icon_salve.png'},
  backgrounds:{  // 'story1'（第一章の会話背景）'story2' ... / 'battle1' 'battle2'（章ごとの戦闘背景）'battle'（共通）
-  story1:'assets/bg_ch1.jpg',story2:'assets/bg_ch2.jpg',battle1:'assets/bg_ch1.jpg',battle2:'assets/bg_ch2.jpg'}
+  story1:'assets/bg_ch1.jpg',story2:'assets/bg_ch2.jpg',battle1:'assets/bg_ch1.jpg',battle2:'assets/bg_ch2.jpg',story3:'assets/bg_ch3.jpg',battle3:'assets/bg_ch3.jpg'}
 };
 const IMG={};
 function loadArt(){for(const g of Object.keys(ART))for(const [k,src] of Object.entries(ART[g])){if(!src)continue;const im=new Image();im.onload=()=>draw();im.src=src;IMG[g+':'+k]=im}}
@@ -605,7 +607,8 @@ function spriteOf(u){const S=240,c=document.createElement('canvas');c.width=c.he
 function whiteOf(img){const w=document.createElement('canvas');w.width=img.width;w.height=img.height;const wx=w.getContext('2d');wx.drawImage(img,0,0);wx.globalCompositeOperation='source-atop';wx.fillStyle='#fff';wx.fillRect(0,0,w.width,w.height);return w}
 const POSE={ready:0,windup:1,strike:2,follow:3,hurt:4,dodge:5};
 function framesOf(u){const im=artImg('motion',u.name,u.job);if(!im)return null;const S=im.naturalHeight,n=Math.floor(im.naturalWidth/S);if(n<6)return null;
- return [...Array(6)].map((_,i)=>{const c=document.createElement('canvas');c.width=c.height=240;const cx=c.getContext('2d');cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality='high';cx.drawImage(im,i*S,0,S,S,0,0,240,240);return{img:c,white:whiteOf(c)}})}
+ return [...Array(6)].map((_,i)=>{const c=document.createElement('canvas');c.width=c.height=384;const cx=c.getContext('2d');cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality='high';cx.drawImage(im,i*S,0,S,S,0,0,384,384);return{img:c,white:whiteOf(c)}})}
+const FRAME_SCALE=1.6;// モーション1コマは立ち絵の1.6倍の枠
 function mkFighter(u,x,flip){const img=spriteOf(u),fr=framesOf(u);
  return{u,img,white:whiteOf(img),frames:fr,pose:'ready',x0:x,x,y:0,flip,dir:flip?-1:1,alpha:1,flash:0,rot:0,job:JOB_ANIM[u.job]||{}}}
 function stageStart(p,e,d){const c=$('stage');STG.c=c;STG.cx=c.getContext('2d');STG.fx=[];STG.shake=0;STG.flash=0;STG.range=d;
@@ -620,7 +623,7 @@ function stageDraw(){const {cx,c}=STG;if(!cx||!STG.L)return;cx.setTransform(1,0,
  if(STG.flash>0){cx.setTransform(1,0,0,1,0,0);cx.fillStyle=`rgba(255,236,200,${STG.flash})`;cx.fillRect(0,0,c.width,c.height)}}
 function drawFighter(cx,f){if(f.alpha<=0)return;const fr=f.frames&&f.frames[POSE[f.pose]||0],img=fr?fr.img:f.img,white=fr?fr.white:f.white;
  cx.save();cx.globalAlpha=f.alpha;cx.translate(f.x,GROUND+f.y);if(f.flip)cx.scale(-1,1);cx.rotate(f.rot*(f.frames?.3:1));// ポーズ絵があるときは体の傾けを控えめに
- cx.drawImage(img,-SZ/2,-SZ+4,SZ,SZ);if(f.flash>0){cx.globalAlpha=f.alpha*Math.min(1,f.flash);cx.drawImage(white,-SZ/2,-SZ+4,SZ,SZ)}cx.restore()}
+ const Z=fr?SZ*FRAME_SCALE:SZ,b=fr?Z*.01:4;cx.drawImage(img,-Z/2,-Z+b,Z,Z);if(f.flash>0){cx.globalAlpha=f.alpha*Math.min(1,f.flash);cx.drawImage(white,-Z/2,-Z+b,Z,Z)}cx.restore()}
 // 時間 ms をかけて fn(進み具合0〜1) を呼びながら描く。裏のタブでも止まらないように setTimeout でも進める
 function tw(ms,fn,ease=k=>k){return new Promise(res=>{const s=performance.now();
  const step=()=>{const k=Math.min(1,(performance.now()-s)/Math.max(1,ms));fn(ease(k),k);stageDraw();if(k<1)tick();else res()};
